@@ -21,10 +21,10 @@ export class AppComponent {
 	    };
 	    document.body.appendChild(this.messages);
 
-	    this.send('reqSelectSource')/*, callback*/);
+	    this.send(JSON.stringify({ cmd: 'reqSelectSource', source: 'usb' })/*, callback*/);
 	    this.send('hello')/*, callback*/);
 	    this.send('hello')/*, callback*/);
-	    this.send('reqNextTrack')/*, callback*/);
+	    this.send(JSON.stringify({ cmd: 'reqPlayTrack', trackID: '0' })/*, callback*/);
 	    this.send('hello')/*, callback*/);
 	    this.send('hello')/*, callback*/);
 	}

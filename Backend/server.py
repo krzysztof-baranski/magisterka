@@ -9,6 +9,7 @@ import websockets
 import logging
 import json
 import sys
+import media
 
 logging.basicConfig(
     # level=logging.DEBUG,
@@ -25,12 +26,41 @@ commands = {
 	'reqPrevTrack'   : 3
 }
 
+messages = []
+messages.append(datetime.datetime.utcnow().isoformat() + 'Z')
+
+
+Media = media.Media('media') 
+
+def parseMsg(msg):
+	try:
+		messageObj = json.loads(msg)
+	except ValueError:
+		LOG.error('Cannot parse message to JSON! ')
+		return False
+	except:
+		LOG.error('Unexpected error: ' + sys.exc_info()[0]); 
+		return False
+	return messageObj
+
 async def consumer (message):
-	LOG.info('Msg from Client: ' + message)
-	messageNo = commands.get(message, -1)
-	LOG.info('Msg from Client: ' + str(messageNo))
+	messageObj = parseMsg(message)
+
+	LOG.info('Msg from Client: ' + str(messageObj))
+
+	if messageObj == False:
+		LOG.warning('Return. Message not valid') 
+		return False
+
+	messageNo = commands.get(messageObj.get('cmd', 'noop'), -1)
 	if messageNo == 0:
 		LOG.info ('messageNo ' + str(messageNo) + ' no i elo')
+		Media.selectSource(messageObj) 
+		messages.append(json.dumps({ 'cmd': 'resSelectSource', 'source': Media.currentSource }) ) 
+	elif messageNo == 1:
+		track = Media.playTrack(messageObj)
+		LOG.warning ('############ ' + str (track) ) 
+		messages.append(json.dumps({ 'cmd': 'resPlayTrack', 'track': track })) 	
 	else: 
 		LOG.info ('NO message found!')  
 
@@ -39,14 +69,18 @@ async def consumer_handler(websocket, path):
         await consumer(message)
 
 async def producer():
-    message = datetime.datetime.utcnow().isoformat() + 'Z'
-    return message
+	# CZEMU NIE DZIALA JAK SIE NIE ZZROBI TU APPEND??
+    messages.append(datetime.datetime.utcnow().isoformat() + 'Z')
+    return messages
 
 async def producer_handler(websocket, path):
     while True:
-	    message = await producer()
-	    await websocket.send(message)
-	    await asyncio.sleep(random.random() * 3)
+	    messages = await producer()
+	    for msg in messages:
+	    	await websocket.send(msg)
+	    	await asyncio.sleep(0.01)
+	    	if msg in messages:
+	    		messages.remove(msg) 
 	    # LOG.info('PATH ' + str(path)) 
 
 async def handler(websocket, path):
