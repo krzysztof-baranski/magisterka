@@ -20,5 +20,34 @@ export class AppComponent {
 	        messages2.appendChild(message);
 	    };
 	    document.body.appendChild(this.messages);
+
+	    this.send('reqSelectSource')/*, callback*/);
+	    this.send('hello')/*, callback*/);
+	    this.send('hello')/*, callback*/);
+	    this.send('reqNextTrack')/*, callback*/);
+	    this.send('hello')/*, callback*/);
+	    this.send('hello')/*, callback*/);
 	}
+
+	send = function (message, callback) {
+		var that = this;
+		this.waitForConnection(function () {
+	        that.ws.send(message);
+                if (typeof callback !== 'undefined') {
+		            callback();
+			    }
+			}, 1000);
+		};
+
+	waitForConnection = function (callback, interval) {
+	    if (this.ws.readyState === 1) {
+	        callback();
+	    } else {
+	        var that = this;
+	        // optional: implement backoff for interval here
+	        setTimeout(function () {
+	            that.waitForConnection(callback, interval);
+	        }, interval);
+	    }
+	};
 }
