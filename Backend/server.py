@@ -78,7 +78,7 @@ async def producer_handler(websocket, path):
 	    messages = await producer()
 	    for msg in messages:
 	    	await websocket.send(msg)
-	    	await asyncio.sleep(0.01)
+	    	await asyncio.sleep(5)
 	    	if msg in messages:
 	    		messages.remove(msg) 
 	    # LOG.info('PATH ' + str(path)) 
