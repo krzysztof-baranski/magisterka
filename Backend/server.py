@@ -23,7 +23,8 @@ commands = {
 	'reqSelectSource': 0,
 	'reqPlayTrack'	 : 1,
 	'reqNextTrack'   : 2,
-	'reqPrevTrack'   : 3
+	'reqPrevTrack'   : 3,
+	'reqListItems'	 : 4
 }
 
 messages = []
@@ -55,12 +56,17 @@ async def consumer (message):
 	messageNo = commands.get(messageObj.get('cmd', 'noop'), -1)
 	if messageNo == 0:
 		LOG.info ('messageNo ' + str(messageNo) + ' no i elo')
-		Media.selectSource(messageObj) 
-		messages.append(json.dumps({ 'cmd': 'resSelectSource', 'source': Media.currentSource }) ) 
+		source = Media.selectSource(messageObj) 
+		LOG.warn('!!!!!!!!! ' + str(source))
+		messages.append(json.dumps({ 'cmd': 'resSelectSource', 'source': source }) ) 
 	elif messageNo == 1:
 		track = Media.playTrack(messageObj)
 		LOG.warning ('############ ' + str (track) ) 
 		messages.append(json.dumps({ 'cmd': 'resPlayTrack', 'track': track })) 	
+	elif messageNo == 4:
+		items = Media.getListItems()
+		LOG.warning ('@@@@@@ LIST ITEMS: ' + str(items))
+		messages.append(json.dumps({ 'cmd': 'resListItems', 'items': items }))   
 	else: 
 		LOG.info ('NO message found!')  
 

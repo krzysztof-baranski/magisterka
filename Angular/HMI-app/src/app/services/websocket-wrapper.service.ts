@@ -31,14 +31,15 @@ export class WebsocketWrapperService {
     receive (event) {
         console.warn ('@@@@@ ', event);         
         this.handleMessage(this.checkJson(event.data)); 
-        var messages = document.createElement('ul');
-        messages = document.getElementsByTagName('ul')[0];
-        var message = document.createElement('li'),
-            content = document.createTextNode(event.data);
-        message.appendChild(content);
-        messages.appendChild(message);
+        console.log('data', event.data);  
+        // var messages = document.createElement('ul');
+        // messages = document.getElementsByTagName('ul')[0];
+        // var message = document.createElement('li'),
+        //     content = document.createTextNode(event.data);
+        // message.appendChild(content);
+        // messages.appendChild(message);
 
-        document.body.appendChild(messages);
+        // document.body.appendChild(messages);
     } 
 
     checkJson (json) {
@@ -59,6 +60,10 @@ export class WebsocketWrapperService {
                 break;
             case this.constantsService.COMMANDS.resPlayTrack:
                 this.mediaService.resPlayTrack(msg.track); 
+                break;
+            case this.constantsService.COMMANDS.resListItems:
+                this.mediaService.resListItems(msg.items); 
+                break;
             default:
                 console.warn('handleMessage. Default', msg); 
                 break;

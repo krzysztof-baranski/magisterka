@@ -1,0 +1,25 @@
+<div>
+	<div class="track-info">
+		<div>
+			<progress value="34" max="100"></progress>
+		</div>
+		<div class="time-info">
+			<span class="current-time">1:00</span>
+			<span class="track-number">Track 11/112</span>
+			<span class="total-time">3:02</span>
+		</div>
+	</div>
+	<div class="controls">
+		<button></button>
+		<button class="list-button" (click)="openList()">LIST</button>
+		<button style="transform: rotateY(180deg);"></button>
+	</div>
+	<div class="cover-art">
+		<div class="cover-art-image"></div>
+	</div>
+	<p>
+
+	  media works!
+	  {{ currentSource | json }}
+	</p>
+</div>

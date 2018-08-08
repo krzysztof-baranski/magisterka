@@ -1,0 +1,10 @@
+nav {
+	position: absolute;
+	top: 0;
+	display: inline-flex;
+	width: 90%;
+}
+
+h2 {
+	margin: 20px auto;
+}

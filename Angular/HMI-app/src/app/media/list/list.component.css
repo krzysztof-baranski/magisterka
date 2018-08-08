@@ -1,0 +1,6 @@
+.list-item {
+	display: block;
+    width: 600px;
+    font-size: 45px;
+    border-bottom: 1px solid black;
+}

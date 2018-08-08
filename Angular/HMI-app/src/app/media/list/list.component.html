@@ -1,0 +1,11 @@
+<p>
+  list works!
+</p>
+<div>
+	<ul>
+		<li *ngFor="let item of listItems" class="list-item">
+			<span>{{ item.title }}</span>
+			<span *ngIf="item.isFavorite">*</span>
+		</li>
+	</ul>
+</div>
