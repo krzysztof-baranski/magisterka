@@ -14,6 +14,8 @@ export class ConstantsService {
     private _COMMANDS = {
         selectSource: 'resSelectSource',
         resPlayTrack: 'resPlayTrack',
-        resListItems: 'resListItems'
+        resListItems: 'resListItems',
+        resTunerListItems: 'resTunerListItems',
+        resPlayStation: 'resPlayStation'
     }
 }

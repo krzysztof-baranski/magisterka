@@ -7,7 +7,7 @@ logging.basicConfig(
     format='%(levelname)7s: %(message)s',
     stream=sys.stderr,
 )
-LOG = logging.getLogger('')
+LOG = logging.getLogger('Media')
 
 class Media(object):
 	"""docstring for Media"""
@@ -65,14 +65,17 @@ class Media(object):
 		for track in self.tracks:
 			if track['trackID'] == trackID:
 				return track
-			else:
-				return emptyTrack
+		else:
+			return self.emptyTrack
 
 	def getListItems (self):
 		items = []
 		for x in range(0, 15):
 			if x == 1:
-				items.append({ 'id': x, 'title': 'Track ' + str(x), 'isPlaying': True, 'isFavorite': True })  
+				items.append({ 'trackID': x, 'title': 'Track ' + str(x), 'isPlaying': True, 'isFavorite': True })  
 			else: 
-				items.append({ 'id': x, 'title': 'Track ' + str(x), 'isPlaying': False, 'isFavorite': False })  
+				items.append({ 'trackID': x, 'title': 'Track ' + str(x), 'isPlaying': False, 'isFavorite': False })  
+		global tracks
+		self.tracks.extend(items) 
+		LOG.info(len(self.tracks)) 
 		return items

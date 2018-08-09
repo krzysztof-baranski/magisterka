@@ -10,6 +10,7 @@ import logging
 import json
 import sys
 import media
+import tuner
 
 logging.basicConfig(
     # level=logging.DEBUG,
@@ -24,7 +25,9 @@ commands = {
 	'reqPlayTrack'	 : 1,
 	'reqNextTrack'   : 2,
 	'reqPrevTrack'   : 3,
-	'reqListItems'	 : 4
+	'reqListItems'	 : 4,
+	'reqTunerListItems': 5,
+	'reqPlayStation' : 6
 }
 
 messages = []
@@ -32,6 +35,7 @@ messages.append(datetime.datetime.utcnow().isoformat() + 'Z')
 
 
 Media = media.Media('media') 
+Tuner = tuner.Tuner('tuner') 
 
 def parseMsg(msg):
 	try:
@@ -67,6 +71,14 @@ async def consumer (message):
 		items = Media.getListItems()
 		LOG.warning ('@@@@@@ LIST ITEMS: ' + str(items))
 		messages.append(json.dumps({ 'cmd': 'resListItems', 'items': items }))   
+	elif messageNo == 5:
+		items = Tuner.getListItems(messageObj)
+		LOG.warning ('@@@@@@ TUNER LIST ITEMS: ' + str(items))
+		messages.append(json.dumps({ 'cmd': 'resTunerListItems', 'items': items }))
+	elif messageNo == 6:
+		station = Tuner.playStation(messageObj)
+		LOG.warning ('############ ' + str (station) ) 
+		messages.append(json.dumps({ 'cmd': 'resPlayStation', 'station': station }))
 	else: 
 		LOG.info ('NO message found!')  
 
@@ -84,7 +96,7 @@ async def producer_handler(websocket, path):
 	    messages = await producer()
 	    for msg in messages:
 	    	await websocket.send(msg)
-	    	await asyncio.sleep(5)
+	    	await asyncio.sleep(2)
 	    	if msg in messages:
 	    		messages.remove(msg) 
 	    # LOG.info('PATH ' + str(path)) 

@@ -1,0 +1,32 @@
+<div>
+	<div class="station-title">
+		<span class="fav-ico-container">
+			<img *ngIf="currentStation?.isFavorite" class="fav-ico" src="assets/tuner/favorite_icon.png">
+		</span>
+		<span>
+			{{ currentStation.name }}
+		</span>
+	</div>
+	<div class="station-info">
+		<div>
+			<progress *ngIf="currentStation.band === 'fm'" value="{{ currentStation.fraquence }}" max="108" min="87.5"></progress>
+			<progress *ngIf="currentStation.band === 'am'" value="{{ currentStation.fraquence }}" max="3000" min="300"></progress>
+		</div>
+		<div class="fraquence-info">
+			<span *ngIf="currentStation.band === 'fm'" class="station-fraquence">{{ currentStation.fraquence }}MHz</span>
+			<span *ngIf="currentStation.band === 'am'" class="station-fraquence">{{ currentStation.fraquence }}kHz</span>
+		</div>
+	</div>
+	<div class="controls">
+		<button name="prev" (click)="prevStation()"></button>
+		<button class="list-button" (click)="openList()">LIST</button>
+		<button name="next"  (click)="nextStation()" style="transform: rotateY(180deg);"></button>
+	</div>
+	<div class="band">
+		<div [ngClass]="{ 'active': currentStation.band === 'fm' }" (click)="activateBand('fm')">FM</div>
+		<div [ngClass]="{ 'active': currentStation.band === 'am' }" (click)="activateBand('am')">AM</div>
+	</div>
+</div>
+<p>
+  tuner works!
+</p>

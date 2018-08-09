@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ConstantsService } from '../consts/constants.service';
 import { MediaService } from '../services/media.service';
+import { TunerService } from '../services/tuner.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,8 @@ import { MediaService } from '../services/media.service';
 export class WebsocketWrapperService {
 
   	constructor(private constantsService: ConstantsService,
-          private mediaService: MediaService) { }
+          private mediaService: MediaService,
+          private tunerService: TunerService) { }
 
     webSocket;
     messages;
@@ -63,6 +65,12 @@ export class WebsocketWrapperService {
                 break;
             case this.constantsService.COMMANDS.resListItems:
                 this.mediaService.resListItems(msg.items); 
+                break;
+            case this.constantsService.COMMANDS.resTunerListItems:
+                this.tunerService.resListItems(msg.items); 
+                break;
+            case this.constantsService.COMMANDS.resPlayStation:
+                this.tunerService.resPlayStation(msg.station); 
                 break;
             default:
                 console.warn('handleMessage. Default', msg); 
