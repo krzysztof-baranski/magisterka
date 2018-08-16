@@ -10,6 +10,9 @@ import { ListComponent } from './media/list/list.component';
 import { TunerComponent } from './tuner/tuner.component';
 import { SettingsComponent } from './settings/settings.component';
 import { TunerListComponent } from './tuner/tuner-list/tuner-list.component';
+import { AudioSettingsComponent } from './settings/audio-settings/audio-settings.component';
+import { DisplaySettingsComponent } from './settings/display-settings/display-settings.component';
+import { OthersSettingsComponent } from './settings/others-settings/others-settings.component';
 
 @NgModule({
     declarations: [
@@ -20,7 +23,10 @@ import { TunerListComponent } from './tuner/tuner-list/tuner-list.component';
         ListComponent,
         TunerComponent,
         SettingsComponent,
-        TunerListComponent
+        TunerListComponent,
+        AudioSettingsComponent,
+        DisplaySettingsComponent,
+        OthersSettingsComponent
     ],
     imports: [
         BrowserModule,
@@ -53,6 +59,18 @@ import { TunerListComponent } from './tuner/tuner-list/tuner-list.component';
             	path: 'settings',
             	component: SettingsComponent
             },
+            // {
+            // 	path: 'settings/display',
+            // 	component: DisplaySettingsComponent
+            // },
+            // {
+            // 	path: 'settings/audio',
+            // 	component: AudioSettingsComponent
+            // },
+            // {
+            // 	path: 'settings/others',
+            // 	component: OthersSettingsComponent
+            // },
             {
                 path: '',
                 pathMatch: 'full',

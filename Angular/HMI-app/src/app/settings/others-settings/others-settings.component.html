@@ -1,0 +1,32 @@
+<div class="others-settings">
+	<div class="units">
+		<h3>Units:</h3>
+		<div (click)="changeValue($event, 'units', 0)">
+			<input type="radio" name="units" [checked]="OTHERS.units.selected === 0">
+			<label>Kilometres</label>
+		</div>
+		<div (click)="changeValue($event, 'units', 1)">
+			<input type="radio" name="units" [checked]="OTHERS.units.selected === 1">
+			<label>Miles</label>
+		</div>
+	</div>
+	<div>
+		<h3>Memory usage (%):</h3>
+		<button [disabled]="true">-</button>
+		<progress value="{{ OTHERS['memory'] }}" max="100"></progress>
+		<button [disabled]="true">+</button>
+	</div>
+	<!-- <div>
+		<h3>Balance:</h3>
+		<button (click)="changeValue($event, 'balance', -1)">Left</button>
+		<progress value="{{ OTHERS['balance'] }}" min="-50" max="50"></progress>
+		<button (click)="changeValue($event, 'balance', 1)">Right</button>
+	</div>
+	<div>
+		<h3>Fader:</h3>
+		<button (click)="changeValue($event, 'fader', -1)">Front</button>
+		<progress value="{{ OTHERS['fader'] }}" min="-50" max="50"></progress>
+		<button (click)="changeValue($event, 'fader', 1)">Rear</button>
+	</div>
+	 -->	
+</div>

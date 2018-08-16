@@ -8,3 +8,14 @@ nav {
 h2 {
 	margin: 20px auto;
 }
+
+.date-container {
+	font-size: 35px;
+	margin-right: 0; 
+}
+
+.date {
+    word-break: break-word;
+    width: 170px;
+    text-align: right;
+}

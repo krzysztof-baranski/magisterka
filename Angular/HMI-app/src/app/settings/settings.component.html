@@ -1,3 +1,13 @@
-<p>
-  settings works!
-</p>
+<div class="settings">
+	<ul>
+		<li class="list-item" *ngFor="let item of settings" (click)="onSelect($event, item)">
+			<img [src]="item.icon" class="icon">
+			<span>{{ item.name }}</span>
+			<div class="sub-settings">
+				<app-display-settings *ngIf="selectedItem?.name === 'Display' && item?.id === 1"></app-display-settings>
+				<app-audio-settings *ngIf="selectedItem?.name === 'Audio' && item?.id === 2"></app-audio-settings>
+				<app-others-settings *ngIf="selectedItem?.name === 'Others' && item?.id === 3"></app-others-settings>
+			</div>
+		</li>
+	</ul>
+</div>
