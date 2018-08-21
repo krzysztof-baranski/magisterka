@@ -71,11 +71,11 @@ import { OthersSettingsComponent } from './settings/others-settings/others-setti
             // 	path: 'settings/others',
             // 	component: OthersSettingsComponent
             // },
-            {
-                path: '',
-                pathMatch: 'full',
-                component: AppComponent
-            }
+            // {
+            //     path: '',
+            //     pathMatch: 'full',
+            //     component: AppComponent
+            // }
 
             /*{
                 path: '**',

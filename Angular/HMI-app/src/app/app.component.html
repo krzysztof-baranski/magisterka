@@ -6,19 +6,49 @@
   <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
 </div>
 <h2>Here are some links to help you start: </h2> -->
-<nav>
-  
-      <h2><a routerLink="tuner">TUNER</a></h2>
-    
-      <h2><a routerLink="media">MEDIA</a></h2>
-    
-      <h2><a routerLink="navigation">NAVI</a></h2>
-   
-      <h2><a routerLink="settings">SETTINGS</a></h2>
-      <h2 class="date-container">
-      	<div class="date">{{ updateWatch() }}</div>
+
+<nav class="nav-barr" style="visibility: hidden;">
+    <div class="menu-items" [ngClass]="{ 'menu-items-animated': clicked }" >
+        <div routerLink="/" class="menu-item" (click)="clicked = true">
+            <h2>
+                <a>BACK</a>
+                <img src="/assets/general/close.png">
+            </h2>
+        </div>
+        <div routerLink="tuner" class="menu-item" (click)="clicked = false">
+            <h2>
+                <a>TUNER</a>
+                <img src="/assets/general/radio.png">
+            </h2>
+        </div>
+
+        <div routerLink="media" class="menu-item" (click)="clicked = false">
+            <h2>
+                <a>MEDIA</a>
+                <img src="/assets/general/media.png">
+            </h2>
+        </div>
+
+        <div routerLink="navigation" class="menu-item" (click)="clicked = false">
+            <h2>
+                <a>NAVI</a>
+                <img src="/assets/general/navigation.png">
+            </h2>
+        </div>
+
+        <div routerLink="settings" class="menu-item" (click)="clicked = false">
+            <h2>
+                <a>SETTINGS</a>
+                <img src="/assets/general/settings.png">
+            </h2>
+        </div>  
+        <hr>
+    </div>
+    <div class="date-container">
+        <h2>
+          <div class="date">{{ updateWatch() }}</div>
       </h2>
+    </div>
 </nav>
-<hr>
 <br>
 <router-outlet></router-outlet>

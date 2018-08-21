@@ -78,13 +78,13 @@ export class WebsocketWrapperService {
         }        
     } 
 
-	send = function (message, callback) {
+	send = function (message/*, callback*/) {
 		var that = this;
 		this.waitForConnection(function () {
 	        that.webSocket.send(message);
-                if (typeof callback !== 'undefined') {
-		            callback();
-			    }
+       //          if (typeof callback !== 'undefined') {
+		     //        callback();
+			    // }
 			}, 1000);
 		};
 

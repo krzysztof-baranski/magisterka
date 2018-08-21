@@ -1,21 +1,60 @@
-nav {
+.nav-barr {
+    display: flex;
+}
+
+.menu-items {
+    display: -webkit-inline-box;
+	/*animation-name: menu-up;*/
+	/*animation-duration: 2s;*/
+    /*margin-right: 10%;*/
+}
+
+/*@@@ TODO: zrobić animacje */
+.menu-items-animated {
+	animation-name: menu-up;
+	animation-duration: 2s;
+    position: absolute;
+	top: 200px;
+}
+
+@keyframes menu-up {
+	from {
+		position: absolute;
+		top: 0;
+	}
+	to {
+		position: absolute;
+		top: 200px;
+	}
+}
+
+.date-container {
 	position: absolute;
-	top: 0;
+    right: 100px;
+    width: 160px;
+    text-align: -webkit-right;
+}
+
+.menu-items {
 	display: inline-flex;
 	width: 90%;
 }
 
+.menu-item {
+	margin: auto;
+}
+
 h2 {
-	margin: 20px auto;
+	display: flex;
 }
 
-.date-container {
-	font-size: 35px;
-	margin-right: 0; 
+h2 a {
+    position: relative;
+    top: 280px;
+    left: 200px;
+    font-size: 45px;
 }
 
-.date {
-    word-break: break-word;
-    width: 170px;
-    text-align: right;
+h2 img {
+	height: 180px;
 }
