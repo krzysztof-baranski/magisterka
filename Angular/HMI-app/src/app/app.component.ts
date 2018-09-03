@@ -12,6 +12,7 @@ export class AppComponent {
 	title = 'app';
     ws;
     clock;
+    clicked = true;
     
 	constructor (private webSocketService: WebsocketWrapperService) {
 		this.ws = new WebSocket('ws://127.0.0.1:5678/');
