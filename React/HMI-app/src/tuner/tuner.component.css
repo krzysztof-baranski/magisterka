@@ -1,0 +1,89 @@
+.station-title {
+    height: 115px;
+    margin-top: 30px;
+}
+
+.station-title span {
+    font-size: 80px;
+}
+
+.station-title img {
+    height: 80px;
+    margin-right: 30px
+}
+
+.controls {
+	display: flex;
+	margin-top: 90px;
+}
+
+.controls button {
+	border-bottom: 2px solid;
+	width: 400px;
+	height: 100px;
+	border-color: #bb181873;
+    background-color: transparent;
+    border-radius: 10px;
+    font-size: 45px;
+}
+
+.controls button:not(.list-button) {
+    background: url('/assets/media/prev.png') no-repeat center center;
+    background-size: 100px 100px;
+}
+
+.fraquence-info {
+    position: absolute;
+    width: 1200px;
+    display: flex;
+}
+
+/*.total-time {
+	position: relative;
+    left: 20px;
+    font-size: 45px;
+}
+*/
+.station-fraquence {
+    position: relative;
+    text-align: center;
+    font-size: 45px;
+    white-space: nowrap;
+    width: -webkit-fill-available;
+}
+
+/*.current-time {
+	font-size: 45px;
+}*/
+
+progress {
+	width: 1200px;
+	height: 14px;
+	margin: 50px auto 0;
+	-webkit-appearance: none;
+	border: none;
+}
+
+.band {
+    position: absolute;
+    height: 350px;
+    width: 350px;
+    top: 45px;
+    right: 160px;
+    text-align: center;
+    font-size: 88px;
+}
+
+.band div {
+    height: 50%;
+    position: relative;
+    line-height: 200%;
+    vertical-align: middle;
+    margin: 1px;
+}
+
+.band .active {
+    border: 1px solid;
+    border-color: #bb181873;
+    border-radius: 10px;
+}

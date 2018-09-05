@@ -1,0 +1,56 @@
+h3 {
+	font-size: 35px;
+}
+
+h6 {
+    margin: 10px 0;
+    font-size: 30px;
+    margin-left: 70px;
+}
+
+progress {
+	width: 590px;
+	position: absolute;
+	left: 200px;
+}
+
+div {
+    margin-bottom: 70px;
+}
+
+progress::-webkit-progress-value {
+ 	background: lightblue;
+}
+
+span {
+    margin: 0 20px 0;
+    width: 100px;
+    display: -webkit-inline-box;
+}
+
+.display-settings span {
+    text-align: -webkit-center;
+    font-size: 45px;
+}
+
+.display-settings button {
+    text-align: -webkit-center;
+    font-size: 45px;
+    width: 100px;
+    -webkit-appearance: button-bevel;
+
+}
+
+.display-settings span:last-child {
+	position: absolute;
+	right: 0;
+    text-align: -webkit-center;
+}
+
+.display-settings button:last-child {
+	position: absolute;
+	right: 0;
+    text-align: -webkit-center;
+    width: 100px;
+    -webkit-appearance: button-bevel;
+}

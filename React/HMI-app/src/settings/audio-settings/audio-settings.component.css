@@ -1,0 +1,46 @@
+h3 {
+	font-size: 35px;
+}
+
+progress {
+	width: 590px;
+	position: absolute;
+	left: 200px;
+}
+
+progress::-webkit-progress-value {
+ 	background: lightblue;
+}
+
+span {
+    margin: 0 20px 0;
+    width: 100px;
+    display: -webkit-inline-box;
+}
+
+.audio-settings span {
+    text-align: -webkit-center;
+    font-size: 45px;
+}
+
+.audio-settings button {
+    text-align: -webkit-center;
+    font-size: 45px;
+    width: 100px;
+    -webkit-appearance: button-bevel;
+
+}
+
+.audio-settings span:last-child {
+	position: absolute;
+	right: 0;
+    text-align: -webkit-center;
+}
+
+.audio-settings button:last-child {
+	position: absolute;
+	right: 0;
+    text-align: -webkit-center;
+    width: 100px;
+    -webkit-appearance: button-bevel;
+}

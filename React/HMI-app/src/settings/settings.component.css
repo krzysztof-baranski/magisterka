@@ -1,0 +1,31 @@
+.show-module {
+    visibility: visible;
+}
+.hide-module {
+    visibility: hidden;
+}
+
+.settings {
+    overflow: hidden;
+}
+
+.list-item {
+	display: block;
+    width: 900px;
+    font-size: 55px;
+    border-bottom: 1px solid black;
+}
+
+ul {
+	left: 300px;
+    position: relative;
+    height: 500px;
+    width: max-content;
+    overflow: auto;
+    overflow-y: scroll;
+}
+
+.icon {
+    width: 45px;
+    margin-right: 20px;
+}

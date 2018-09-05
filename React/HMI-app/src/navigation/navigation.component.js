@@ -1,10 +1,10 @@
 import React from 'react';
 
-export class Media extends React.Component {
+export class Navigation extends React.Component {
 	render() {
 		return (
 			<div>
-				Hello there! MEDIA
+				Hello there! NAVIGATION
 			</div>
 		);
 	}
