@@ -1,32 +1,85 @@
-/*.App {
-  text-align: center;
+.router-outlet {
+  top: 0;
+  position: relative;
+    margin-left: 100px;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.nav-barr {
+    display: flex;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.menu-items {
+    display: flex;
 }
 
-.App-title {
-  font-size: 1.5em;
+.menu-items-animated-down {
+  animation-name: menu-down;
+  animation-duration: 2s;
+    position: absolute;
+  top: 200px;
 }
 
-.App-intro {
-  font-size: large;
+@keyframes menu-down {
+  from {
+    position: absolute;
+    top: -220px;
+  }
+  to {
+    position: absolute;
+    top: 200px;
+  }
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.menu-items-animated-up {
+  animation-name: menu-up;
+  animation-duration: 2s;
+  position: absolute;
+  top: -220px;
 }
-*/
+
+@keyframes menu-up {
+  from {
+    position: absolute;
+    top: 200px;
+  }
+  to {
+    position: absolute;
+    top: -220px;
+  }
+}
+
+.date-container {
+    position: relative;
+    right: 45px;
+    top: 210px;
+    text-align: -webkit-right;
+}
+
+.menu-items {
+}
+
+.menu-item {
+    /*width: 200px;*/
+  width: 11%;
+    margin: 0 50px;
+}
+
+h2 {
+  /*display: flex;*/
+}
+/*
+h2 a {
+    position: relative;
+    top: 280px;
+    left: 200px;
+    font-size: 45px;
+}*/
+
+h2 img {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
 .menu-items {
     display: flex;
 }

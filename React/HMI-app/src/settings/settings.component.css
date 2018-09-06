@@ -1,8 +1,8 @@
 .show-module {
-    visibility: visible;
+    display: block;
 }
 .hide-module {
-    visibility: hidden;
+    display: none;
 }
 
 .settings {

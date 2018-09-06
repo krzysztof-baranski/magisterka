@@ -1,12 +1,34 @@
 import React, { Component } from 'react';
 // import logo from './logo.svg';
 import './App.css';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
+import { Websocket } from './websocket/websocket.service';
 
 class App extends Component {
+    constructor(props) {
+        super(props);
+        this.props.history.listen(this.locationWatcher.bind(this));
+        this.menuHidden = false;
+        this.ws = new Websocket();
+        console.warn('!@!@##', this.ws);
+    }
+
+    locationWatcher (location, action) {
+        this.toggleMenu(location);
+    }
+
+    toggleMenu (location) {
+        if (location && location.pathname === '/' || location.pathname === '') {
+            this.menuHidden = false;
+        } else {
+            this.menuHidden = true;
+        }
+    }
+    
     render() {
         return (
-            <div>
+            <div className={ this.menuHidden ? 'menu-items-animated-up' : 'menu-items-animated-down' }>
                 <nav className='nav-barr'>
                     <div className='menu-items' >
                         <Link to='/' className='menu-item'>
@@ -56,4 +78,4 @@ class App extends Component {
     }
 }
 
-export default App;
+export default withRouter(App);

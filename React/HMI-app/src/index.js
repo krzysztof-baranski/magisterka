@@ -19,7 +19,7 @@ import { OthersSettings } from './settings/others-settings/others-settings.compo
 ReactDOM.render(
 	<BrowserRouter>
 		<div>
-    		<Route exact path='/' component={App} />
+    		<Route path='/' component={App} />
   			<Route path='/media' component={Media} />
   			<Route exact path='/tuner' component={Tuner} />
   			<Route path='/tuner/list' component={TunerList} />
