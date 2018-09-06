@@ -5,12 +5,16 @@ import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 import { Websocket } from './websocket/websocket.service';
 
+const WSContext = React.createContext({});
+
 class App extends Component {
     constructor(props) {
         super(props);
+        Websocket.initWS();
+        this.ws = Websocket.getWS();
+        
         this.props.history.listen(this.locationWatcher.bind(this));
         this.menuHidden = false;
-        this.ws = new Websocket();
         console.warn('!@!@##', this.ws);
     }
 
@@ -37,7 +41,7 @@ class App extends Component {
                                 <span>BACK</span>
                             </h2>
                         </Link>
-                        <Link to='/tuner' className='menu-item'>
+                        <Link to='/tuner' ws={{ws: this.ws}} className='menu-item'>
                             <h2>
                                 <img src={require('./assets/general/radio.png')} />
                                 <span>TUNER</span>

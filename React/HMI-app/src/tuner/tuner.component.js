@@ -1,11 +1,14 @@
 import React from 'react';
 import './tuner.component.css';
-import { withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom';
+import { Websocket } from '../websocket/websocket.service';
 
 export class Tuner extends React.Component {
 	constructor(props) {
 		super(props);
-  		this.currentStationFM = {
+
+		this.band = 'fm';
+		this.currentStationFM = {
 	  		fraquence: 101.1, // 87,5–108
 	  		name: 'Open.fm',
 	  		isFavorite: true,
@@ -19,9 +22,8 @@ export class Tuner extends React.Component {
 	  		band: 'am'
 	  	}
 	  	this.currentStation = this.currentStationFM;
-
-			// this.currentStation
 	}
+
 
 	activateBand (band) {
 		if (band === 'am') {
@@ -41,6 +43,7 @@ export class Tuner extends React.Component {
 
 	openList () {
 		this.props.history.push('/tuner/list');
+		Websocket.send(JSON.stringify({ cmd: 'reqTunerListItems', band: this.band }));
 		console.warn('@@@ openList');
 	}
 
