@@ -1,4 +1,5 @@
 import React from 'react';
+import './display-settings.component.css';
 
 const DISP = {
     brighntness: 90,

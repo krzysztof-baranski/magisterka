@@ -39,14 +39,14 @@ export class OthersSettings extends React.Component {
 	render() {
 		return (
 			<div className="others-settings">
-				<div>
+				<div className="units">
 					<h3>Units:</h3>
 					<div onClick={this.changeValue.bind(this, 'units', 0)}>
-						<input type="radio" name="units" />
+						<input type="radio" name="units" defaultChecked={this.state.OTHERS.units.selected === 0} />
 						<label>Kilometres</label>
 					</div>
 					<div onClick={this.changeValue.bind(this, 'units', 1)}>
-						<input type="radio" name="units" />
+						<input type="radio" name="units" defaultChecked={this.state.OTHERS.units.selected === 1} />
 						<label>Miles</label>
 					</div>
 				</div>

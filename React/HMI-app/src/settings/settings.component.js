@@ -9,19 +9,19 @@ const _settingsArray = [
 		id: 1,
 		name: 'Display',
 		component: <DisplaySettings />,
-		icon: '/assets/settings/display-settings.png'
+		icon: require('../assets/settings/display-settings.png')
 	},
 	{
 		id: 2,
 		name: 'Audio',
 		component: <AudioSettings />,
-		icon: '/assets/settings/audio-settings.png'
+		icon: require('../assets/settings/audio-settings.png')
 	},
 	{
 		id: 3,
 		name: 'Others',
 		component: <OthersSettings />,
-		icon: '/assets/settings/others-settings.png'
+		icon: require('../assets/settings/others-settings.png')
 	}
 ];
 
@@ -57,7 +57,7 @@ export class Settings extends React.Component {
 
 			li.push(
 				<li className="list-item" onClick={this.onSelect.bind(this, item)}>
-					<img src={item.icon} className="icon" />
+					<img src={ item.icon } className="icon" />
 					<span>{ item.name }</span>
 					<div className="sub-settings">
 						<div className={(this.selectedItem.name === item.name && item.id === i+1) ? 'show-module' : 'hide-module'}>
@@ -103,16 +103,6 @@ export class Settings extends React.Component {
 		this.createList();
 		this.setState({selectedItem: this.selectedItem}); // to update value!!
 	} 
-
-				// <ul>
-				// 	<li className="list-item" onClick={this.onSelect.bind(this, this.item)}>
-				// 		<img src={this.item.icon} className="icon" />
-				// 		<span>{ this.item.name }</span>
-				// 		<div className="sub-settings">
-				// 			<Display />
-				// 		</div>
-				// 	</li>
-				// </ul>
 
 	render() {
 		return (

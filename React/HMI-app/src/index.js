@@ -7,6 +7,7 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
 import { Media } from './media/media.component';
+import { MediaList } from './media/list/media.list.component';
 import { Tuner } from './tuner/tuner.component';
 import { TunerList } from './tuner/list/tuner.list.component';
 import { Navigation } from './navigation/navigation.component';
@@ -20,9 +21,10 @@ ReactDOM.render(
 	<BrowserRouter>
 		<div>
     		<Route path='/' component={App} />
-  			<Route path='/media' component={Media} />
-  			<Route exact path='/tuner' component={Tuner} />
-  			<Route path='/tuner/list' component={TunerList} />
+        <Route exact path='/media' component={Media} />
+  			<Route path='/media/list' component={MediaList} />
+        <Route exact path='/tuner' component={Tuner} />
+        <Route path='/tuner/list' component={TunerList} />
   			<Route path='/navigation' component={Navigation} />
   			<Route exact path='/settings' component={Settings} />
   			<Route path='/settings/audio-settings' component={AudioSettings} />

@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import * as _ from 'lodash'
 // import logo from './logo.svg';
 import './App.css';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 import { Websocket } from './websocket/websocket.service';
+import { MediaService } from './media//media.service';
 
 const WSContext = React.createContext({});
 
@@ -12,10 +14,19 @@ class App extends Component {
         super(props);
         Websocket.initWS();
         this.ws = Websocket.getWS();
+        this.mediaService = new MediaService();
+
+        this.props.location.mediaService = this.mediaService;
         
         this.props.history.listen(this.locationWatcher.bind(this));
         this.menuHidden = false;
         console.warn('!@!@##', this.ws);
+        this.media = { 
+            pathname: '/media', 
+            props: {
+                mediaservice: this.mediaService
+            }
+        };
     }
 
     locationWatcher (location, action) {
@@ -23,7 +34,7 @@ class App extends Component {
     }
 
     toggleMenu (location) {
-        if (location && location.pathname === '/' || location.pathname === '') {
+        if (location && (location.pathname === '/' || location.pathname === '')) {
             this.menuHidden = false;
         } else {
             this.menuHidden = true;
@@ -48,7 +59,7 @@ class App extends Component {
                             </h2>
                         </Link>
 
-                        <Link to='/media' className='menu-item'>
+                        <Link to='/media' className='menu-item' >
                             <h2>
                                 <img src={require('./assets/general/media.png')} />
                                 <span>MEDIA</span>

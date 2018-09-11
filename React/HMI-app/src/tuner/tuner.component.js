@@ -49,10 +49,10 @@ export class Tuner extends React.Component {
 
 	render() {
 		return (
-			<div>
+			<div className="tuner-container">
 				<div className="station-title">
 					<span className="fav-ico-container">
-						<img className="fav-ico" src="assets/tuner/favorite_icon.png" />
+						<img className="fav-ico" src={require('../assets/tuner/favorite_icon.png')} />
 					</span>
 					<span>
 						{ this.currentStation.name }
@@ -60,7 +60,8 @@ export class Tuner extends React.Component {
 				</div>
 				<div className="station-info">
 					<div>
-						<progress value="{ currentStation.fraquence }" max="3000" min="300"></progress>
+						{ this.currentStation.band === 'am' && <progress value={ this.currentStation.fraquence } max="108" min="87.5"></progress> }
+						{ this.currentStation.band === 'fm' && <progress value={ this.currentStation.fraquence } max="3000" min="300"></progress> }
 					</div>
 					<div className="fraquence-info">
 						<span className="station-fraquence">{ this.currentStation.fraquence }kHz</span>
@@ -72,8 +73,10 @@ export class Tuner extends React.Component {
 					<button name="next"  onClick={this.nextStation.bind(this)} style={ {transform: 'rotateY(180deg)' } }></button>
 				</div>
 				<div className="band">
-					<div onClick={this.activateBand.bind(this, 'fm')}>FM</div>
-					<div onClick={this.activateBand.bind(this, 'am')}>AM</div>
+					<div className={ this.currentStation.band === 'fm' ? 'active' : '' } 
+						onClick={this.activateBand.bind(this, 'fm')}>FM</div>
+					<div className={ this.currentStation.band === 'am' ? 'active' : '' }
+						onClick={this.activateBand.bind(this, 'am')}>AM</div>
 				</div>
 			</div>
 		);

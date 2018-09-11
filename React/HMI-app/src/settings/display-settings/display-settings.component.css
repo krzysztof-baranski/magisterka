@@ -1,5 +1,5 @@
 h3 {
-	font-size: 35px;
+    font-size: 35px;
 }
 
 h6 {
@@ -8,19 +8,19 @@ h6 {
     margin-left: 70px;
 }
 
-progress {
-	width: 590px;
-	position: absolute;
-	left: 200px;
+.display-settings progress {
+    width: 590px;
+    position: absolute;
+    left: 200px;
 }
 
-div {
+/*div {
     margin-bottom: 70px;
-}
+}*/
 
-progress::-webkit-progress-value {
- 	background: lightblue;
-}
+/*progress::-webkit-progress-value {
+    background: lightblue;
+}*/
 
 span {
     margin: 0 20px 0;
@@ -42,14 +42,14 @@ span {
 }
 
 .display-settings span:last-child {
-	position: absolute;
-	right: 0;
+    position: absolute;
+    right: 0;
     text-align: -webkit-center;
 }
 
 .display-settings button:last-child {
-	position: absolute;
-	right: 0;
+    position: absolute;
+    right: 0;
     text-align: -webkit-center;
     width: 100px;
     -webkit-appearance: button-bevel;

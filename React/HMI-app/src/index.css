@@ -1,5 +1,19 @@
 body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
+	background: url('./assets/general/background.jpg') no-repeat center center;
+	height: -webkit-fill-available;
+	top: 0;
+    margin-left: 100px;
+}
+
+ul {
+	background: #7f5fdc36;
+}
+
+.list-container {
+    overflow: hidden;
+    top: 140px;
+    position: relative;
 }

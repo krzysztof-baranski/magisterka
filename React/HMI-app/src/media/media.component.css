@@ -1,24 +1,25 @@
-.tuner-container {
+.media-container {
     top: 140px;
     position: relative;
 }
-.station-title {
+
+.track-title {
     height: 115px;
     margin-top: 30px;
 }
 
-.station-title span {
+.track-title span {
     font-size: 80px;
 }
 
-.station-title img {
+.track-title img {
     height: 80px;
     margin-right: 30px
 }
 
 .controls {
 	display: flex;
-	margin-top: 180px;
+	margin-top: 90px;
 }
 
 .controls button {
@@ -32,63 +33,53 @@
 }
 
 .controls button:not(.list-button) {
-    background: url('../assets/tuner/prev.png') no-repeat center center;
+    background: url('/assets/media/prev.png') no-repeat center center;
     background-size: 100px 100px;
 }
 
-.fraquence-info {
+.time-info {
     position: absolute;
     width: 1200px;
     display: flex;
 }
 
-/*.total-time {
+.total-time {
 	position: relative;
     left: 20px;
     font-size: 45px;
 }
-*/
-.station-fraquence {
+
+.track-number {
     position: relative;
-    text-align: -webkit-center;
+    margin: 0px 390px;
     font-size: 45px;
     white-space: nowrap;
-    width: -webkit-fill-available;
 }
 
-/*.current-time {
+.current-time {
 	font-size: 45px;
-}*/
+}
 
-.tuner-container progress {
+.media-container progress {
 	width: 1200px;
 	height: 14px;
 	margin: 50px auto 0;
 	-webkit-appearance: none;
 	border: none;
 }
-
-.band {
+.cover-art {
     position: absolute;
     height: 350px;
     width: 350px;
     top: 45px;
     right: 160px;
-    text-align: center;
-    font-size: 88px;
+    border: black 2px solid;
+    border-radius: 30px;
 }
 
-.band div {
-    height: 50%;
-    position: relative;
-    line-height: 200%;
-    vertical-align: middle;
-    margin: 1px;
+.cover-art-image {
+	background: url(/assets/media/prev.png) no-repeat center center;
+    background-size: 300px 300px;
+    width: inherit;
+    height: inherit;
 }
-
-.band .active {
-    border: 1px solid;
-    border-color: #bb181873;
-    border-radius: 10px;
-}
-

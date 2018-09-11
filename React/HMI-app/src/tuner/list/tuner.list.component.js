@@ -1,4 +1,5 @@
 import React from 'react';
+import './tuner.list.component.css';
 import { Websocket } from '../../websocket/websocket.service';
 
 export class TunerList extends React.Component {
@@ -32,7 +33,7 @@ export class TunerList extends React.Component {
 					<li className="list-item" onClick={this.playStation.bind(this.item)}>
 						<span className="fav-ico-container">
 							<span>LIST TUNER</span>
-							<img className="fav-ico" src="assets/media/favorite_icon.png"/>
+							<img src={ require('../../assets/media/favorite_icon.png') }/>
 						</span>
 						<span>{ this.item.name }</span>
 					</li>

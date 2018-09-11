@@ -1,21 +1,22 @@
-.show-module {
-    display: block;
-}
-.hide-module {
-    display: none;
-}
-
-.settings {
+.list-container {
     overflow: hidden;
-    top: 140px;
-    position: relative;
 }
 
 .list-item {
 	display: block;
     width: 900px;
-    font-size: 55px;
+    font-size: 45px;
     border-bottom: 1px solid black;
+}
+
+.fav-ico {
+    height: 30px;
+    margin-top: 10px;
+}
+
+.fav-ico-container {
+	width: 50px;
+    display: -webkit-inline-box;
 }
 
 ul {
@@ -25,9 +26,4 @@ ul {
     width: max-content;
     overflow: auto;
     overflow-y: scroll;
-}
-
-.icon {
-    width: 45px;
-    margin-right: 20px;
 }

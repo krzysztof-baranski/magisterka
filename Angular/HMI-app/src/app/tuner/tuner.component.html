@@ -9,8 +9,8 @@
 	</div>
 	<div class="station-info">
 		<div>
-			<progress *ngIf="currentStation.band === 'fm'" value="{{ currentStation.fraquence }}" max="108" min="87.5"></progress>
-			<progress *ngIf="currentStation.band === 'am'" value="{{ currentStation.fraquence }}" max="3000" min="300"></progress>
+			<progress *ngIf="currentStation.band === 'fm'" value="{{ currentStation.fraquence }}" max="3000" min="300"></progress>
+			<progress *ngIf="currentStation.band === 'am'" value="{{ currentStation.fraquence }}" max="108" min="87.5"></progress>
 		</div>
 		<div class="fraquence-info">
 			<span *ngIf="currentStation.band === 'fm'" class="station-fraquence">{{ currentStation.fraquence }}MHz</span>

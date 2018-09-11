@@ -2,7 +2,7 @@ h3 {
 	font-size: 35px;
 }
 
-progress {
+.audio-settings progress {
 	width: 590px;
 	position: absolute;
 	left: 200px;
