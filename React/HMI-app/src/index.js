@@ -6,7 +6,7 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
-import { Media } from './media/media.component';
+import Media from './media/media.component';
 import { MediaList } from './media/list/media.list.component';
 import { Tuner } from './tuner/tuner.component';
 import { TunerList } from './tuner/list/tuner.list.component';
@@ -15,6 +15,7 @@ import { Settings } from './settings/settings.component';
 import { AudioSettings } from './settings/audio-settings/audio-settings.component';
 import { DisplaySettings } from './settings/display-settings/display-settings.component';
 import { OthersSettings } from './settings/others-settings/others-settings.component';
+import withWebsocket from './websocket/websocket.service'
 
 // ReactDOM.render(<App />, document.getElementById('root'));
 ReactDOM.render(

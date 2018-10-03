@@ -1,93 +1,104 @@
 import React from 'react';
-import { MediaService } from './media.service';
-import _ from 'lodash'
+// import _ from 'lodash'
 import './media.component.css';
 
-export class Media extends React.Component {
+import Controls from '../UI/Controls';
+import ProgressBar from '../UI/ProgressBar';
+import Title from '../UI/Title';
 
-	constructor(props) {
-		super(props);
+import withWebsocket from '../websocket/websocket.service'
 
-		if (this.props.location.props && this.props.location.props.mediaservice) {
-			this.mediaService = this.props.location.props.mediaservice;
-		} else {
-			console.warn('!!! MediaService created in media.component!');
-			this.mediaService = new MediaService();
-		}
-		this.currentTrack = this.mediaService.currentTrack;
+class Media extends React.Component {
+
+	state = {
+		currentTrack: {}
+	};
+
+	openList = () => {
+		this.props.history.push({
+			pathname: this.props.match.url + '/list',
+			state: {...this.state}
+		});
 	}
 
-	openList () {
-		this.props.history.push('/media/list');
-	} 
+	playTrack = () => {
+		console.warn('PLAY TRACK ');
+	}
 
-	playTrack (track) {
-	  	console.warn('PLAY TRACK ', track);
-	  	// this.webSocketService.send(JSON.stringify({ cmd: 'reqPlayTrack', trackID: track.trackID })); 
-	} 
+	prevTrack = () => {
+		console.warn('PLAY PREV TRACK ');
 
-	prevTrack () {
-		let that = this;
-		let track;
-		let index;
+	}
 
-		index = _.findIndex(this.mediaService.listItems, function (item) {
-			return item.trackID === that.currentTrack.trackID;
-		});
+	nextTrack = () => {
+		console.warn('PLAY NEXT TRACK ');
+	}
 
-		if (index === 0) {
-			index = this.mediaService.listItems.length;
-		} 
-		track = this.mediaService.listItems[index - 1]
-		this.playTrack(track); 
-	} 
+	changeSecondsToTime = (time) => {
+		switch (true) {
+			case time < 10:
+				time = '00:0' + time;
+				break;
+			case time >= 10 && time < 60:
+				time = '00:' + time;
+				break;
+			default:
+				let mins = Math.floor(time / 60);
+				let secs = time % 60;
+				if (mins < 10) {
+					mins = '0' + mins;
+				}
+				if (secs < 10) {
+					secs = '0' + secs;
+				}
+				time = mins + ':' + secs;
+				break;
+		}
 
-	nextTrack () {
-		let that = this;
-		let track;
-		let index;
+		return time;
+	}
 
-		index = _.findIndex(this.mediaService.listItems, function (item) {
-			return item.trackID === that.currentTrack.trackID;
-		});
+	getProgressLabel = () => {
+		let label = '';
+		if (this.state.currentTrack.trackID) {
+			label = 'Track ' + this.state.currentTrack.trackID + '/' + this.state.currentTrack.totalTracks;
+		}
 
-		if (index === this.mediaService.listItems.length - 1) {
-			index = -1;
-		} 
-		track = this.mediaService.listItems[index + 1]
-		this.playTrack(track); 
-	} 
+		return label;
+	}
+
+	componentWillMount () {
+		console.log('!QAA', this.props, this.state);
+		const track = {
+			currentTime: 30,
+			totalTime: 302,
+			trackID: 1,
+			totalTracks: 101,
+			isPlaying: true,
+			isFavorite: true,
+			name: 'Ultra Track 1'
+		};
+		this.setState({ currentTrack: track });
+	}
+
+	componentDidMount () {
+
+	}
 
 	render() {
+
 		return (
 			<div className="media-container">
-				<div className="track-title">
-					<span className="fav-ico-container">
-						{ this.currentTrack.isFavorite && <img className="fav-ico" src={require('../assets/media/favorite_icon.png')} alt='' /> }
-					</span>
-					<span>
-						{ this.currentTrack.name }
-					</span>
-				</div>
-				<div className="track-info">
-					<div>
-						<progress value="34" max="100"></progress>
-					</div>
-					<div className="time-info">
-						<span className="current-time">1:00</span>
-						{ (this.currentTrack.trackID >= 0 && this.mediaService.listItems.length) && 
-							<span className="track-number">Track { this.currentTrack.trackID + 1 } / {this.mediaService.listItems.length }</span> }
-						
-						{ ((!this.currentTrack.trackID && this.currentTrack.trackID !== 0) || !this.mediaService.listItems.length) && 
-							<span className="track-number" >Track --/--</span> }
-						<span className="total-time">3:02</span>
-					</div>
-				</div>
-				<div className="controls">
-					<button name="prev" onClick={this.prevTrack.bind(this)}></button>
-					<button className="list-button" onClick={this.openList.bind(this)}>LIST</button>
-					<button name="next" onClick={this.nextTrack.bind(this)} style= { {transform: 'rotateY(180deg)' } }></button>
-				</div>
+				<Title
+					name={this.state.currentTrack.name}
+					isFavorite={this.state.currentTrack.isFavorite} />
+				<ProgressBar
+					value={this.state.currentTrack.currentTime}
+					max={this.state.currentTrack.totalTime}
+					currentTime={this.changeSecondsToTime(this.state.currentTrack.currentTime)}
+					totalTime={this.changeSecondsToTime(this.state.currentTrack.totalTime)}
+					progressLabel={this.getProgressLabel()} />
+				<Controls prevTrack={this.prevTrack} nextTrack={this.nextTrack} openList={this.openList} />
 				<div className="cover-art">
 					<div className="cover-art-image"></div>
 				</div>
@@ -95,3 +106,5 @@ export class Media extends React.Component {
 		);
 	}
 }
+
+export default withWebsocket(Media);

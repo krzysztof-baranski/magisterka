@@ -1,7 +1,7 @@
 import React from 'react';
 import './tuner.component.css';
 // import { withRouter } from 'react-router-dom';
-import { Websocket } from '../websocket/websocket.service';
+import Websocket from '../websocket/websocket.service';
 
 export class Tuner extends React.Component {
 	constructor(props) {

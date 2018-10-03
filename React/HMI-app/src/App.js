@@ -4,87 +4,75 @@ import React, { Component } from 'react';
 import './App.css';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
-import { Websocket } from './websocket/websocket.service';
-import { MediaService } from './media//media.service';
+
+import withWebsocket from './websocket/websocket.service'
+import MainMenuItem from './UI/MainMenuItem';
+import DateContainer from './UI/DateContainer';
 
 // const WSContext = React.createContext({});
 
 class App extends Component {
-    constructor(props) {
-        super(props);
-        Websocket.initWS();
-        this.ws = Websocket.getWS();
-        this.mediaService = new MediaService();
+    state = {
+        firstRun: true,
+        menuHidden: true
+    };
 
-        this.props.location.mediaService = this.mediaService;
-        
-        this.props.history.listen(this.locationWatcher.bind(this));
-        this.menuHidden = false;
-        console.warn('!@!@##', this.ws);
-        this.media = { 
-            pathname: '/media', 
-            props: {
-                mediaservice: this.mediaService
-            }
-        };
-    }
-
-    locationWatcher (location, action) {
+    locationWatcher(location, action) {
         this.toggleMenu(location);
     }
 
-    toggleMenu (location) {
+    toggleMenu(location) {
         if (location && (location.pathname === '/' || location.pathname === '')) {
-            this.menuHidden = false;
+            this.setState({ menuHidden: false });
         } else {
-            this.menuHidden = true;
+            this.setState({ menuHidden: true });
         }
     }
-    
+
+    componentWillMount() {
+        // Websocket.initWS();
+    }
+
+    componentDidMount() {
+        this.props.history.listen(this.locationWatcher.bind(this));
+        this.toggleMenu({ pathname: this.props.location.pathname })
+        this.props.history.replace('/');
+        this.setState({ firstRun: false }); // not neccessary
+    }
+
     render() {
         return (
-            <div className={ this.menuHidden ? 'menu-items-animated-up' : 'menu-items-animated-down' }>
+            <div className={this.state.menuHidden ? 'menu-items-animated-up' : 'menu-items-animated-down'}>
+
                 <nav className='nav-barr'>
                     <div className='menu-items' >
-                        <Link to='/' className='menu-item'>
-                            <h2>
-                                <img src={require('./assets/general/close.png')} alt=''/>
-                                <span>BACK</span>
-                            </h2>
+                        <Link to={{
+                            pathname: '/',
+                            WS: this.props.WS
+                        }
+                        } className='menu-item'>
+                            <MainMenuItem img='close.png' label='CLOSE' />
                         </Link>
-                        <Link to='/tuner' ws={{ws: this.ws}} className='menu-item'>
-                            <h2>
-                                <img src={require('./assets/general/radio.png')} alt=''/>
-                                <span>TUNER</span>
-                            </h2>
+                        <Link to='/tuner' className='menu-item'>
+                            <MainMenuItem img="radio.png" label="TUNER" />
                         </Link>
 
-                        <Link to='/media' className='menu-item' >
-                            <h2>
-                                <img src={require('./assets/general/media.png')} alt=''/>
-                                <span>MEDIA</span>
-                            </h2>
+                        <Link to={{
+                            pathname: '/media',
+                            WS: this.props.WS
+                        }
+                        } className='menu-item' >
+                            <MainMenuItem img="media.png" label="MEDIA" />
                         </Link>
-
                         <Link to='/navigation' className='menu-item'>
-                            <h2>
-                                <img src={require('./assets/general/navigation.png')} alt=''/>
-                                <span>NAVI</span>
-                            </h2>
+                            <MainMenuItem img="navigation.png" label="NAVI" />
                         </Link>
 
                         <Link to='/settings' className='menu-item'>
-                            <h2>
-                                <img src={require('./assets/general/settings.png')} alt=''/>
-                                <span>SETTINGS</span>
-                            </h2>
+                            <MainMenuItem img="settings.png" label="SETTINGS" />
                         </Link>
                         <hr />
-                    </div>
-                    <div className='date-container'>
-                        <h2>
-                          <div className='date'>13:59</div>
-                      </h2>
+                        <DateContainer />
                     </div>
                 </nav>
                 <br />
@@ -93,4 +81,4 @@ class App extends Component {
     }
 }
 
-export default withRouter(App);
+export default withWebsocket(App);
