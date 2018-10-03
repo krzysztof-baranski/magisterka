@@ -33,7 +33,7 @@ export class TunerList extends React.Component {
 					<li className="list-item" onClick={this.playStation.bind(this.item)}>
 						<span className="fav-ico-container">
 							<span>LIST TUNER</span>
-							<img src={ require('../../assets/media/favorite_icon.png') }/>
+							<img src={ require('../../assets/media/favorite_icon.png') } alt='' />
 						</span>
 						<span>{ this.item.name }</span>
 					</li>

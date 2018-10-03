@@ -57,7 +57,7 @@ export class Settings extends React.Component {
 
 			li.push(
 				<li className="list-item" onClick={this.onSelect.bind(this, item)}>
-					<img src={ item.icon } className="icon" />
+					<img src={ item.icon } className="icon" alt='' />
 					<span>{ item.name }</span>
 					<div className="sub-settings">
 						<div className={(this.selectedItem.name === item.name && item.id === i+1) ? 'show-module' : 'hide-module'}>

@@ -52,8 +52,10 @@ export class AudioSettings extends React.Component {
 				return;				
 		}
 
-		this.state.VOLUMES[key] += value;
-		this.setState({VOLUMES: this.state.VOLUMES}); // to update value!!
+		// this.state.VOLUMES[key] += value;
+		let newVolumes = this.state.VOLUMES[key];
+		newVolumes += value;
+		this.setState({VOLUMES: newVolumes}); // to update value!!
 	} 
 
 	render() {

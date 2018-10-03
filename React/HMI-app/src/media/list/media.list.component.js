@@ -30,7 +30,7 @@ export class MediaList extends React.Component {
 				<ul>
 					<li className="list-item" onClick={this.playTrack.bind(this)}>
 						<span className="fav-ico-container">
-							<img className="fav-ico" src={ require('../../assets/media/favorite_icon.png') }/>
+							<img className="fav-ico" src={ require('../../assets/media/favorite_icon.png') } alt='' />
 						</span>
 						<span>{ this.item.name }</span>
 					</li>

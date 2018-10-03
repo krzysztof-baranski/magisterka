@@ -1,6 +1,6 @@
 import React from 'react';
 import './tuner.component.css';
-import { withRouter } from 'react-router-dom';
+// import { withRouter } from 'react-router-dom';
 import { Websocket } from '../websocket/websocket.service';
 
 export class Tuner extends React.Component {
@@ -24,6 +24,13 @@ export class Tuner extends React.Component {
 	  	this.currentStation = this.currentStationFM;
 	}
 
+	getActiveStation = () => {
+		console.log('@@@!! ', this.currentStation, this.props);
+	}
+
+	componentDidMount () {
+		this.getActiveStation();
+	}
 
 	activateBand (band) {
 		if (band === 'am') {
@@ -52,7 +59,7 @@ export class Tuner extends React.Component {
 			<div className="tuner-container">
 				<div className="station-title">
 					<span className="fav-ico-container">
-						<img className="fav-ico" src={require('../assets/tuner/favorite_icon.png')} />
+						<img className="fav-ico" src={require('../assets/tuner/favorite_icon.png')} alt=''/>
 					</span>
 					<span>
 						{ this.currentStation.name }

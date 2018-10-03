@@ -63,7 +63,7 @@ export class Media extends React.Component {
 			<div className="media-container">
 				<div className="track-title">
 					<span className="fav-ico-container">
-						{ this.currentTrack.isFavorite && <img className="fav-ico" src={require('../assets/media/favorite_icon.png')} /> }
+						{ this.currentTrack.isFavorite && <img className="fav-ico" src={require('../assets/media/favorite_icon.png')} alt='' /> }
 					</span>
 					<span>
 						{ this.currentTrack.name }
@@ -78,7 +78,7 @@ export class Media extends React.Component {
 						{ (this.currentTrack.trackID >= 0 && this.mediaService.listItems.length) && 
 							<span className="track-number">Track { this.currentTrack.trackID + 1 } / {this.mediaService.listItems.length }</span> }
 						
-						{ ((!this.currentTrack.trackID && this.currentTrack.trackID != 0) || !this.mediaService.listItems.length) && 
+						{ ((!this.currentTrack.trackID && this.currentTrack.trackID !== 0) || !this.mediaService.listItems.length) && 
 							<span className="track-number" >Track --/--</span> }
 						<span className="total-time">3:02</span>
 					</div>

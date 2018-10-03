@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import * as _ from 'lodash'
+// import * as _ from 'lodash'
 // import logo from './logo.svg';
 import './App.css';
 import { Link } from 'react-router-dom';
@@ -7,7 +7,7 @@ import { withRouter } from 'react-router-dom';
 import { Websocket } from './websocket/websocket.service';
 import { MediaService } from './media//media.service';
 
-const WSContext = React.createContext({});
+// const WSContext = React.createContext({});
 
 class App extends Component {
     constructor(props) {
@@ -48,34 +48,34 @@ class App extends Component {
                     <div className='menu-items' >
                         <Link to='/' className='menu-item'>
                             <h2>
-                                <img src={require('./assets/general/close.png')} />
+                                <img src={require('./assets/general/close.png')} alt=''/>
                                 <span>BACK</span>
                             </h2>
                         </Link>
                         <Link to='/tuner' ws={{ws: this.ws}} className='menu-item'>
                             <h2>
-                                <img src={require('./assets/general/radio.png')} />
+                                <img src={require('./assets/general/radio.png')} alt=''/>
                                 <span>TUNER</span>
                             </h2>
                         </Link>
 
                         <Link to='/media' className='menu-item' >
                             <h2>
-                                <img src={require('./assets/general/media.png')} />
+                                <img src={require('./assets/general/media.png')} alt=''/>
                                 <span>MEDIA</span>
                             </h2>
                         </Link>
 
                         <Link to='/navigation' className='menu-item'>
                             <h2>
-                                <img src={require('./assets/general/navigation.png')} />
+                                <img src={require('./assets/general/navigation.png')} alt=''/>
                                 <span>NAVI</span>
                             </h2>
                         </Link>
 
                         <Link to='/settings' className='menu-item'>
                             <h2>
-                                <img src={require('./assets/general/settings.png')} />
+                                <img src={require('./assets/general/settings.png')} alt=''/>
                                 <span>SETTINGS</span>
                             </h2>
                         </Link>

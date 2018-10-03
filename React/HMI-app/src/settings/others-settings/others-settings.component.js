@@ -24,8 +24,9 @@ export class OthersSettings extends React.Component {
 		switch (key) {
 			case 'units':
 				// send for feneral
-				this.state.OTHERS[key].selected = value;
-				console.warn(key.toUpperCase() + ' units changed: ' + this.state.OTHERS[key].selected); 
+				let others = this.state.OTHERS[key].selected;
+				others = value;
+				console.warn(key.toUpperCase() + ' units changed: ' + this.setState({OTHERS: others})); 
 				break;
 			default:
 				console.warn('Unknown key ', key);

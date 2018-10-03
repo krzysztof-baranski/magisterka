@@ -46,8 +46,10 @@ export class DisplaySettings extends React.Component {
 				return;				
 		}
 
-		this.state.DISP[key] += value;
-		this.setState({DISP: this.state.DISP}); // to update value!!
+		// this.state.DISP[key] += value;
+		let newDisp = this.state.DISP[key];
+		newDisp += value;
+		this.setState({DISP: newDisp}); // to update value!!
 	}
 
 	render() {
