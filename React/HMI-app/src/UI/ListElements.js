@@ -1,13 +1,13 @@
 import React from 'react';
 
-import MediaListElement from './MediaListElement';
+import ListElement from './ListElement';
 
-class mediaListElements extends React.Component {
+class listElements extends React.Component {
     render() {
         // this.props = {...this.props}
         let newItems = this.props.items.map((el) => {
             el.id = el.trackID || el.stationID;
-            return <MediaListElement clicked={this.props.clicked} key={el.id} item={el} />
+            return <ListElement clicked={this.props.clicked} key={el.id} item={el} />
         });
 
         return (
@@ -18,4 +18,4 @@ class mediaListElements extends React.Component {
     }
 }
 
-export default mediaListElements;
+export default listElements;

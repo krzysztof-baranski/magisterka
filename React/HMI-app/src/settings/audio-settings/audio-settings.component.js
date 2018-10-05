@@ -1,6 +1,8 @@
 import React from 'react';
 import './audio-settings.component.css';
 
+import SettingsItem from '../SettingsItem'
+
 const VOLUMES = {
     general : 70,
     navi    : 80,
@@ -21,10 +23,10 @@ export class AudioSettings extends React.Component {
 	}
 
 	changeValue (key, value, event) {
-		if (event.target.closest('app-audio-settings') !== null) {
+		// if (event.target.closest('app-audio-settings') !== null) {
 			event.preventDefault();
 			event.stopPropagation();
-		} 
+		// } 
 		 
 		switch (key) {
 			case 'general':
@@ -53,45 +55,45 @@ export class AudioSettings extends React.Component {
 		}
 
 		// this.state.VOLUMES[key] += value;
-		let newVolumes = this.state.VOLUMES[key];
-		newVolumes += value;
+		let newVolumes = this.state.VOLUMES;
+		newVolumes[key] += value;
 		this.setState({VOLUMES: newVolumes}); // to update value!!
 	} 
 
 	render() {
 		return (
 			<div className="audio-settings">
-				<div>
-					<h3>General volume:</h3>
-					<button onClick={this.changeValue.bind(this, 'general', -1)}>-</button>
-					<progress value={ this.state.VOLUMES['general'] } max="100" onClick={this.changeValue.bind(this, 'general', 0)}></progress>
-					<button onClick={this.changeValue.bind(this, 'general', 1)}>+</button>
-				</div>
-				<div>
-					<h3>Navi volume:</h3>
-					<button onClick={this.changeValue.bind(this, 'navi', -1)}>-</button>
-					<progress value={ this.state.VOLUMES['navi'] } max="100"></progress>
-					<button onClick={this.changeValue.bind(this, 'navi', 1)}>+</button>
-				</div>
-				<div>
-					<h3>Speech volume:</h3>
-					<button onClick={this.changeValue.bind(this, 'speech', -1)}>-</button>
-					<progress value={ this.state.VOLUMES['speech'] } max="100"></progress>
-					<button onClick={this.changeValue.bind(this, 'speech', 1)}>+</button>
-				</div>
-				<div>
-					<h3>Balance:</h3>
-					<button onClick={this.changeValue.bind(this, 'balance', -1)}>Left</button>
-					<progress value={ this.state.VOLUMES['balance'] } min="-50" max="50"></progress>
-					<button onClick={this.changeValue.bind(this, 'balance', 1)}>Right</button>
-				</div>
-				<div>
-					<h3>Fader:</h3>
-					<button onClick={this.changeValue.bind(this, 'fader', -1)}>Front</button>
-					<progress value={ this.state.VOLUMES['fader'] } min="-50" max="50"></progress>
-					<button onClick={this.changeValue.bind(this, 'fader', 1)}>Rear</button>
-				</div>
-					
+				<SettingsItem
+					label='General volume:'
+					value={this.state.VOLUMES['general']}
+					onClickedDown={(e) => this.changeValue('general', -1, e)}
+					onClickedUp={(e) => this.changeValue('general', 1, e)}
+					onClickedProgress={(e) => this.changeValue('general', 0, e)} />
+				<SettingsItem
+					label='Navi volume:'
+					value={this.state.VOLUMES['navi']}
+					onClickedDown={(e) => this.changeValue('navi', -1, e)}
+					onClickedUp={(e) => this.changeValue('navi', 1, e)}
+					onClickedProgress={(e) => this.changeValue('navi', 0, e)} />
+				<SettingsItem
+					label='Speech volume:'
+					value={this.state.VOLUMES['speech']}
+					onClickedDown={(e) => this.changeValue('speech', -1, e)}
+					onClickedUp={(e) => this.changeValue('speech', 1, e)}
+					onClickedProgress={(e) => this.changeValue('speech', 0, e)} />
+
+				<SettingsItem
+					label='Balance:'
+					value={this.state.VOLUMES['balance']}
+					onClickedDown={(e) => this.changeValue('balance', -1, e)}
+					onClickedUp={(e) => this.changeValue('balance', 1, e)}
+					onClickedProgress={(e) => this.changeValue('balance', 0, e)} />
+				<SettingsItem
+					label='Fader volume:'
+					value={this.state.VOLUMES['fader']}
+					onClickedDown={(e) => this.changeValue('fader', -1, e)}
+					onClickedUp={(e) => this.changeValue('fader', 1, e)}
+					onClickedProgress={(e) => this.changeValue('fader', 0, e)} />
 			</div>
 		);
 	}

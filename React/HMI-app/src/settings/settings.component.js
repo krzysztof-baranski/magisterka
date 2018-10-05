@@ -49,14 +49,13 @@ export class Settings extends React.Component {
 	}
 
 	createList () {
-		let ul = [];
 		let li = [];
 
 		for (var i=0; i<_settingsArray.length; i++) {
 			let item = _settingsArray[i];
 
 			li.push(
-				<li className="list-item" onClick={this.onSelect.bind(this, item)}>
+				<li key={item.id} className="list-item" onClick={() => this.onSelect(item)}>
 					<img src={ item.icon } className="icon" alt='' />
 					<span>{ item.name }</span>
 					<div className="sub-settings">
@@ -68,8 +67,7 @@ export class Settings extends React.Component {
 			);
 		}
 
-		ul.push(<ul>{li}</ul>);
-		return ul;
+		return <ul>{li}</ul>;
 	}
 
 	openDisplaySettings() {
@@ -84,22 +82,12 @@ export class Settings extends React.Component {
 		this.props.history.push('/settings/others-settings');
 	}
 
-	onSelect (item, event) {
-		// console.log ('%%%%%%%%', event.target.closest('app-audio-settings') ) 
-		// if ((event.target.closest('app-audio-settings') !== null) ||
-		// 		(event.target.closest('app-display-settings') !== null) ||
-		// 		(event.target.closest('app-others-settings') !== null)) {
-		// 	event.preventDefault();
-		// 	event.stopPropagation();
-		// 	return;
-		// } 
-		
+	onSelect (item/* , event */) {
 		if (!this.selectedItem || this.selectedItem !== item) {
 			this.selectedItem = item;
 		} else {
 			this.selectedItem = {};
 		}
-		// console.warn ('@@!! selectedItem', item); 
 		this.createList();
 		this.setState({selectedItem: this.selectedItem}); // to update value!!
 	} 

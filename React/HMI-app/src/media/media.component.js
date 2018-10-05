@@ -6,8 +6,6 @@ import Controls from '../UI/Controls';
 import ProgressBar from '../UI/ProgressBar';
 import Title from '../UI/Title';
 
-import withWebsocket from '../websocket/websocket.service'
-
 class Media extends React.Component {
 
 	state = {
@@ -69,6 +67,7 @@ class Media extends React.Component {
 
 	componentWillMount () {
 		console.log('!QAA', this.props, this.state);
+		this.WS = this.props.location.WS;
 		const track = {
 			currentTime: 30,
 			totalTime: 302,
@@ -78,6 +77,7 @@ class Media extends React.Component {
 			isFavorite: true,
 			name: 'Ultra Track 1'
 		};
+
 		this.setState({ currentTrack: track });
 	}
 
@@ -107,4 +107,4 @@ class Media extends React.Component {
 	}
 }
 
-export default withWebsocket(Media);
+export default Media;

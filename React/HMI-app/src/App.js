@@ -30,6 +30,7 @@ class App extends Component {
     }
 
     componentWillMount() {
+        // console.log('@@@ App ', this.props);
         // Websocket.initWS();
     }
 
@@ -53,7 +54,10 @@ class App extends Component {
                         } className='menu-item'>
                             <MainMenuItem img='close.png' label='CLOSE' />
                         </Link>
-                        <Link to='/tuner' className='menu-item'>
+                        <Link to={{
+                            pathname: '/tuner',
+                            WS: this.props.WS
+                        }} className='menu-item'>
                             <MainMenuItem img="radio.png" label="TUNER" />
                         </Link>
 

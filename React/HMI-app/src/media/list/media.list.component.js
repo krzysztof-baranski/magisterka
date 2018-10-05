@@ -1,7 +1,7 @@
 import React from 'react';
 import './media.list.component.css';
 // import { Websocket } from '../../websocket/websocket.service';
-import MediaListElements from '../UI/MediaListElements';
+import ListElements from '../../UI/ListElements';
 
 export class MediaList extends React.Component {
 	constructor (props) {
@@ -17,7 +17,7 @@ export class MediaList extends React.Component {
 		},
 		{			
 			currentTime:30,
-			isFavorite:true,
+			isFavorite:false,
 			isPlaying:true,
 			name:"Ultra Track 2",
 			totalTime:302,
@@ -54,7 +54,7 @@ export class MediaList extends React.Component {
 	render() {
 		return (
 			<div className="list-container">
-				<MediaListElements items={this.items} clicked={this.playTrack}/>
+				<ListElements items={this.items} clicked={this.playTrack}/>
 			</div>
 
 		);

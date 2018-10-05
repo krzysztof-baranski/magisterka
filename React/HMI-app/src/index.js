@@ -8,7 +8,7 @@ import registerServiceWorker from './registerServiceWorker';
 
 import Media from './media/media.component';
 import { MediaList } from './media/list/media.list.component';
-import { Tuner } from './tuner/tuner.component';
+import Tuner from './tuner/tuner.component';
 import { TunerList } from './tuner/list/tuner.list.component';
 import { Navigation } from './navigation/navigation.component';
 import { Settings } from './settings/settings.component';
