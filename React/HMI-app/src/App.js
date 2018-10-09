@@ -41,6 +41,17 @@ class App extends Component {
         this.setState({ firstRun: false }); // not neccessary
     }
 
+    getBackPath = () => {
+        const splittedPath = this.props.location.pathname.split('/');
+        if (splittedPath.length <= 2) {
+            return '/';
+        } else {
+            let path = splittedPath.length--;
+            path = splittedPath.join('/');
+            return path;
+        }
+    }
+
     render() {
         return (
             <div className={this.state.menuHidden ? 'menu-items-animated-up' : 'menu-items-animated-down'}>
@@ -48,11 +59,11 @@ class App extends Component {
                 <nav className='nav-barr'>
                     <div className='menu-items' >
                         <Link to={{
-                            pathname: '/',
+                            pathname: this.getBackPath(),
                             WS: this.props.WS
                         }
                         } className='menu-item'>
-                            <MainMenuItem img='close.png' label='CLOSE' />
+                            <MainMenuItem img='close.png' label='BACK' />
                         </Link>
                         <Link to={{
                             pathname: '/tuner',
@@ -60,12 +71,10 @@ class App extends Component {
                         }} className='menu-item'>
                             <MainMenuItem img="radio.png" label="TUNER" />
                         </Link>
-
                         <Link to={{
                             pathname: '/media',
                             WS: this.props.WS
-                        }
-                        } className='menu-item' >
+                        }} className='menu-item' >
                             <MainMenuItem img="media.png" label="MEDIA" />
                         </Link>
                         <Link to='/navigation' className='menu-item'>

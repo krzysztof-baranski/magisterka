@@ -98,7 +98,7 @@ class Media extends React.Component {
 					currentTime={this.changeSecondsToTime(this.state.currentTrack.currentTime)}
 					totalTime={this.changeSecondsToTime(this.state.currentTrack.totalTime)}
 					progressLabel={this.getProgressLabel()} />
-				<Controls prevTrack={this.prevTrack} nextTrack={this.nextTrack} openList={this.openList} />
+				<Controls prev={this.prevTrack} next={this.nextTrack} openList={this.openList} />
 				<div className="cover-art">
 					<div className="cover-art-image"></div>
 				</div>

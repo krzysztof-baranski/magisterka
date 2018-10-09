@@ -4,7 +4,7 @@ const progressBar = (props) => {
     return (
         <div>
             <div>
-                <progress value={props.value} max={props.max}></progress>
+                <meter value={props.value} max={props.max} min={props.min ? props.min : 0}></meter>
             </div>
             <div className="track-info">
                 <span className="current-time">{props.currentTime ? props.currentTime : null}</span>
