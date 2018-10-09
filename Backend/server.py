@@ -27,11 +27,15 @@ commands = {
 	'reqPrevTrack'   : 3,
 	'reqListItems'	 : 4,
 	'reqTunerListItems': 5,
-	'reqPlayStation' : 6
+	'reqPlayStation' : 6,
+	'reqGetSource'	 : 7,
+	'reqCurrentTrack': 8,
+	'reqCurrentStation': 9,
+	'reqChangeBand'  : 10 
 }
 
 messages = []
-messages.append(datetime.datetime.utcnow().isoformat() + 'Z')
+messages.append(json.dumps({'time': datetime.datetime.utcnow().isoformat() + 'Z'}))
 
 
 Media = media.Media('media') 
@@ -79,6 +83,18 @@ async def consumer (message):
 		station = Tuner.playStation(messageObj)
 		LOG.warning ('############ ' + str (station) ) 
 		messages.append(json.dumps({ 'cmd': 'resPlayStation', 'station': station }))
+	elif messageNo == 7:
+		source = Media.getSource()
+		messages.append(json.dumps({ 'cmd' : 'resGetSource', 'source' : source}))
+	elif messageNo == 8:
+		track = Media.getCurrentTrack()
+		messages.append(json.dumps({ 'cmd': 'resCurrentTrack', 'currentTrack' : track}))
+	elif messageNo == 9:
+		station = Tuner.getCurrentStation()
+		messages.append(json.dumps({ 'cmd': 'resCurrentStation', 'currentStation' : station}))	
+	elif messageNo == 10:
+		station = Tuner.changeBand()
+		messages.append(json.dumps({ 'cmd': 'resCurrentStation', 'currentStation' : station}))
 	else: 
 		LOG.info ('NO message found!')  
 
@@ -88,15 +104,19 @@ async def consumer_handler(websocket, path):
 
 async def producer():
 	# CZEMU NIE DZIALA JAK SIE NIE ZZROBI TU APPEND??
-    messages.append(datetime.datetime.utcnow().isoformat() + 'Z')
+    time = datetime.datetime.utcnow().isoformat() + 'Z'
+    messages.append(json.dumps({'time': time }))
     return messages
 
 async def producer_handler(websocket, path):
     while True:
 	    messages = await producer()
 	    for msg in messages:
+	    	# if "time" in msg:
+	    	# 	messages.remove(msg)
+	    	# else:
 	    	await websocket.send(msg)
-	    	await asyncio.sleep(2)
+	    	await asyncio.sleep(5)
 	    	if msg in messages:
 	    		messages.remove(msg) 
 	    # LOG.info('PATH ' + str(path)) 

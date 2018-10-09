@@ -15,6 +15,7 @@ class Media(object):
 		super(Media, self).__init__()
 		self.arg = arg
 		self.currentSource = 'Noneqqqq'
+		self.currentTrack = None
 	
 	media = {
 		'usb': {
@@ -39,14 +40,38 @@ class Media(object):
 	tracks = [
 		{
 			'trackID': '0',
-			'playing': True
+			'playing': True,
+			'currentTime': 123,
+			'totalTime': 321,
+			'trackNumer': 1,
+			'totalTracks': 2,
+			'isFavorite': False,
+			'name': 'Trackson 1'
 		},
 		{
 			'trackID': '1',
-			'playing': False
+			'playing': False,
+			'currentTime': 123,
+			'totalTime': 321,
+			'trackNumer': 2,
+			'totalTracks': 2,
+			'isFavorite': False,
+			'name': 'Trackson 2'
 		}
 	]
 
+	def getSource (self): 
+		global currentSource
+		if (self.currentSource == 'Noneqqqq') or (self.currentSource == None):
+			self.currentSource = self.media.get('hdd')
+		LOG.info('GET SOURCE' + str(self.currentSource))
+		return self.currentSource
+
+	def getCurrentTrack (self):
+		if self.currentTrack == None:
+			self.currentTrack = self.tracks[0]
+		LOG.info('GET TRACK ' + str(self.currentTrack))
+		return self.currentTrack
 
 	def selectSource (self, data):
 		global currentSource
@@ -54,8 +79,8 @@ class Media(object):
 		newSource = self.media.get(source, None)
 		LOG.warning('@@@2 newSource ' + str(newSource)) 
 		self.currentSource = newSource
-		return self.currentSource
 		LOG.warning('@@@2 newSource' + str(currentSource)) 
+		return self.currentSource
 
 	def playTrack (self, data):
 		trackID = data.get('trackID', None) 

@@ -14,12 +14,41 @@ class Tuner(object):
 	def __init__(self, arg):
 		super(Tuner, self).__init__()
 		self.arg = arg
+		self.currentStation = {
+			'name': 'Super Hits Station',
+			'fraquence': 104.5,
+			'band': 'fm',
+			'isFavorite': True
+		}
 
-	stations = []
+	stations = [{
+		'name': 'Super Hits Station',
+		'fraquence': 104.5,
+		'band': 'fm',
+		'isFavorite': True
+	},
+	{
+		'name': 'AMmmerica Station',
+		'fraquence': 554,
+		'band': 'am',
+		'isFavorite': False
+	}]
+
 	emptyStation = {
 		'fraquence': 0,
 		'band': ''
 	}
+
+	def getCurrentStation (self):
+		return self.currentStation
+
+	def changeBand (self): 
+		if self.currentStation['band'] == 'fm':
+			self.currentStation = self.stations[1]
+		else: 
+			self.currentStation = self.stations[0]
+		LOG.info('change band' + str(self.currentStation))
+		return self.currentStation
 
 	def getListItems (self, data):
 		LOG.info ('TUNER!!!!!!!!' + str (data) ) 

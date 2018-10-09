@@ -1,11 +1,14 @@
 import React from 'react';
 import './tuner.component.css';
+import * as Commands from '../websocket/Commands';
+import withWebsocket from '../websocket/websocket.service';
 // import { withRouter } from 'react-router-dom';
 // import Websocket from '../websocket/websocket.service';
 
 import Controls from '../UI/Controls';
 import Title from '../UI/Title';
 import ProgressBar from '../UI/ProgressBar';
+import Spinner from '../UI/Spinner';
 
 class Tuner extends React.Component {
 	constructor(props) {
@@ -26,29 +29,20 @@ class Tuner extends React.Component {
 			isFavorite: true,
 			band: 'am'
 		}
+	
 		this.state = {
 			...this.state,
-			currentStation: this.currentStationFM,
-			WS: this.props.location.WS
+			currentStation: null
 		}
 	}
 
-	getActiveStation = () => {
-		console.log('@@@!! ', this.state.currentStation, this.props);
-	}
-
-	componentDidMount() {
-		this.getActiveStation();
-	}
-
-	activateBand(band) {
-		let newBand = this.currentStationAM;
-
-		if (band === 'fm') {
-			newBand = this.currentStationFM;
+	activateBand (band) {
+		if (band === this.state.currentStation.band) {
+			return;
 		}
 
-		this.setState({ currentStation: newBand });
+		this.WS.send(JSON.stringify({ cmd: 'reqChangeBand', band: band }));
+		this.setState({ currentStation: null });
 	}
 
 	prevStation() {
@@ -77,27 +71,70 @@ class Tuner extends React.Component {
 		return label;
 	}
 
+	handleMessage = (msg) => {
+		for (let i in msg) {
+			let m = msg[i];
+			switch (m.cmd) {
+				case Commands.RES_GET_STATION:
+					console.log('Current station');
+					this.setState({ currentStation: m.currentStation });
+					break;
+				// case Commands.RES_CURRENT_TRACK:
+				// console.log('Current track');
+				// this.setState({ currentTrack : m.currentTrack});
+				default:
+					console.warn('Wrong message', m);
+			}
+
+			msg.splice(i, 1);
+		}
+	}
+	
+	getActiveStation = () => {
+		console.log('@@@!! ', this.state.currentStation, this.props);
+	}
+
+	componentWillReceiveProps(data) {
+		console.log('will update', data);
+		if (data.msg) {
+			this.handleMessage(data.msg);
+		}
+	}
+
+	componentDidMount() {
+		this.getActiveStation();
+		this.WS = this.props.location.WS;
+		if (!this.state.currentStation) {
+			this.WS.send(JSON.stringify({ cmd: 'reqCurrentStation' }));
+		}
+	}
+
 	render() {
-		return (
-			<div className="tuner-container">
-				<Title
-					name={this.state.currentStation.name}
-					isFavorite={this.state.currentStation.isFavorite} />
-				<ProgressBar
-					value={this.state.currentStation.fraquence }
-					max={this.state.currentStation.band === 'fm' ? 108 : 3000}
-					min={this.state.currentStation.band === 'fm' ? 87.5 : 300}
-					progressLabel={this.getProgressLabel()} />
-				<Controls prev={this.prevStation} next={this.nextStation} openList={this.openList} />
-				<div className="band">
-					<div className={this.state.currentStation.band === 'fm' ? 'active' : ''}
-						onClick={this.activateBand.bind(this, 'fm')}>FM</div>
-					<div className={this.state.currentStation.band === 'am' ? 'active' : ''}
-						onClick={this.activateBand.bind(this, 'am')}>AM</div>
-				</div>
-			</div>
-		);
+		let tuner = <Spinner />;
+
+		if (this.state.currentStation) {
+			tuner = (
+				<div className="tuner-container">
+					<Title
+						name={this.state.currentStation.name}
+						isFavorite={this.state.currentStation.isFavorite} />
+					<ProgressBar
+						value={this.state.currentStation.fraquence}
+						max={this.state.currentStation.band === 'fm' ? 108 : 3000}
+						min={this.state.currentStation.band === 'fm' ? 87.5 : 300}
+						progressLabel={this.getProgressLabel()} />
+					<Controls prev={this.prevStation} next={this.nextStation} openList={this.openList} />
+					<div className="band">
+						<div className={this.state.currentStation.band === 'fm' ? 'active' : ''}
+							onClick={this.activateBand.bind(this, 'fm')}>FM</div>
+						<div className={this.state.currentStation.band === 'am' ? 'active' : ''}
+							onClick={this.activateBand.bind(this, 'am')}>AM</div>
+					</div>
+				</div>);
+		}
+
+		return (<div>{tuner}</div>);
 	}
 }
 
-export default Tuner;
+export default withWebsocket(Tuner);

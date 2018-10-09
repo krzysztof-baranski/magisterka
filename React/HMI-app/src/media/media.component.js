@@ -2,20 +2,31 @@ import React from 'react';
 // import _ from 'lodash'
 import './media.component.css';
 
+import withWebsocket from '../websocket/websocket.service';
+import * as Commands from '../websocket/Commands';
+
 import Controls from '../UI/Controls';
 import ProgressBar from '../UI/ProgressBar';
 import Title from '../UI/Title';
+import Spinner from '../UI/Spinner';
 
 class Media extends React.Component {
 
 	state = {
-		currentTrack: {}
+		...this.state,
+		currentTrack: null,
+		currentSource: null,
+		command: null
 	};
+
+	getSource = (data) => {
+		console.log('GET SOURCE', data);
+	}
 
 	openList = () => {
 		this.props.history.push({
 			pathname: this.props.match.url + '/list',
-			state: {...this.state}
+			state: { ...this.state }
 		});
 	}
 
@@ -65,30 +76,50 @@ class Media extends React.Component {
 		return label;
 	}
 
-	componentWillMount () {
-		console.log('!QAA', this.props, this.state);
-		this.WS = this.props.location.WS;
-		const track = {
-			currentTime: 30,
-			totalTime: 302,
-			trackID: 1,
-			totalTracks: 101,
-			isPlaying: true,
-			isFavorite: true,
-			name: 'Ultra Track 1'
-		};
+	handleMessage = (msg) => {
+		for (let i in msg) {
+			let m = msg[i];
+			switch (m.cmd) {
+				case Commands.RES_GET_SOURCE:
+					console.log('Current source');
+					this.setState({ currentSource: m.source });
+					break;
+					case Commands.RES_CURRENT_TRACK:
+					console.log('Current track');
+					this.setState({ currentTrack : m.currentTrack});
+				default:
+					console.warn('Wrong message', m);
+			}
 
-		this.setState({ currentTrack: track });
+			msg.splice(i, 1);
+		}
 	}
 
-	componentDidMount () {
 
+	// componentWillReceiveProps (props) {
+	// 	console.log('will receive props', props);
+	// }
+
+	componentWillReceiveProps(data) {
+		console.log('will update', data);
+		if (data.msg) {
+			this.handleMessage(data.msg);
+		}
+	}
+
+	componentDidMount() {
+		console.log('!QAA', this.props, this.state);
+		this.WS = this.props.location.WS;
+		this.WS.send(JSON.stringify({ cmd: 'reqGetSource' }));
+		this.WS.send(JSON.stringify({ cmd: 'reqCurrentTrack' }));
 	}
 
 	render() {
+		console.log('RENDER', this.state);
+		let media = <Spinner />;
 
-		return (
-			<div className="media-container">
+		if (this.state.currentTrack) {
+			media = (<div className="media-container">
 				<Title
 					name={this.state.currentTrack.name}
 					isFavorite={this.state.currentTrack.isFavorite} />
@@ -102,9 +133,10 @@ class Media extends React.Component {
 				<div className="cover-art">
 					<div className="cover-art-image"></div>
 				</div>
-			</div>
-		);
+			</div>);
+		}
+		return (<div>{media}</div>);
 	}
 }
 
-export default Media;
+export default withWebsocket(Media);

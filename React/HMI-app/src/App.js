@@ -14,7 +14,8 @@ import DateContainer from './UI/DateContainer';
 class App extends Component {
     state = {
         firstRun: true,
-        menuHidden: true
+        menuHidden: true,
+        currentStation: null
     };
 
     locationWatcher(location, action) {
@@ -67,7 +68,8 @@ class App extends Component {
                         </Link>
                         <Link to={{
                             pathname: '/tuner',
-                            WS: this.props.WS
+                            WS: this.props.WS,
+                            currentStation: this.state.currentStation
                         }} className='menu-item'>
                             <MainMenuItem img="radio.png" label="TUNER" />
                         </Link>

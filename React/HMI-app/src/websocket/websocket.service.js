@@ -1,11 +1,16 @@
 import React from 'react';
 
-const withWebsocket = (WrappedComponent, data) => {
+import * as Commands from './Commands';
+
+const withWebsocket = (WrappedComponent, subscriptions) => {
 	return class extends React.Component {
 		constructor(props) {
 			super(props);
+			console.log('INIT WS ', this.props, subscriptions, WrappedComponent);
 			this.state = {
-				WS: null
+				...subscriptions,
+				WS: null,
+				commands: []
 			}
 			this.initWS();
 		}
@@ -19,7 +24,7 @@ const withWebsocket = (WrappedComponent, data) => {
 		}
 
 		getWS() {
-			console.log('You have been got WS');
+			console.log('You have got WS');
 			this.setState({ WS: this.ws });
 			return this.ws;
 		}
@@ -27,7 +32,55 @@ const withWebsocket = (WrappedComponent, data) => {
 		receive(event) {
 			console.warn("!!!!! ", event);
 			let data = this.checkJson(event.data);
+			this.handleMessage(data);
 			console.warn('4', data.cmd);
+		}
+
+		updateState = (msg) => {
+			let commands = [];
+			this.setState(function (state) {
+				commands = [
+					...state.commands
+				];
+				commands.push(msg);
+				return { commands: commands };
+			});
+		} 
+
+		handleMessage(msg) {
+			this.updateState(msg);
+			// let commands = [];
+			// switch (msg.cmd) {
+				// case Commands.RES_GET_SOURCE:
+					// this.updateState(msg)
+				// 	break;
+				// case Commands.RES_CURRENT_TRACK:
+				// 	this.setState(function (state) {
+				// 		commands = [
+				// 			...state.commands
+				// 		];
+				// 		commands.push(msg);
+				// 		return { commands: commands };
+				// 	});
+				// 	break;
+				// case Commands.RES_GET_STATION:
+					// this.updateState(msg);
+				// case this.constantsService.COMMANDS.resPlayTrack:
+				// 	this.mediaService.resPlayTrack(msg.track); 
+				// 	break;
+				// case this.constantsService.COMMANDS.resListItems:
+				// 	this.mediaService.resListItems(msg.items); 
+				// 	break;
+				// case this.constantsService.COMMANDS.resTunerListItems:
+				// 	this.tunerService.resListItems(msg.items); 
+				// 	break;
+				// case this.constantsService.COMMANDS.resPlayStation:
+				// 	this.tunerService.resPlayStation(msg.station); 
+				// 	break;
+			// 	default:
+			// 		console.warn('handleMessage. Default', msg);
+			// 		break;
+			// }
 		}
 
 		checkJson(json) {
@@ -61,7 +114,8 @@ const withWebsocket = (WrappedComponent, data) => {
 		}
 
 		render() {
-			return <WrappedComponent WS={this.ws} {...this.props}></WrappedComponent>;
+			console.log('WS RENDER', this.props, this.state);
+			return <WrappedComponent WS={this.ws} {...this.props} msg={this.state.commands}></WrappedComponent>;
 		}
 	};
 }
