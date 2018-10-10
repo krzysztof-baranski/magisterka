@@ -4,10 +4,13 @@
   "private": true,
   "dependencies": {
     "EventEmitter": "^1.0.0",
+    "install": "^0.12.1",
     "ol": "^5.2.0",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
+    "react-redux": "^5.0.7",
     "react-scripts": "1.1.5",
+    "redux": "^4.0.0",
     "underscore": "^1.9.1"
   },
   "scripts": {

@@ -4,3 +4,4 @@ export const RES_CURRENT_TRACK = 'resCurrentTrack';
 
 // tuner
 export const RES_GET_STATION = 'resCurrentStation';
+export const GET_LIST_ITEMS = 'resTunerListItems';

@@ -1,19 +1,15 @@
 import React from 'react';
 import './tuner.list.component.css';
+
+import { connect } from 'react-redux';
+
 // import { Websocket } from '../../websocket/websocket.service';
 import ListElements from '../../UI/ListElements'
 
-export class TunerList extends React.Component {
-	constructor (props) {
-		super(props);
-		this.state = {
-			stationList: [],
-			currentStation: {}
-		};
-
-	  	// this.ws = Websocket.getWS()
-	  	// this.ws.onmessage = this.receive.bind(this); 
-	}
+class TunerList extends React.Component {
+	// constructor (props) {
+	// 	super(props);
+	// }
 
 	playStation () {
 		console.warn('@@@ playStation');
@@ -34,6 +30,10 @@ export class TunerList extends React.Component {
 		this.setState({ stationList: items });
 	}
 
+	componentWillReceiveProps (props) {
+		console.log('[componentWillReceiveProps]', props);
+	}
+
 	// receive (msg) {
 	// 	if (msg.data.cmd === 'resTunerListItems') {
 	// 		console.log(msg.data.cmd);
@@ -42,6 +42,11 @@ export class TunerList extends React.Component {
 	// }
 
 	render() {
+		let tunerList = 'dupa';
+		if (this.props.stationList) {
+			tunerList = <ListElements items={this.props.stationList} clicked={this.playStation}/>
+		}
+
 		return (
 			// <div className="list-container">
 			// 	<ul>
@@ -55,8 +60,17 @@ export class TunerList extends React.Component {
 			// 	</ul>
 			// </div>
 			<div className="list-container">
-				<ListElements items={this.state.stationList} clicked={this.playStation}/>
+				{tunerList}
 			</div>
 		);
 	}
 }
+
+export const mapStateToProps = state => {
+	console.log('ÍTEMSSSSSSS', state);
+	return {
+		stationList: state.items
+	}
+}
+
+export default connect(mapStateToProps)(TunerList);

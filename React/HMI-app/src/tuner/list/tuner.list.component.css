@@ -3,7 +3,7 @@
 }
 
 .list-item {
-	display: block;
+	display: flex;
     width: 900px;
     font-size: 45px;
     border-bottom: 1px solid black;

@@ -9,6 +9,7 @@ import Controls from '../UI/Controls';
 import ProgressBar from '../UI/ProgressBar';
 import Title from '../UI/Title';
 import Spinner from '../UI/Spinner';
+import SourceSelector from '../UI/SourceSelector';
 
 class Media extends React.Component {
 
@@ -19,8 +20,9 @@ class Media extends React.Component {
 		command: null
 	};
 
-	getSource = (data) => {
-		console.log('GET SOURCE', data);
+	selectSource = (ev, data) => {
+		console.log('GET SOURCE', data, this);
+		this.props.WS.send(JSON.stringify({ cmd: 'reqSelectSource', source: data }));
 	}
 
 	openList = () => {
@@ -92,6 +94,7 @@ class Media extends React.Component {
 			}
 
 			msg.splice(i, 1);
+			
 		}
 	}
 
@@ -105,6 +108,8 @@ class Media extends React.Component {
 		if (data.msg) {
 			this.handleMessage(data.msg);
 		}
+		
+		
 	}
 
 	componentDidMount() {
@@ -112,6 +117,8 @@ class Media extends React.Component {
 		this.WS = this.props.location.WS;
 		this.WS.send(JSON.stringify({ cmd: 'reqGetSource' }));
 		this.WS.send(JSON.stringify({ cmd: 'reqCurrentTrack' }));
+
+		this.setState({ currentTrack : { trackID: 0, name: 'T', isFavorite: true, currentTime: 100, totalTime: 120, totalTracks: 4 }});
 	}
 
 	render() {
@@ -120,6 +127,7 @@ class Media extends React.Component {
 
 		if (this.state.currentTrack) {
 			media = (<div className="media-container">
+				<SourceSelector currentSource={this.state.currentSource} selectSource={this.selectSource}/>
 				<Title
 					name={this.state.currentTrack.name}
 					isFavorite={this.state.currentTrack.isFavorite} />
@@ -139,4 +147,4 @@ class Media extends React.Component {
 	}
 }
 
-export default withWebsocket(Media);
+export default Media;

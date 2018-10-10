@@ -3,7 +3,7 @@ import React from 'react';
 import './Spinner.css';
 
 const Spinner = (/* props */) => {
-    return (<div style={{ display: 'flex', 'justifyContent': 'center', 'marginTop': '15%' }}>
+    return (<div style={{ display: 'flex', 'justifyContent': 'center', 'marginTop': '15%', 'marginLeft': '-100px' }}>
         <div className="lds-dual-ring"></div>
     </div>);
 }

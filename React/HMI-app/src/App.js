@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import './App.css';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import withWebsocket from './websocket/websocket.service'
 import MainMenuItem from './UI/MainMenuItem';
@@ -15,7 +16,6 @@ class App extends Component {
     state = {
         firstRun: true,
         menuHidden: true,
-        currentStation: null
     };
 
     locationWatcher(location, action) {
@@ -36,6 +36,8 @@ class App extends Component {
     }
 
     componentDidMount() {
+        console.log('@@@@@@ ', this.state, this.props);
+
         this.props.history.listen(this.locationWatcher.bind(this));
         this.toggleMenu({ pathname: this.props.location.pathname })
         this.props.history.replace('/');
@@ -54,28 +56,25 @@ class App extends Component {
     }
 
     render() {
+        const { a } = this.props;
         return (
             <div className={this.state.menuHidden ? 'menu-items-animated-up' : 'menu-items-animated-down'}>
 
                 <nav className='nav-barr'>
                     <div className='menu-items' >
                         <Link to={{
-                            pathname: this.getBackPath(),
-                            WS: this.props.WS
+                            pathname: this.getBackPath()
                         }
                         } className='menu-item'>
                             <MainMenuItem img='close.png' label='BACK' />
                         </Link>
                         <Link to={{
-                            pathname: '/tuner',
-                            WS: this.props.WS,
-                            currentStation: this.state.currentStation
+                            pathname: '/tuner'
                         }} className='menu-item'>
                             <MainMenuItem img="radio.png" label="TUNER" />
                         </Link>
                         <Link to={{
-                            pathname: '/media',
-                            WS: this.props.WS
+                            pathname: '/media'
                         }} className='menu-item' >
                             <MainMenuItem img="media.png" label="MEDIA" />
                         </Link>
@@ -96,4 +95,10 @@ class App extends Component {
     }
 }
 
-export default withWebsocket(App);
+const mapStateToProps = state => {
+    return {
+        WS: state.webSocket
+    };
+}
+
+export default connect(mapStateToProps)(App);
