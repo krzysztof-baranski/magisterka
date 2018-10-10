@@ -3,7 +3,7 @@ import React from 'react';
 import './SourceSelector.css';
 
 const sourceSelector = (props) => {
-    console.log('SELECTOR', props);
+    console.log('SELECTOR', props);  // DLACZEGO NIE UPDATUJE SIE NA CURRENT SOURCE?
     return (
         <div className='source-selector'>
             <div onClick={(e) => props.selectSource(e, 'hdd')}
@@ -11,12 +11,12 @@ const sourceSelector = (props) => {
                 <img className='source-icon' src={require('../assets/media/hdd.png')} alt='' />
                 <span className='source-label'>HDD</span>
             </div>
-            <div onClick={(e) => props.selectSource(e, 'hdd')}
+            <div onClick={(e) => props.selectSource(e, 'usb')}
                 className={'source-item' + (props.currentSource && props.currentSource.mediaID === 'usb' ? ' active' : '')}>
                 <img className='source-icon' src={require('../assets/media/usb.png')} alt='' />
                 <span className='source-label'>USB</span>
             </div>
-            <div onClick={(e) => props.selectSource(e, 'hdd')}
+            <div onClick={(e) => props.selectSource(e, 'bt')}
                 className={'source-item' + (props.currentSource && props.currentSource.mediaID === 'bt' ? ' active' : '')}>
                 <img className='source-icon' src={require('../assets/media/bt.png')} alt='' />
                 <span className='source-label'>BT</span>

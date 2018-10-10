@@ -30,6 +30,11 @@ const reducer = (state = initaialState, action) => {
                 ...state,
                 items: action.items
             }
+        case Actions.SET_CURRENT_TRACK:
+            return {
+                ...state,
+                currentTrack: action.currentTrack
+            }
         default: 
             return {
                 ...state

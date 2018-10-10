@@ -1,9 +1,10 @@
 import React from 'react';
 // import _ from 'lodash'
 import './media.component.css';
+import { connect } from 'react-redux';
 
-import withWebsocket from '../websocket/websocket.service';
 import * as Commands from '../websocket/Commands';
+import * as Actions from '../actions/actions';
 
 import Controls from '../UI/Controls';
 import ProgressBar from '../UI/ProgressBar';
@@ -13,13 +14,6 @@ import SourceSelector from '../UI/SourceSelector';
 
 class Media extends React.Component {
 
-	state = {
-		...this.state,
-		currentTrack: null,
-		currentSource: null,
-		command: null
-	};
-
 	selectSource = (ev, data) => {
 		console.log('GET SOURCE', data, this);
 		this.props.WS.send(JSON.stringify({ cmd: 'reqSelectSource', source: data }));
@@ -28,7 +22,7 @@ class Media extends React.Component {
 	openList = () => {
 		this.props.history.push({
 			pathname: this.props.match.url + '/list',
-			state: { ...this.state }
+			// state: { ...this.state }
 		});
 	}
 
@@ -71,71 +65,40 @@ class Media extends React.Component {
 
 	getProgressLabel = () => {
 		let label = '';
-		if (this.state.currentTrack.trackID) {
-			label = 'Track ' + this.state.currentTrack.trackID + '/' + this.state.currentTrack.totalTracks;
+		if (this.props.currentTrack.trackID) {
+			label = 'Track ' + this.props.currentTrack.trackID + '/' + this.props.currentTrack.totalTracks;
 		}
 
 		return label;
 	}
 
-	handleMessage = (msg) => {
-		for (let i in msg) {
-			let m = msg[i];
-			switch (m.cmd) {
-				case Commands.RES_GET_SOURCE:
-					console.log('Current source');
-					this.setState({ currentSource: m.source });
-					break;
-					case Commands.RES_CURRENT_TRACK:
-					console.log('Current track');
-					this.setState({ currentTrack : m.currentTrack});
-				default:
-					console.warn('Wrong message', m);
-			}
-
-			msg.splice(i, 1);
-			
-		}
-	}
-
-
-	// componentWillReceiveProps (props) {
-	// 	console.log('will receive props', props);
-	// }
-
 	componentWillReceiveProps(data) {
-		console.log('will update', data);
-		if (data.msg) {
-			this.handleMessage(data.msg);
-		}
-		
-		
+		console.log('[componentWillReceiveProps]', data);
 	}
 
 	componentDidMount() {
 		console.log('!QAA', this.props, this.state);
-		this.WS = this.props.location.WS;
-		this.WS.send(JSON.stringify({ cmd: 'reqGetSource' }));
-		this.WS.send(JSON.stringify({ cmd: 'reqCurrentTrack' }));
+		this.props.WS.send(JSON.stringify({ cmd: 'reqGetSource' }));
+		this.props.WS.send(JSON.stringify({ cmd: 'reqCurrentTrack' }));
 
-		this.setState({ currentTrack : { trackID: 0, name: 'T', isFavorite: true, currentTime: 100, totalTime: 120, totalTracks: 4 }});
+		// this.setState({ currentTrack : { trackID: 0, name: 'T', isFavorite: true, currentTime: 100, totalTime: 120, totalTracks: 4 }});
 	}
 
 	render() {
 		console.log('RENDER', this.state);
 		let media = <Spinner />;
 
-		if (this.state.currentTrack) {
+		if (this.props.currentTrack) {
 			media = (<div className="media-container">
-				<SourceSelector currentSource={this.state.currentSource} selectSource={this.selectSource}/>
+				<SourceSelector currentSource={this.props.currentSource} selectSource={this.selectSource}/>
 				<Title
-					name={this.state.currentTrack.name}
-					isFavorite={this.state.currentTrack.isFavorite} />
+					name={this.props.currentTrack.name}
+					isFavorite={this.props.currentTrack.isFavorite} />
 				<ProgressBar
-					value={this.state.currentTrack.currentTime}
-					max={this.state.currentTrack.totalTime}
-					currentTime={this.changeSecondsToTime(this.state.currentTrack.currentTime)}
-					totalTime={this.changeSecondsToTime(this.state.currentTrack.totalTime)}
+					value={this.props.currentTrack.currentTime}
+					max={this.props.currentTrack.totalTime}
+					currentTime={this.changeSecondsToTime(this.props.currentTrack.currentTime)}
+					totalTime={this.changeSecondsToTime(this.props.currentTrack.totalTime)}
 					progressLabel={this.getProgressLabel()} />
 				<Controls prev={this.prevTrack} next={this.nextTrack} openList={this.openList} />
 				<div className="cover-art">
@@ -147,4 +110,19 @@ class Media extends React.Component {
 	}
 }
 
-export default Media;
+const mapStateToProps = state => {
+    return {
+		WS: state.webSocket,
+		currentSource: state.currentSource,
+		currentTrack: state.currentTrack
+    };
+}
+
+const mapDispatchToState = dispatch => {
+	return {
+		setCurrentSource	: source => dispatch(Actions.setCurrentSource(source)),
+		setCurrentTrack		: track => dispatch(Actions.setCurrentTrack(track))
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToState)(Media);

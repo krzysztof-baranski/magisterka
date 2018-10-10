@@ -22,3 +22,8 @@ export const setListItems = items => ({
     type: Actions.SET_LIST_ITEMS,
     items: s(items)
 });
+
+export const setCurrentTrack = track => ({
+    type: Actions.SET_CURRENT_TRACK,
+    currentTrack: track
+})
