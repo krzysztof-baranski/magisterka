@@ -27,3 +27,14 @@ export const setCurrentTrack = track => ({
     type: Actions.SET_CURRENT_TRACK,
     currentTrack: track
 })
+
+export const setHomeAddress = address => ({
+    type: Actions.SET_HOME_ADDRESS,
+    homeAddress: address
+});
+
+export const setBrightness = value => ({
+    type: Actions.SET_BRIGHTNESS,
+    brightness: value
+});
+

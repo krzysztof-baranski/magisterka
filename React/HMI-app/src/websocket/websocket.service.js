@@ -54,6 +54,12 @@ class Websocket extends React.Component {
 			case Commands.GET_MEDIA_LIST_ITEMS:
 				this.props.setListItems(msg.items);
 				break;
+			case Commands.RES_HOME_ADDRESS:
+				this.props.setHomeAddress(msg.address);
+				break;
+			case Commands.RES_SET_BRIGHTNESS: 
+				this.props.setBrightness(msg.value);
+				break;
 			default:
 				console.log('Unknown message', msg);
 		}
@@ -100,7 +106,9 @@ const mapDispachToProps = dispatch => ({
 	setCurrentStation: station => dispatch(Actions.setCurrentStation(station)),
 	setCurrentSource: source => dispatch(Actions.setCurrentSource(source)),
 	setCurrentTrack: track => dispatch(Actions.setCurrentTrack(track)),
-	setListItems: items => dispatch(Actions.setListItems(items))
+	setListItems: items => dispatch(Actions.setListItems(items)),
+	setHomeAddress: address => dispatch(Actions.setHomeAddress(address)),
+	setBrightness: value => dispatch(Actions.setBrightness(value))
 })
 
 export default connect(null, mapDispachToProps)(Websocket);

@@ -1,5 +1,6 @@
 import React from 'react';
 import './display-settings.component.css';
+import { connect } from 'react-redux';
 
 import DisplayItem from '../SettingsItem';
 
@@ -11,7 +12,7 @@ const DISP = {
 	contrast: 70
 };
 
-export class DisplaySettings extends React.Component {
+class DisplaySettings extends React.Component {
 	constructor(props) {
 		super(props);
 
@@ -22,39 +23,57 @@ export class DisplaySettings extends React.Component {
 	}
 
 	changeValue(key, value, event) {
-		event.preventDefault();
+		event.nativeEvent.preventDefault();
 		event.stopPropagation();
 		console.log('SETTINGS changeValue', key, value);
+		let cmd;
+		let color = {
+			red: this.state.DISP['red'],
+			green: this.state.DISP['green'],
+			blue: this.state.DISP['blue']
+		}
 		switch (key) {
 			case 'brighntness':
 				// send for feneral
 				console.warn(key.toUpperCase() + ' volume changed: ' + this.state.DISP[key]);
+				cmd = 'reqSetBrightness';
 				break;
-			case 'red':
+				case 'red':
 				// send for feneral
 				console.warn(key.toUpperCase() + ' volume changed ' + this.state.DISP[key]);
+				cmd = 'reqSetColor';
 				break;
-			case 'green':
+				case 'green':
 				// send for feneral
 				console.warn(key.toUpperCase() + ' volume changed ' + this.state.DISP[key]);
+				cmd = 'reqSetColor';
 				break;
-			case 'blue':
+				case 'blue':
 				// send for feneral
 				console.warn(key.toUpperCase() + ' value changed ' + this.state.DISP[key]);
+				cmd = 'reqSetColor';
 				break;
-			case 'contrast':
+				case 'contrast':
 				// send for feneral
 				console.warn(key.toUpperCase() + ' value changed ' + this.state.DISP[key]);
+				cmd = 'reqSetContrast';
 				break;
 			default:
 				console.warn('Unknown key ', key);
 				return;
-		}
+			}
+			
+			// this.state.DISP[key] += value;
+			let newDisp = this.state.DISP;
+			newDisp[key] += value;
+			this.setState({ DISP: newDisp }); // to update value!!
 
-		// this.state.DISP[key] += value;
-		let newDisp = this.state.DISP;
-		newDisp[key] += value;
-		this.setState({ DISP: newDisp }); // to update value!!
+			if (key === 'red' || key === 'blue' || key === 'green') {
+				color[key] = this.state.DISP[key];
+				this.props.WS.send(JSON.stringify({ cmd: cmd, value: color }));
+			} else {
+				this.props.WS.send(JSON.stringify({ cmd: cmd, value: this.state.DISP[key] }));
+			}
 	}
 
 	render() {
@@ -112,3 +131,17 @@ export class DisplaySettings extends React.Component {
 		);
 	}
 }
+
+const mapStateToProps = state => {
+    return {
+		WS: state.webSocket
+    };
+}
+
+// const mapDispatchToState = dispatch => {
+// 	return {
+// 		setCurrentStation	: station => dispatch(Actions.setCurrentStation(station))
+// 	}
+// }
+
+export default connect(mapStateToProps/* , mapDispatchToState */)(DisplaySettings);

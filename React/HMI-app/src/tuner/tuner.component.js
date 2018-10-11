@@ -34,7 +34,7 @@ class Tuner extends React.Component {
 		}
 	}
 
-	activateBand (band) {
+	activateBand (ev, band) {
 		if (band === this.props.currentStation.band) {
 			return;
 		}

@@ -5,7 +5,8 @@ const initaialState = {
     currentTrack: null,
     currentStation: null,
     webSocket: null,
-    items: null
+    items: null,
+    homeAddress: null
 };
 
 const reducer = (state = initaialState, action) => {
@@ -34,6 +35,11 @@ const reducer = (state = initaialState, action) => {
             return {
                 ...state,
                 currentTrack: action.currentTrack
+            }
+        case Actions.SET_HOME_ADDRESS:
+            return {
+                ...state,
+                homeAddress: action.homeAddress
             }
         default: 
             return {

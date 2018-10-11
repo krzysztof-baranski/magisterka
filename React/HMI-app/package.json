@@ -6,6 +6,7 @@
     "EventEmitter": "^1.0.0",
     "install": "^0.12.1",
     "ol": "^5.2.0",
+    "openlayers": "^4.6.5",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-redux": "^5.0.7",

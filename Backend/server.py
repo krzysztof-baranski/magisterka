@@ -11,6 +11,8 @@ import json
 import sys
 import media
 import tuner
+import navigation
+import settings
 
 logging.basicConfig(
     # level=logging.DEBUG,
@@ -31,7 +33,11 @@ commands = {
 	'reqGetSource'	 : 7,
 	'reqCurrentTrack': 8,
 	'reqCurrentStation': 9,
-	'reqChangeBand'  : 10 
+	'reqChangeBand'  : 10,
+	'reqSetHomeAddress': 11,
+	'reqSetBrightness' : 12,
+	'reqSetColor'	   : 13,
+	'reqSetContrast'   : 14
 }
 
 messages = []
@@ -40,6 +46,8 @@ messages.append(json.dumps({'time': datetime.datetime.utcnow().isoformat() + 'Z'
 
 Media = media.Media('media') 
 Tuner = tuner.Tuner('tuner') 
+Navi = navigation.Navigation('navi')
+Settings = settings.Settings('Settings')
 
 def parseMsg(msg):
 	try:
@@ -94,6 +102,21 @@ async def consumer (message):
 	elif messageNo == 10:
 		station = Tuner.changeBand()
 		messages.append(json.dumps({ 'cmd': 'resCurrentStation', 'currentStation' : station}))
+	elif messageNo == 11:
+		address = Navi.setHomeAddress(messageObj)
+		LOG.warning('@@ home address: ' + str(address))
+		messages.append(json.dumps({ 'cmd': 'resHomeAddress', 'address' : address }))
+	elif messageNo == 12: 
+		brightness = Settings.setBrightness(messageObj)
+		messages.append(json.dumps({ 'cmd': 'resSetBrightness', 'value': brightness }))
+	elif messageNo == 13:
+		color = Settings.setColor(messageObj)
+		messages.append(json.dumps({ 'cmd': 'resSetColor', 'value': color }))
+	elif messageNo == 14: 
+		contrast = Settings.setContrast(messageObj)
+		messages.append(json.dumps({ 'cmd': 'resSetContrast', 'value': contrast }))
+
+
 	else: 
 		LOG.info ('NO message found!')  
 
