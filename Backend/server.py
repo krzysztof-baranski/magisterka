@@ -25,7 +25,7 @@ commands = {
 	'reqPlayTrack'	 : 1,
 	'reqNextTrack'   : 2,
 	'reqPrevTrack'   : 3,
-	'reqListItems'	 : 4,
+	'reqMediaListItems': 4,
 	'reqTunerListItems': 5,
 	'reqPlayStation' : 6,
 	'reqGetSource'	 : 7,
@@ -65,8 +65,7 @@ async def consumer (message):
 	if messageNo == 0:
 		LOG.info ('messageNo ' + str(messageNo) + ' no i elo')
 		source = Media.selectSource(messageObj) 
-		LOG.warn('!!!!!!!!! ' + str(source))
-		messages.append(json.dumps({ 'cmd': 'resSelectSource', 'source': source }) ) 
+		messages.append(json.dumps({ 'cmd': 'resGetSource', 'source': source }) ) 
 	elif messageNo == 1:
 		track = Media.playTrack(messageObj)
 		LOG.warning ('############ ' + str (track) ) 
@@ -74,7 +73,7 @@ async def consumer (message):
 	elif messageNo == 4:
 		items = Media.getListItems()
 		LOG.warning ('@@@@@@ LIST ITEMS: ' + str(items))
-		messages.append(json.dumps({ 'cmd': 'resListItems', 'items': items }))   
+		messages.append(json.dumps({ 'cmd': 'resMediaListItems', 'items': items }))   
 	elif messageNo == 5:
 		items = Tuner.getListItems(messageObj)
 		LOG.warning ('@@@@@@ TUNER LIST ITEMS: ' + str(items))

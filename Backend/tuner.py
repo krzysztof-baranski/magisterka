@@ -25,13 +25,15 @@ class Tuner(object):
 		'name': 'Super Hits Station',
 		'fraquence': 104.5,
 		'band': 'fm',
-		'isFavorite': True
+		'isFavorite': True,
+		'stationID' : 0
 	},
 	{
 		'name': 'AMmmerica Station',
 		'fraquence': 554,
 		'band': 'am',
-		'isFavorite': False
+		'isFavorite': False,
+		'stationID' : 1
 	}]
 
 	emptyStation = {
@@ -54,11 +56,11 @@ class Tuner(object):
 		LOG.info ('TUNER!!!!!!!!' + str (data) ) 
 		items = []
 
-		for x in range(0, 15):
+		for x in range(len(self.stations), len(self.stations) + 15):
 			if x == 1:
-				items.append({ 'fraquence': 554 + x, 'name': 'Radio AMmmerica ' + str(x), 'isFavorite': True, 'band': data['band'] })  
+				items.append({ 'stationID': x, 'fraquence': 554 + x, 'name': 'Radio AMmmerica ' + str(x), 'isFavorite': True, 'band': data['band'] })  
 			else: 
-				items.append({ 'fraquence': 554 + x, 'name': 'Radio AMmmerica ' + str(x), 'isFavorite': False, 'band': data['band'] })  
+				items.append({ 'stationID': x, 'fraquence': 554 + x, 'name': 'Radio AMmmerica ' + str(x), 'isFavorite': False, 'band': data['band'] })  
 
 		global stations
 		self.stations.extend(items) 
@@ -66,13 +68,13 @@ class Tuner(object):
 		return self.stations
 
 	def playStation (self, data):
-		fraq = data.get('fraquence', None) 
-		LOG.warning ('!!!!AA ' + str (fraq) ) 
-		if fraq == None:
-			return self.emptyStation
-
+		id = data.get('id', None) 
+		LOG.warning ('!!!!AA ' + str (id) ) 
+		
 		for station in self.stations:
-			if station['fraquence'] == fraq:
+			if station['stationID'] == id:
+				self.currentStation = station
 				return station
 		else:
+			self.currentStation = emptyStation
 			return self.emptyStation

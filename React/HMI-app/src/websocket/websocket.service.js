@@ -51,6 +51,9 @@ class Websocket extends React.Component {
 			case Commands.RES_CURRENT_TRACK:
 				this.props.setCurrentTrack(msg.currentTrack);
 				break;
+			case Commands.GET_MEDIA_LIST_ITEMS:
+				this.props.setListItems(msg.items);
+				break;
 			default:
 				console.log('Unknown message', msg);
 		}
@@ -93,11 +96,11 @@ class Websocket extends React.Component {
 };
 
 const mapDispachToProps = dispatch => ({
-	setWS				: ws => dispatch(Actions.setWebSocket(ws)),
-	setCurrentStation	: station => dispatch(Actions.setCurrentStation(station)),
-	setCurrentSource	: source => dispatch(Actions.setCurrentStation(source)),
-	setCurrentTrack		: track => dispatch(Actions.setCurrentTrack(track)),
-	setListItems		: items => dispatch(Actions.setListItems(items))
+	setWS: ws => dispatch(Actions.setWebSocket(ws)),
+	setCurrentStation: station => dispatch(Actions.setCurrentStation(station)),
+	setCurrentSource: source => dispatch(Actions.setCurrentSource(source)),
+	setCurrentTrack: track => dispatch(Actions.setCurrentTrack(track)),
+	setListItems: items => dispatch(Actions.setListItems(items))
 })
 
 export default connect(null, mapDispachToProps)(Websocket);

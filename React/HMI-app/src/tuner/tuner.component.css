@@ -1,6 +1,7 @@
 .tuner-container {
     top: 140px;
-    position: relative;
+    position: relative;    
+    left: 70px;
 }
 .station-title {
     height: 115px;
@@ -18,7 +19,7 @@
 
 .controls {
 	display: flex;
-	margin-top: 180px;
+	margin-top: 90px;
 }
 
 .controls button {

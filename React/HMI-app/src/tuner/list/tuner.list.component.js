@@ -1,6 +1,7 @@
 import React from 'react';
 import './tuner.list.component.css';
 
+import * as Actions from '../../actions/actions';
 import { connect } from 'react-redux';
 
 // import { Websocket } from '../../websocket/websocket.service';
@@ -11,8 +12,11 @@ class TunerList extends React.Component {
 	// 	super(props);
 	// }
 
-	playStation () {
-		console.warn('@@@ playStation');
+	playStation = (e, id) => {
+		console.warn('@@@ playStation', id);
+		this.props.WS.send(JSON.stringify({ cmd: 'reqPlayStation', id: id }));
+		this.props.setCurrentStation(null);
+		this.props.history.goBack();
 	}
 
 	componentDidMount () {
@@ -44,21 +48,10 @@ class TunerList extends React.Component {
 	render() {
 		let tunerList = 'dupa';
 		if (this.props.stationList) {
-			tunerList = <ListElements items={this.props.stationList} clicked={this.playStation}/>
+			tunerList = <ListElements items={this.props.stationList} clicked={this.playStation.bind(this)}/>
 		}
 
 		return (
-			// <div className="list-container">
-			// 	<ul>
-			// 		<li className="list-item" onClick={this.playStation.bind(this.item)}>
-			// 			<span className="fav-ico-container">
-			// 				<span>LIST TUNER</span>
-			// 				<img src={ require('../../assets/media/favorite_icon.png') } alt='' />
-			// 			</span>
-			// 			<span>{ this.item.name }</span>
-			// 		</li>
-			// 	</ul>
-			// </div>
 			<div className="list-container">
 				{tunerList}
 			</div>
@@ -69,8 +62,15 @@ class TunerList extends React.Component {
 export const mapStateToProps = state => {
 	console.log('ÍTEMSSSSSSS', state);
 	return {
-		stationList: state.items
+		stationList: state.items,
+		WS: state.webSocket
 	}
 }
 
-export default connect(mapStateToProps)(TunerList);
+export const mapDispatchToProps = dispatch => {
+	return {
+		setCurrentStation: station => dispatch(Actions.setCurrentStation(station))
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TunerList);

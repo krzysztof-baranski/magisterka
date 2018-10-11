@@ -7,6 +7,8 @@ import Controls from '../UI/Controls';
 import Title from '../UI/Title';
 import ProgressBar from '../UI/ProgressBar';
 import Spinner from '../UI/Spinner';
+import SourceSelector from '../UI/SourceSelector';
+import CoverArt from '../UI/CoverArt';
 
 class Tuner extends React.Component {
 	constructor(props) {
@@ -88,6 +90,7 @@ class Tuner extends React.Component {
 		if (this.props.currentStation) {
 			tuner = (
 				<div className="tuner-container">
+					<SourceSelector activateBand={this.activateBand.bind(this)} currentStation={this.props.currentStation} match={this.props.match} />
 					<Title
 						name={this.props.currentStation.name}
 						isFavorite={this.props.currentStation.isFavorite} />
@@ -97,12 +100,7 @@ class Tuner extends React.Component {
 						min={this.props.currentStation.band === 'fm' ? 87.5 : 300}
 						progressLabel={this.getProgressLabel()} />
 					<Controls prev={this.prevStation} next={this.nextStation} openList={this.openList} />
-					<div className="band">
-						<div className={this.props.currentStation.band === 'fm' ? 'active' : ''}
-							onClick={this.activateBand.bind(this, 'fm')}>FM</div>
-						<div className={this.props.currentStation.band === 'am' ? 'active' : ''}
-							onClick={this.activateBand.bind(this, 'am')}>AM</div>
-					</div>
+					<CoverArt />
 				</div>);
 		}
 

@@ -11,6 +11,7 @@ import ProgressBar from '../UI/ProgressBar';
 import Title from '../UI/Title';
 import Spinner from '../UI/Spinner';
 import SourceSelector from '../UI/SourceSelector';
+import CoverArt from '../UI/CoverArt';
 
 class Media extends React.Component {
 
@@ -20,10 +21,9 @@ class Media extends React.Component {
 	}
 
 	openList = () => {
-		this.props.history.push({
-			pathname: this.props.match.url + '/list',
-			// state: { ...this.state }
-		});
+		this.props.history.push('/media/list');
+		this.props.WS.send(JSON.stringify({ cmd: 'reqMediaListItems' }));
+		console.warn('@@@ openList');
 	}
 
 	playTrack = () => {
@@ -75,6 +75,11 @@ class Media extends React.Component {
 	componentWillReceiveProps(data) {
 		console.log('[componentWillReceiveProps]', data);
 	}
+	
+	componentWillUpdate(props, a) {
+		console.log('[componentWillUpdate]', props, a);
+
+	}
 
 	componentDidMount() {
 		console.log('!QAA', this.props, this.state);
@@ -90,9 +95,9 @@ class Media extends React.Component {
 
 		if (this.props.currentTrack) {
 			media = (<div className="media-container">
-				<SourceSelector currentSource={this.props.currentSource} selectSource={this.selectSource}/>
+				<SourceSelector currentSource={this.props.currentSource} selectSource={this.selectSource.bind(this)} match={this.props.match}/>
 				<Title
-					name={this.props.currentTrack.name}
+					name={this.props.currentTrack.title || this.props.currentTrack.name}
 					isFavorite={this.props.currentTrack.isFavorite} />
 				<ProgressBar
 					value={this.props.currentTrack.currentTime}
@@ -101,9 +106,7 @@ class Media extends React.Component {
 					totalTime={this.changeSecondsToTime(this.props.currentTrack.totalTime)}
 					progressLabel={this.getProgressLabel()} />
 				<Controls prev={this.prevTrack} next={this.nextTrack} openList={this.openList} />
-				<div className="cover-art">
-					<div className="cover-art-image"></div>
-				</div>
+				<CoverArt />
 			</div>);
 		}
 		return (<div>{media}</div>);

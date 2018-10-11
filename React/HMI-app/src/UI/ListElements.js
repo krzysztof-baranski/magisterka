@@ -6,8 +6,9 @@ class listElements extends React.Component {
     render() {
         // this.props = {...this.props}
         let newItems = this.props.items.map((el) => {
-            el.id = el.trackID || el.stationID;
-            return <ListElement clicked={this.props.clicked} key={el.id} item={el} />
+            el.id = el.trackID || el.stationID || 0;
+            
+            return <ListElement key={el.id} clicked={this.props.clicked} item={el} />
         });
 
         return (

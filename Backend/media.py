@@ -39,7 +39,7 @@ class Media(object):
 
 	tracks = [
 		{
-			'trackID': '0',
+			'trackID': 0,
 			'playing': True,
 			'currentTime': 123,
 			'totalTime': 321,
@@ -49,7 +49,7 @@ class Media(object):
 			'name': 'Trackson 1'
 		},
 		{
-			'trackID': '1',
+			'trackID': 1,
 			'playing': False,
 			'currentTime': 123,
 			'totalTime': 321,
@@ -79,27 +79,27 @@ class Media(object):
 		newSource = self.media.get(source, None)
 		LOG.warning('@@@2 newSource ' + str(newSource)) 
 		self.currentSource = newSource
-		LOG.warning('@@@2 newSource' + str(currentSource)) 
+		LOG.warning('@@@2 newSource' + str(self.currentSource)) 
 		return self.currentSource
 
 	def playTrack (self, data):
-		trackID = data.get('trackID', None) 
-		if trackID == None:
-			return emptyTrack
+		trackID = data.get('id', None) 
 
 		for track in self.tracks:
 			if track['trackID'] == trackID:
+				self.currentTrack = track
 				return track
 		else:
+			self.currentTrack = track
 			return self.emptyTrack
 
 	def getListItems (self):
 		items = []
 		for x in range(0, 15):
 			if x == 1:
-				items.append({ 'trackID': x, 'title': 'Track ' + str(x), 'isPlaying': True, 'isFavorite': True })  
+				items.append({ 'trackID': x, 'title': 'Track ' + str(x), 'isPlaying': True, 'isFavorite': True, 'currentTime': 12, 'totalTime' : 300, 'totalTracks': len(self.tracks) + 15 })  
 			else: 
-				items.append({ 'trackID': x, 'title': 'Track ' + str(x), 'isPlaying': False, 'isFavorite': False })  
+				items.append({ 'trackID': x, 'title': 'Track ' + str(x), 'isPlaying': False, 'isFavorite': False, 'currentTime': 12, 'totalTime' : 300, 'totalTracks': len(self.tracks) + 15 })  
 		global tracks
 		self.tracks.extend(items) 
 		LOG.info(len(self.tracks)) 
