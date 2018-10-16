@@ -37,7 +37,8 @@ commands = {
 	'reqSetHomeAddress': 11,
 	'reqSetBrightness' : 12,
 	'reqSetColor'	   : 13,
-	'reqSetContrast'   : 14
+	'reqSetContrast'   : 14,
+	'reqSetAddress'	   : 15
 }
 
 messages = []
@@ -115,7 +116,9 @@ async def consumer (message):
 	elif messageNo == 14: 
 		contrast = Settings.setContrast(messageObj)
 		messages.append(json.dumps({ 'cmd': 'resSetContrast', 'value': contrast }))
-
+	elif messageNo == 15:
+		address = Navi.setAddress(messageObj)
+		messages.append(json.dumps({ 'cmd': 'resSetAddress', 'address': address }))
 
 	else: 
 		LOG.info ('NO message found!')  

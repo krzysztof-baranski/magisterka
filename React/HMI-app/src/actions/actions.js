@@ -33,6 +33,11 @@ export const setHomeAddress = address => ({
     homeAddress: address
 });
 
+export const setAddress = address => ({
+    type: Actions.SET_ADDRESS,
+    address: address
+});
+
 export const setBrightness = value => ({
     type: Actions.SET_BRIGHTNESS,
     brightness: value

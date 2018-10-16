@@ -5,7 +5,7 @@
     position: absolute;
 }
 
-.home-button {
+.home-button, .enter-address-button {
     position: absolute;
     top: 90px;
     width: 85px;
@@ -16,4 +16,39 @@
     display: grid;
     left: 160px;
     background-color: rgb(123, 152, 186);
+}
+.enter-address-button {
+    left: 260px;
+}
+
+.enter-address {
+    position: absolute;
+    top: 140px;
+    left: 725px; /* (1920 - 450) / 2 */
+    width: 450px;
+    border: solid 1px black;
+    padding: 20px;
+    background-color: #ffffffc7;
+    height: 500px;
+}
+
+.enter-address form label {
+    display: block;
+    width: 450px;
+}
+
+.enter-address form label input {
+    width: -webkit-fill-available;
+}
+
+.button-enter-address {
+    width: 41%;;
+    height: 40px;
+    -webkit-appearance: button-bevel;
+    margin: 20px;
+}
+
+.span-enter-address {
+    display: inline;
+    margin: auto;
 }

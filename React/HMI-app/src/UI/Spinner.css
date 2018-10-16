@@ -1,7 +1,8 @@
 .lds-dual-ring {
   display: inline-block;
-  width: 64px;
-  height: 64px;
+  width: 100%;
+  height: 100%;
+  text-align: -webkit-center;
 }
 .lds-dual-ring:after {
   content: " ";

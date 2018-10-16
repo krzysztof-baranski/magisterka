@@ -10,7 +10,6 @@ h6 {
 
 .others-settings progress {
 	width: 590px;
-	position: absolute;
 	left: 200px;
 }
 
@@ -46,6 +45,7 @@ span {
     text-align: -webkit-center;
     font-size: 45px;
     width: 100px;
+    margin: 0 30px;
     -webkit-appearance: button-bevel;
 
 }
@@ -62,4 +62,8 @@ span {
     text-align: -webkit-center;
     width: 100px;
     -webkit-appearance: button-bevel;
+}
+
+a {
+    color: inherit;
 }

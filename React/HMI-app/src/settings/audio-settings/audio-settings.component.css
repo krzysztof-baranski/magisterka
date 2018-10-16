@@ -4,7 +4,6 @@ h3 {
 
 .audio-settings progress {
 	width: 590px;
-	position: absolute;
 	left: 200px;
 }
 
@@ -24,9 +23,9 @@ span {
 }
 
 .audio-settings button {
-    text-align: -webkit-center;
     font-size: 45px;
     width: 100px;
+    margin: 0 30px;
     -webkit-appearance: button-bevel;
 
 }

@@ -31,3 +31,8 @@ ul {
     width: 45px;
     margin-right: 20px;
 }
+
+.settings-controls {
+    display: flex;
+    align-items: center;
+}

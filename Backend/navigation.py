@@ -24,3 +24,7 @@ class Navigation (object):
 	def setHomeAddress(self, data): 
 		self.homeAddress = data['address']
 		return self.homeAddress
+
+	def setAddress(self, data):
+		self.address = data['address']
+		return self.address

@@ -6,7 +6,8 @@ const initaialState = {
     currentStation: null,
     webSocket: null,
     items: null,
-    homeAddress: null
+    homeAddress: null,
+    address: {}
 };
 
 const reducer = (state = initaialState, action) => {
@@ -40,6 +41,11 @@ const reducer = (state = initaialState, action) => {
             return {
                 ...state,
                 homeAddress: action.homeAddress
+            }
+        case Actions.SET_ADDRESS:
+            return {
+                ...state,
+                address: action.address
             }
         default: 
             return {

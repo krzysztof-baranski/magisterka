@@ -3,6 +3,8 @@
     display: inline-flex;
     height: 80px;
     align-items: center;    
+    background-color: #ffffffc7;
+    border-radius: 10px;
 }
 
 .source-icon {

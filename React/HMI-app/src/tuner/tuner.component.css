@@ -30,11 +30,13 @@
     background-color: transparent;
     border-radius: 10px;
     font-size: 45px;
+    background-color: #ffffffc7;
 }
 
 .controls button:not(.list-button) {
     background: url('../assets/tuner/prev.png') no-repeat center center;
     background-size: 100px 100px;
+    background-color: #ffffffc7;
 }
 
 .fraquence-info {
