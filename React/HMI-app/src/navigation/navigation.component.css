@@ -5,20 +5,36 @@
     position: absolute;
 }
 
-.home-button, .enter-address-button {
+.home-button, .enter-address-button, .recent-dest-button {
     position: absolute;
-    top: 90px;
-    width: 85px;
+    top: 175px;
+    width: 220px;
     z-index: 1;
-    height: 67px;
+    height: 30px;
     text-align: center;
+    -ms-flex-line-pack: center;
     align-content: center;
-    display: grid;
-    left: 160px;
+    display: flex;
+    left: 110px;
     background-color: rgb(123, 152, 186);
 }
+
+.home-button div, .enter-address-button div, .recent-dest-button div {
+    line-height: 30px;
+}
+
+.home-button img, .enter-address-button img, .recent-dest-button img {
+    width: 25px;
+    height: auto;
+    margin: auto 15px;
+}
+
 .enter-address-button {
-    left: 260px;
+    top: 215px;
+}
+
+.recent-dest-button {
+    top: 255px;
 }
 
 .enter-address {

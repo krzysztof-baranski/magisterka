@@ -14,6 +14,7 @@ import MediaList from './media/list/media.list.component';
 import Tuner from './tuner/tuner.component';
 import TunerList from './tuner/list/tuner.list.component';
 import Navigation from './navigation/navigation.component';
+import RecentDestinations from './navigation/recents/RecentDestinations';
 import { Settings } from './settings/settings.component';
 import { AudioSettings } from './settings/audio-settings/audio-settings.component';
 import DisplaySettings from './settings/display-settings/display-settings.component';
@@ -36,7 +37,8 @@ ReactDOM.render(
 					<Route path='/media/list' component={MediaList} />
 					<Route exact path='/tuner' component={Tuner} />
 					<Route path='/tuner/list' component={TunerList} />
-					<Route path='/navigation' component={Navigation} />
+					<Route exact path='/navigation' component={Navigation} />
+					<Route path='/navigation/recent-destinations' component={RecentDestinations} />
 					<Route exact path='/settings' component={Settings} />
 					<Route path='/settings/audio-settings' component={AudioSettings} />
 					<Route path='/settings/display-settings' component={DisplaySettings} />

@@ -80,8 +80,14 @@
 }
 
 .cover-art-image {
-	background: url(/assets/media/prev.png) no-repeat center center;
+	display: flex;
     background-size: 300px 300px;
     width: inherit;
     height: inherit;
+}
+
+.cover-art-image img {
+    width: 100%;
+    height: auto;
+    margin: auto;
 }

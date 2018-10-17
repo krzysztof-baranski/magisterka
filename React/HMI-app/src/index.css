@@ -2,11 +2,12 @@ body {
 	margin: 0;
 	padding: 0;
 	font-family: sans-serif;
-	background: url('./assets/general/background2.jpeg') no-repeat center center;
+	/* background: url('./assets/general/background2.jpeg') no-repeat center center; */
 	height: -webkit-fill-available;
 	top: 0;
 	margin-left: 100px;    
 	display: flow-root;
+	background-image: linear-gradient(#fff, #444);
 }
 
 ul {

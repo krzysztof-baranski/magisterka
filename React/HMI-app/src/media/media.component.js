@@ -106,7 +106,7 @@ class Media extends React.Component {
 					totalTime={this.changeSecondsToTime(this.props.currentTrack.totalTime)}
 					progressLabel={this.getProgressLabel()} />
 				<Controls prev={this.prevTrack} next={this.nextTrack} openList={this.openList} />
-				<CoverArt />
+				<CoverArt image={require('../assets/media/coverart.png')} />
 			</div>);
 		}
 		return (<div>{media}</div>);

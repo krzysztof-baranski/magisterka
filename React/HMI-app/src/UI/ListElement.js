@@ -6,7 +6,7 @@ const listElement = (props) => {
             <span className="fav-ico-container">
                 {props.item.isFavorite ? <img className="fav-ico" src={require('../assets/media/favorite_icon.png')} alt='' /> : null}
             </span>
-            <span style={{ width: '90%' }}>{props.item.name}</span>
+            <span style={{ width: '90%' }}>{props.item.name || (props.item.country + ', ' + props.item.city + ', ' + props.item.street)}</span>
         </li>
     );
 }

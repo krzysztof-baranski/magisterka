@@ -17,15 +17,16 @@ class Navigation extends React.Component {
 	}
 
 	setHomeAddress = () => {
-		this.props.WS.send(JSON.stringify({
-			cmd: 'reqSetHomeAddress', address: {
-				country: 'Poland',
-				city: 'Warszawa',
-				street: 'Jerozolimskie',
-				number: 1,
-				zipCode: '22-222'
-			}
-		}))
+		this.setState({ showHomeDestInput: true });
+		// this.props.WS.send(JSON.stringify({
+		// 	cmd: 'reqSetHomeAddress', address: {
+		// 		country: 'Poland',
+		// 		city: 'Warszawa',
+		// 		street: 'Jerozolimskie',
+		// 		number: 1,
+		// 		zipCode: '22-222'
+		// 	}
+		// }));
 	}
 
 	// setAddress = (aa) => {
@@ -36,8 +37,11 @@ class Navigation extends React.Component {
 		this.setState({ showDestInput: true });
 	}
 
+	openRecentDestinations = () => {
+		this.props.history.push('/navigation/recent-destinations');
+	}
 
-	onChange = (event, data) => {
+	onAddressChange = (event, data) => {
 		this.address = {
 			...this.address,
 			[data]: event.target.value
@@ -50,10 +54,15 @@ class Navigation extends React.Component {
 	onAddressSubmit = (event) => {
 		// event.nativeEvent.preventDefault();
 		event.preventDefault();
-		this.props.WS.send(JSON.stringify({ cmd: 'reqSetAddress', address: this.state.address }));
+		if (this.state.showDestInput) {
+			this.props.WS.send(JSON.stringify({ cmd: 'reqSetAddress', address: this.state.address }));
+		} else {
+			this.props.WS.send(JSON.stringify({ cmd: 'reqSetHomeAddress', address: this.state.address }));
+		}
+
 		this.setState({ loading: true });
 	}
-	
+
 	onAddressCancel = (event) => {
 		event.preventDefault();
 		this.setState({ showDestInput: false });
@@ -80,25 +89,46 @@ class Navigation extends React.Component {
 		if (props.address && props.address.country) {
 			this.setState({ loading: false, showDestInput: false });
 		}
+
+		if (props.homeAddress && props.homeAddress.country) {
+			this.setState({ loading: false, showHomeDestInput: false });
+		}
 	}
 
 	render() {
 		return (
 			<div>
 				<div onClick={this.setHomeAddress}
-					className="home-button active">Set HOME address
+					className="home-button active">
+					<img src={require('../assets/navigation/home.png')} alt='' />
+					<div>Set HOME address</div>
 				</div>
 				<div onClick={this.enterAddress}
-					className="enter-address-button active">Enter address
+					className="enter-address-button active">
+					<img src={require('../assets/navigation/destination.png')} alt='' />
+					<div>Enter address</div>
+				</div>
+				<div onClick={this.openRecentDestinations}
+					className="recent-dest-button active">
+					<img src={require('../assets/navigation/recents.png')} alt='' />
+					<div>Recent destinations</div>
 				</div>
 				<div id='map' className='map'></div>
 				{this.state.showDestInput ?
 					<EnterAddress
-						onChange={this.onChange}
+						onChange={this.onAddressChange}
 						onSubmit={this.onAddressSubmit.bind(this)}
 						onCancel={this.onAddressCancel.bind(this)}
 						address={this.state.address}
-						loading={this.state.loading} /> 
+						loading={this.state.loading} />
+					: null}
+				{this.state.showHomeDestInput ?
+					<EnterAddress
+						onChange={this.onAddressChange}
+						onSubmit={this.onAddressSubmit.bind(this)}
+						onCancel={this.onAddressCancel.bind(this)}
+						address={this.state.address}
+						loading={this.state.loading} />
 					: null}
 			</div>
 		);
