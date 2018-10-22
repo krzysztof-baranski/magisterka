@@ -22,7 +22,7 @@
 ul {
 	left: 300px;
     position: relative;
-    height: 500px;
+    height: 550px;
     width: max-content;
     overflow: auto;
     overflow-y: scroll;

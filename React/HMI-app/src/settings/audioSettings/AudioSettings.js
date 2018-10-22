@@ -1,5 +1,5 @@
 import React from 'react';
-import './audio-settings.component.css';
+import './AudioSettings.css';
 
 import SettingsItem from '../SettingsItem'
 

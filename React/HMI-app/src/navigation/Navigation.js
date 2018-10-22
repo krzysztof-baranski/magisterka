@@ -4,8 +4,9 @@ import { connect } from 'react-redux';
 
 import * as Actions from '../actions/actions';
 import EnterAddress from './EnterAddress';
+import NaviOptionSelector from '../UI/NaviOptionSelector';
 
-import '../navigation/navigation.component.css';
+import '../navigation/Navigation.css';
 
 class Navigation extends React.Component {
 	map = null;
@@ -68,6 +69,22 @@ class Navigation extends React.Component {
 		this.setState({ showDestInput: false });
 	}
 
+	selectOption = (action) => {
+		switch (action) {
+			case 'home-address':
+				this.setHomeAddress();
+				break;
+			case 'enter-address':
+				this.enterAddress();
+				break;
+			case 'recent-dest':
+				this.openRecentDestinations();
+				break;
+			default:
+				console.log('[Navi select option]: No action');
+		}
+	}
+
 	componentDidMount() {
 		this.map = new ol.Map({
 			target: 'map',
@@ -98,38 +115,28 @@ class Navigation extends React.Component {
 	render() {
 		return (
 			<div>
-				<div onClick={this.setHomeAddress}
-					className="home-button active">
-					<img src={require('../assets/navigation/home.png')} alt='' />
-					<div>Set HOME address</div>
+				<div className='tuner-container'>
+					<NaviOptionSelector selectOption={this.selectOption.bind(this)} />
+					<div id='map' className='map'>
+
+						{this.state.showDestInput ?
+							<EnterAddress
+								onChange={this.onAddressChange}
+								onSubmit={this.onAddressSubmit.bind(this)}
+								onCancel={this.onAddressCancel.bind(this)}
+								address={this.state.address}
+								loading={this.state.loading} />
+							: null}
+						{this.state.showHomeDestInput ?
+							<EnterAddress
+								onChange={this.onAddressChange}
+								onSubmit={this.onAddressSubmit.bind(this)}
+								onCancel={this.onAddressCancel.bind(this)}
+								address={this.state.address}
+								loading={this.state.loading} />
+							: null}
+					</div>
 				</div>
-				<div onClick={this.enterAddress}
-					className="enter-address-button active">
-					<img src={require('../assets/navigation/destination.png')} alt='' />
-					<div>Enter address</div>
-				</div>
-				<div onClick={this.openRecentDestinations}
-					className="recent-dest-button active">
-					<img src={require('../assets/navigation/recents.png')} alt='' />
-					<div>Recent destinations</div>
-				</div>
-				<div id='map' className='map'></div>
-				{this.state.showDestInput ?
-					<EnterAddress
-						onChange={this.onAddressChange}
-						onSubmit={this.onAddressSubmit.bind(this)}
-						onCancel={this.onAddressCancel.bind(this)}
-						address={this.state.address}
-						loading={this.state.loading} />
-					: null}
-				{this.state.showHomeDestInput ?
-					<EnterAddress
-						onChange={this.onAddressChange}
-						onSubmit={this.onAddressSubmit.bind(this)}
-						onCancel={this.onAddressCancel.bind(this)}
-						address={this.state.address}
-						loading={this.state.loading} />
-					: null}
 			</div>
 		);
 	}

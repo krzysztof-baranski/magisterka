@@ -5,7 +5,8 @@ const initaialState = {
     currentTrack: null,
     currentStation: null,
     webSocket: null,
-    items: null,
+    mediaItems: null,
+    tunerItems: null,
     homeAddress: null,
     address: {}
 };
@@ -27,10 +28,15 @@ const reducer = (state = initaialState, action) => {
                 ...state,
                 currentStation: action.currentStation
             }
-        case Actions.SET_LIST_ITEMS:
+        case Actions.SET_TUNER_LIST_ITEMS:
             return {
                 ...state,
-                items: action.items
+                tunerItems: action.tunerItems
+            }
+        case Actions.SET_MEDIA_LIST_ITEMS:
+            return {
+                ...state,
+                mediaItems: action.mediaItems
             }
         case Actions.SET_CURRENT_TRACK:
             return {
@@ -47,7 +53,7 @@ const reducer = (state = initaialState, action) => {
                 ...state,
                 address: action.address
             }
-        default: 
+        default:
             return {
                 ...state
             }

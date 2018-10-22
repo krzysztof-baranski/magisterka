@@ -43,7 +43,7 @@ class Websocket extends React.Component {
 				this.props.setCurrentStation(msg.currentStation);
 				break;
 			case Commands.GET_LIST_ITEMS:
-				this.props.setListItems(msg.items);
+				this.props.setTunerListItems(msg.items);
 				break;
 			case Commands.RES_GET_SOURCE:
 				this.props.setCurrentSource(msg.source);
@@ -52,7 +52,7 @@ class Websocket extends React.Component {
 				this.props.setCurrentTrack(msg.currentTrack);
 				break;
 			case Commands.GET_MEDIA_LIST_ITEMS:
-				this.props.setListItems(msg.items);
+				this.props.setMediaListItems(msg.items);
 				break;
 			case Commands.RES_HOME_ADDRESS:
 				this.props.setHomeAddress(msg.address);
@@ -109,7 +109,8 @@ const mapDispachToProps = dispatch => ({
 	setCurrentStation: station => dispatch(Actions.setCurrentStation(station)),
 	setCurrentSource: source => dispatch(Actions.setCurrentSource(source)),
 	setCurrentTrack: track => dispatch(Actions.setCurrentTrack(track)),
-	setListItems: items => dispatch(Actions.setListItems(items)),
+	setMediaListItems: items => dispatch(Actions.setMediaListItems(items)),
+	setTunerListItems: items => dispatch(Actions.setTunerListItems(items)),
 	setHomeAddress: address => dispatch(Actions.setHomeAddress(address)),
 	setAddress: address => dispatch(Actions.setAddress(address)),
 	setBrightness: value => dispatch(Actions.setBrightness(value))

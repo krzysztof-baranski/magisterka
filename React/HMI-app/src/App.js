@@ -1,16 +1,11 @@
 import React, { Component } from 'react';
-// import * as _ from 'lodash'
-// import logo from './logo.svg';
-import './App.css';
 import { Link } from 'react-router-dom';
-import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import withWebsocket from './websocket/websocket.service'
+import './App.css';
+
 import MainMenuItem from './UI/MainMenuItem';
 import DateContainer from './UI/DateContainer';
-
-// const WSContext = React.createContext({});
 
 class App extends Component {
     state = {

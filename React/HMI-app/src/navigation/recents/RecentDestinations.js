@@ -3,7 +3,8 @@ import React from 'react';
 import * as Actions from '../../actions/actions';
 import { connect } from 'react-redux';
 
-import ListElements from '../../UI/ListElements'
+import ListElements from '../../UI/ListElements';
+import Spinner from '../../UI/Spinner';
 
 class RecentDestinations extends React.Component {
 	// constructor (props) {
@@ -55,7 +56,7 @@ class RecentDestinations extends React.Component {
 	// }
 
 	render() {
-		let list = null;
+		let list = <ul style={{ 'width': '900px' }}><Spinner /></ul>;
 		if (this.props.recentDestinations || true) {
 			list = <ListElements items={this.items} clicked={this.goToDestination.bind(this)}/>
 		}

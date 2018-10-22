@@ -1,11 +1,11 @@
 import React from 'react';
-import './tuner.list.component.css';
-
-import * as Actions from '../../actions/actions';
 import { connect } from 'react-redux';
 
-// import { Websocket } from '../../websocket/websocket.service';
+import './TunerList.css';
+
+import * as Actions from '../../actions/actions';
 import ListElements from '../../UI/ListElements'
+import Spinner from '../../UI/Spinner';
 
 class TunerList extends React.Component {
 	// constructor (props) {
@@ -46,7 +46,7 @@ class TunerList extends React.Component {
 	// }
 
 	render() {
-		let tunerList = 'dupa';
+		let tunerList = <ul style={{'width': '900px'}}><Spinner /></ul>;;
 		if (this.props.stationList) {
 			tunerList = <ListElements items={this.props.stationList} clicked={this.playStation.bind(this)}/>
 		}
@@ -62,7 +62,7 @@ class TunerList extends React.Component {
 export const mapStateToProps = state => {
 	console.log('ÍTEMSSSSSSS', state);
 	return {
-		stationList: state.items,
+		stationList: state.tunerItems,
 		WS: state.webSocket
 	}
 }

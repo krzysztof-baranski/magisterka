@@ -2,8 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import * as Actions from '../../actions/actions';
 
-import './media.list.component.css';
+import './MediaList.css';
 import ListElements from '../../UI/ListElements';
+import Spinner from '../../UI/Spinner';
 
 class MediaList extends React.Component {
 	playTrack (event, id) {
@@ -18,7 +19,7 @@ class MediaList extends React.Component {
 	// }
 
 	render() {
-		let mediaList = 'dupa';
+		let mediaList = <ul style={{'width': '900px'}}><Spinner /></ul>;
 		if (this.props.trackList) {
 			mediaList = <ListElements items={this.props.trackList} clicked={this.playTrack.bind(this)}/>
 		}
@@ -34,7 +35,7 @@ class MediaList extends React.Component {
 export const mapStateToProps = state => {
 	console.log('ÍTEMSSSSSSS', state);
 	return {
-		trackList: state.items,
+		trackList: state.mediaItems,
 		WS: state.webSocket
 	}
 }

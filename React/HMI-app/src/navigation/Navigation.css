@@ -1,8 +1,9 @@
 .map {
-    height: 620px;
+    height: 550px;
     width: 1720px;
-    top: 80px;
-    position: absolute;
+    position: relative;
+    justify-content: center;
+    display: flex;
 }
 
 .home-button, .enter-address-button, .recent-dest-button {
@@ -39,8 +40,7 @@
 
 .enter-address {
     position: absolute;
-    top: 140px;
-    left: 725px; /* (1920 - 450) / 2 */
+    top: 5px;
     width: 450px;
     border: solid 1px black;
     padding: 20px;

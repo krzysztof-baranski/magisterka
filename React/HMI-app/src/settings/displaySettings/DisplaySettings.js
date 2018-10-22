@@ -1,6 +1,7 @@
 import React from 'react';
-import './display-settings.component.css';
 import { connect } from 'react-redux';
+
+import './DisplaySettings.css';
 
 import DisplayItem from '../SettingsItem';
 

@@ -1,9 +1,9 @@
 import React from 'react';
-// import _ from 'lodash'
-import './media.component.css';
 import { connect } from 'react-redux';
 
-import * as Commands from '../websocket/Commands';
+import './Media.css';
+
+// import * as Commands from '../websocket/Commands';
 import * as Actions from '../actions/actions';
 
 import Controls from '../UI/Controls';

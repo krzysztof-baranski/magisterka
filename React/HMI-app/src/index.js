@@ -9,17 +9,17 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
-import Media from './media/media.component';
-import MediaList from './media/list/media.list.component';
-import Tuner from './tuner/tuner.component';
-import TunerList from './tuner/list/tuner.list.component';
-import Navigation from './navigation/navigation.component';
+import Media from './media/Media';
+import MediaList from './media/list/MediaList';
+import Tuner from './tuner/Tuner';
+import TunerList from './tuner/list/TunerList';
+import Navigation from './navigation/Navigation';
 import RecentDestinations from './navigation/recents/RecentDestinations';
-import { Settings } from './settings/settings.component';
-import { AudioSettings } from './settings/audio-settings/audio-settings.component';
-import DisplaySettings from './settings/display-settings/display-settings.component';
-import { OthersSettings } from './settings/others-settings/others-settings.component';
-import Websocket from './websocket/websocket.service'
+import { Settings } from './settings/Settings';
+import { AudioSettings } from './settings/audioSettings/AudioSettings';
+import DisplaySettings from './settings/displaySettings/DisplaySettings';
+import { OthersSettings } from './settings/othersSettings/OthersSettings';
+import Websocket from './websocket/Websocket'
 
 import reducer from './reducer/reducer';
 

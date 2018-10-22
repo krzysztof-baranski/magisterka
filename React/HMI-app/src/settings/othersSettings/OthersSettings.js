@@ -1,5 +1,5 @@
 import React from 'react';
-import './others-settings.component.css';
+import './OthersSettings.css';
 
 const OTHERS = {
 	units: {

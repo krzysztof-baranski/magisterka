@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import './tuner.component.css';
-import * as Actions from '../actions/actions';
 
+import './Tuner.css';
+
+import * as Actions from '../actions/actions';
 import Controls from '../UI/Controls';
 import Title from '../UI/Title';
 import ProgressBar from '../UI/ProgressBar';

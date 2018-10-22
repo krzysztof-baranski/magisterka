@@ -18,9 +18,14 @@ const s = function (ss) {
     return ss;
 }
 
-export const setListItems = items => ({
-    type: Actions.SET_LIST_ITEMS,
-    items: s(items)
+export const setTunerListItems = items => ({
+    type: Actions.SET_TUNER_LIST_ITEMS,
+    tunerItems: s(items)
+});
+
+export const setMediaListItems = items => ({
+    type: Actions.SET_MEDIA_LIST_ITEMS,
+    mediaItems: s(items)
 });
 
 export const setCurrentTrack = track => ({

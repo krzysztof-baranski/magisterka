@@ -1,8 +1,9 @@
 import React from 'react';
-import './settings.component.css';
-import DisplaySettings from './display-settings/display-settings.component';
-import { AudioSettings } from './audio-settings/audio-settings.component';
-import { OthersSettings } from './others-settings/others-settings.component';
+import DisplaySettings from './displaySettings/DisplaySettings';
+import { AudioSettings } from './audioSettings/AudioSettings';
+import { OthersSettings } from './othersSettings/OthersSettings';
+
+import './Settings.css';
 
 const _settingsArray = [
 	{
