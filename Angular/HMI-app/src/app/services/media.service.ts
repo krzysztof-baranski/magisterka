@@ -1,51 +1,43 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+
+// import { WebsocketWrapperService } from '../services/websocket-wrapper.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MediaService {
 
-  constructor() { }
+  constructor(/* private webSocketService: WebsocketWrapperService */) { }
 
   currentSource;
-  currentSourceChange: Subject<boolean> = new Subject<boolean>();
-
-  listItems = [];
-  listItemsChange: Subject<boolean> = new Subject<boolean>();
-
+  _listItems = [];
   currentTrack;
-  currentTrackChange: Subject<boolean> = new Subject<boolean>();
 
-  public get listItems() : Object[] {
+  public get listItems(): Object[] {
     return this._listItems;
   }
 
-  public set listItems(v : Object[]) {
+  public set listItems(v: Object[]) {
     this._listItems = v;
   }
 
-  	selectSource (source) {
+    selectSource (source) {
 
-  		this.currentSource = source;
-  		this.currentSourceChange.next(this.currentSource);
-      	console.warn ('media.service selectSource', this.currentSource); 
-  	} 
+      this.currentSource = source;
+    }
 
     playTrack (track) {
-        this.webSocketService.send(JSON.stringify({ cmd: 'reqPlayTrack', trackID: track.trackID })); 
-    } 
+        // this.webSocketService.send(JSON.stringify({ cmd: 'reqPlayTrack', trackID: track.trackID }));
+    }
 
     resPlayTrack (track) {
-        console.warn ('media.service resPlayTrack'); 
+        console.warn ('media.service resPlayTrack');
         this.currentTrack = track;
-        this.currentTrackChange.next(this.currentTrack); 
-    } 
+    }
 
     resListItems (items) {
         console.warn ('media.service resListItems');
-        this.listItems = items; 
-        this.listItemsChange.next(this.listItems);
-    } 
+        this.listItems = items;
+    }
 
 }

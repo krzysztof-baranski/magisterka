@@ -1,37 +1,31 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class TunerService {
+    private _listItems = [];
 
-  constructor() { }
+    constructor() { }
 
-  currentStation;
-  currentStationChange: Subject<boolean> = new Subject<boolean>();
+    currentStation;
 
-  listItems = [];
-  listItemsChange: Subject<boolean> = new Subject<boolean>();
+    public get listItems(): Object[] {
+        return this._listItems;
+    }
 
-  public get listItems() : Object[] {
-    return this._listItems;
-  }
+    public set listItems(v: Object[]) {
+        this._listItems = v;
+    }
 
-  public set listItems(v : Object[]) {
-    this._listItems = v;
-  }
+    resListItems(items) {
+        console.warn('tuner.service resListItems');
+        this.listItems = items;
+    }
 
-    resListItems (items) {
-        console.warn ('tuner.service resListItems');
-        this.listItems = items; 
-        this.listItemsChange.next(this.listItems);
-    } 
-
-    resPlayStation (station) {
-    	console.warn ('playStation', station);
-    	this.currentStation = station;
-        this.currentStationChange.next(this.currentStation);
-    } 
+    resPlayStation(station) {
+        console.warn('playStation', station);
+        this.currentStation = station;
+    }
 
 }

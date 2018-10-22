@@ -4,36 +4,35 @@ import { MediaService } from '../services/media.service';
 import { TunerService } from '../services/tuner.service';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class WebsocketWrapperService {
 
-  	constructor(private constantsService: ConstantsService,
-          private mediaService: MediaService,
-          private tunerService: TunerService) { }
+    constructor(private constantsService: ConstantsService,
+        private mediaService: MediaService,
+        private tunerService: TunerService) { }
 
     webSocket;
     messages;
-    
+
     // this.send('hello')/*, callback*/);
     // this.send('hello')/*, callback*/);
     // this.send('hello')/*, callback*/);
 
-    init (ws) {
-        var that = this;
+    init = (ws) => {
         this.webSocket = ws;
         this.send(JSON.stringify({ cmd: 'reqSelectSource', source: 'usb' })/*, callback*/);
         this.send('hello'/*, callback*/);
         this.send(JSON.stringify({ cmd: 'reqPlayTrack', trackID: '0' })/*, callback*/);
-        
-        this.webSocket.onmessage = this.receive.bind(that); 
 
-    } 
+        this.webSocket.onmessage = this.receive;
 
-    receive (event) {
-        console.warn ('@@@@@ ', event);         
-        this.handleMessage(this.checkJson(event.data)); 
-        console.log('data', event.data);  
+    }
+
+    receive(event) {
+        console.warn('@@@@@ ', event);
+        this.handleMessage(this.checkJson(event.data));
+        console.log('data', event.data);
         // var messages = document.createElement('ul');
         // messages = document.getElementsByTagName('ul')[0];
         // var message = document.createElement('li'),
@@ -42,61 +41,61 @@ export class WebsocketWrapperService {
         // messages.appendChild(message);
 
         // document.body.appendChild(messages);
-    } 
+    }
 
-    checkJson (json) {
-        var msg = false;
+    checkJson(json) {
+        let msg = false;
         try {
-            msg = JSON.parse(event.data)
+            msg = JSON.parse(json);
         } catch (err) {
-            console.warn('JSON parse error:'/*, err*/); 
-        } 
+            console.warn('JSON parse error:'/*, err*/);
+        }
 
         return msg;
-    } 
+    }
 
-    handleMessage (msg) {
+    handleMessage(msg) {
         switch (msg.cmd) {
-            case this.constantsService.COMMANDS.selectSource:
-                this.mediaService.selectSource(msg.source); 
+            case this.constantsService.COMMANDS['selectSource']:
+                this.mediaService.selectSource(msg.source);
                 break;
-            case this.constantsService.COMMANDS.resPlayTrack:
-                this.mediaService.resPlayTrack(msg.track); 
+            case this.constantsService.COMMANDS['resPlayTrack']:
+                this.mediaService.resPlayTrack(msg.track);
                 break;
-            case this.constantsService.COMMANDS.resListItems:
-                this.mediaService.resListItems(msg.items); 
+            case this.constantsService.COMMANDS['resListItems']:
+                this.mediaService.resListItems(msg.items);
                 break;
-            case this.constantsService.COMMANDS.resTunerListItems:
-                this.tunerService.resListItems(msg.items); 
+            case this.constantsService.COMMANDS['resTunerListItems']:
+                this.tunerService.resListItems(msg.items);
                 break;
-            case this.constantsService.COMMANDS.resPlayStation:
-                this.tunerService.resPlayStation(msg.station); 
+            case this.constantsService.COMMANDS['resPlayStation']:
+                this.tunerService.resPlayStation(msg.station);
                 break;
             default:
-                console.warn('handleMessage. Default', msg); 
+                console.warn('handleMessage. Default', msg);
                 break;
-        }        
-    } 
+        }
+    }
 
-	send = function (message/*, callback*/) {
-		var that = this;
-		this.waitForConnection(function () {
-	        that.webSocket.send(message);
-       //          if (typeof callback !== 'undefined') {
-		     //        callback();
-			    // }
-			}, 1000);
-		};
+    send = function (message/*, callback*/) {
+        const that = this;
+        this.waitForConnection(function () {
+            that.webSocket.send(message);
+            //          if (typeof callback !== 'undefined') {
+            //        callback();
+            // }
+        }, 1000);
+    };
 
-	waitForConnection = function (callback, interval) {
-	    if (this.webSocket.readyState === 1) {
-	        callback();
-	    } else {
-	        var that = this;
-	        // optional: implement backoff for interval here
-	        setTimeout(function () {
-	            that.waitForConnection(callback, interval);
-	        }, interval);
-	    }
-	};
+    waitForConnection = function (callback, interval) {
+        if (this.webSocket.readyState === 1) {
+            callback();
+        } else {
+            const that = this;
+            // optional: implement backoff for interval here
+            setTimeout(function () {
+                that.waitForConnection(callback, interval);
+            }, interval);
+        }
+    };
 }

@@ -1,28 +1,29 @@
 import { Component, OnInit } from '@angular/core';
+import ol from 'openlayers';
 
 @Component({
-	selector: 'app-navigation',
-	templateUrl: './navigation.component.html',
-	styleUrls: ['./navigation.component.css']
+    selector: 'app-navigation',
+    templateUrl: './navigation.component.html',
+    styleUrls: ['./navigation.component.css']
 })
 export class NavigationComponent implements OnInit {
-	map;
+    map;
 
-	constructor() { }
+    constructor() { }
 
-	ngOnInit() {
-		this.map = new ol.Map({
-			target: 'map',
-			layers: [
-			new ol.layer.Tile({
-				source: new ol.source.OSM()
-			})
-			],
-			view: new ol.View({
-				center: ol.proj.fromLonLat([19.457216, 51.759445]), // Łódź
-				zoom: 7
-			})
-		});
-	}
+    ngOnInit() {
+        this.map = new ol.Map({
+            target: 'map',
+            layers: [
+                new ol.layer.Tile({
+                    source: new ol.source.OSM()
+                })
+            ],
+            view: new ol.View({
+                center: ol.proj.fromLonLat([19.457216, 51.759445]), // Łódź
+                zoom: 7
+            })
+        });
+    }
 
 }

@@ -1,4 +1,13 @@
 .map {
-    height: 620px;
+    height: 550px;
     width: 1720px;
+    position: relative;
+    justify-content: center;
+    display: flex;
+}
+
+.navi-container {
+    top: 140px;
+    position: relative;    
+    left: 70px;
 }

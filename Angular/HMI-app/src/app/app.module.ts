@@ -56,8 +56,8 @@ import { OthersSettingsComponent } from './settings/others-settings/others-setti
                 component: TunerListComponent
             },
             {
-            	path: 'settings',
-            	component: SettingsComponent
+                path: 'settings',
+                component: SettingsComponent
             },
             // {
             // 	path: 'settings/display',
