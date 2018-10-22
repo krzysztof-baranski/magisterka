@@ -20,6 +20,21 @@ class Navigation (object):
 			'number': 11,
 			'zipCode': '93-590'
 		}
+		
+	recents = [{
+        'id': 0,
+		'country': 'Poland',
+		'zipCode': 111,
+        'city': 'Łódź',
+        'street': 'Al. Politechniki'
+	},
+	{
+        'id': 1,
+		'country': 'Germany',
+		'zipCode': 333,
+        'city': 'Berlin',
+        'street': 'Hitler Strasse'
+	}];
 
 	def setHomeAddress(self, data): 
 		self.homeAddress = data['address']
@@ -28,3 +43,6 @@ class Navigation (object):
 	def setAddress(self, data):
 		self.address = data['address']
 		return self.address
+
+	def getRecents(self, data):
+		return self.recents

@@ -23,22 +23,23 @@ logging.basicConfig(
 LOG = logging.getLogger('')
 
 commands = {
-	'reqSelectSource': 0,
-	'reqPlayTrack'	 : 1,
-	'reqNextTrack'   : 2,
-	'reqPrevTrack'   : 3,
-	'reqMediaListItems': 4,
-	'reqTunerListItems': 5,
-	'reqPlayStation' : 6,
-	'reqGetSource'	 : 7,
-	'reqCurrentTrack': 8,
-	'reqCurrentStation': 9,
-	'reqChangeBand'  : 10,
-	'reqSetHomeAddress': 11,
-	'reqSetBrightness' : 12,
-	'reqSetColor'	   : 13,
-	'reqSetContrast'   : 14,
-	'reqSetAddress'	   : 15
+	'reqSelectSource'		: 0,
+	'reqPlayTrack'	 		: 1,
+	'reqNextTrack'   		: 2,
+	'reqPrevTrack'   		: 3,
+	'reqMediaListItems'		: 4,
+	'reqTunerListItems'		: 5,
+	'reqPlayStation' 		: 6,
+	'reqGetSource'	 		: 7,
+	'reqCurrentTrack'		: 8,
+	'reqCurrentStation'		: 9,
+	'reqChangeBand'  		: 10,
+	'reqSetHomeAddress'		: 11,
+	'reqSetBrightness' 		: 12,
+	'reqSetColor'	   		: 13,
+	'reqSetContrast'  		: 14,
+	'reqSetAddress'	   		: 15,
+	'reqGetRecentDestinations': 16
 }
 
 messages = []
@@ -119,6 +120,9 @@ async def consumer (message):
 	elif messageNo == 15:
 		address = Navi.setAddress(messageObj)
 		messages.append(json.dumps({ 'cmd': 'resSetAddress', 'address': address }))
+	elif messageNo == 16:
+		recents = Navi.getRecents(messageObj)
+		messages.append(json.dumps({ 'cmd': 'resGetRecentDestinations', 'recents': recents }))
 
 	else: 
 		LOG.info ('NO message found!')  

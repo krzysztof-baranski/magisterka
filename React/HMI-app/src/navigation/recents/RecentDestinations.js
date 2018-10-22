@@ -19,20 +19,20 @@ class RecentDestinations extends React.Component {
 	}
 
 	componentWillMount () {
-		this.items = [{
-            id: 0,
-			country: 'Poland',
-			zipCode: 111,
-            city: 'Łódź',
-            street: 'Al. Politechniki'
-		},
-		{
-            id: 1,
-			country: 'Germany',
-			zipCode: 333,
-            city: 'Berlin',
-            street: 'Hitler Strasse'
-		}];
+		// this.items = [{
+        //     id: 0,
+		// 	country: 'Poland',
+		// 	zipCode: 111,
+        //     city: 'Łódź',
+        //     street: 'Al. Politechniki'
+		// },
+		// {
+        //     id: 1,
+		// 	country: 'Germany',
+		// 	zipCode: 333,
+        //     city: 'Berlin',
+        //     street: 'Hitler Strasse'
+		// }];
 
 		// this.setState({ stationList: items });
 	}
@@ -57,8 +57,8 @@ class RecentDestinations extends React.Component {
 
 	render() {
 		let list = <ul style={{ 'width': '900px' }}><Spinner /></ul>;
-		if (this.props.recentDestinations || true) {
-			list = <ListElements items={this.items} clicked={this.goToDestination.bind(this)}/>
+		if (this.props.recentDestinations) {
+			list = <ListElements items={this.props.recentDestinations} clicked={this.goToDestination.bind(this)}/>
 		}
 
 		return (
@@ -72,7 +72,8 @@ class RecentDestinations extends React.Component {
 export const mapStateToProps = state => {
 	console.log('ÍTEMSSSSSSS', state);
 	return {
-		WS: state.webSocket
+		WS: state.webSocket,
+		recentDestinations: state.recentDestinations
 	}
 }
 

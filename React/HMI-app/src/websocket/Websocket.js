@@ -60,6 +60,9 @@ class Websocket extends React.Component {
 			case Commands.RES_SET_ADDRESS:
 				this.props.setAddress(msg.address);
 				break;
+			case Commands.RES_GET_RECENT_DEST:
+				this.props.setRecentDestinations(msg.recents);
+				break;
 			case Commands.RES_SET_BRIGHTNESS: 
 				this.props.setBrightness(msg.value);
 				break;
@@ -112,6 +115,7 @@ const mapDispachToProps = dispatch => ({
 	setMediaListItems: items => dispatch(Actions.setMediaListItems(items)),
 	setTunerListItems: items => dispatch(Actions.setTunerListItems(items)),
 	setHomeAddress: address => dispatch(Actions.setHomeAddress(address)),
+	setRecentDestinations: recents => dispatch(Actions.setRecentDestinations(recents)),
 	setAddress: address => dispatch(Actions.setAddress(address)),
 	setBrightness: value => dispatch(Actions.setBrightness(value))
 })

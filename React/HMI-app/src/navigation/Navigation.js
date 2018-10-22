@@ -39,6 +39,7 @@ class Navigation extends React.Component {
 	}
 
 	openRecentDestinations = () => {
+		this.props.WS.send(JSON.stringify({ cmd: 'reqGetRecentDestinations' }));
 		this.props.history.push('/navigation/recent-destinations');
 	}
 

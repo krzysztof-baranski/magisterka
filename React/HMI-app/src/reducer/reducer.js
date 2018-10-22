@@ -8,7 +8,8 @@ const initaialState = {
     mediaItems: null,
     tunerItems: null,
     homeAddress: null,
-    address: {}
+    address: {},
+    recentDestinations: null
 };
 
 const reducer = (state = initaialState, action) => {
@@ -52,6 +53,11 @@ const reducer = (state = initaialState, action) => {
             return {
                 ...state,
                 address: action.address
+            }
+        case Actions.SET_RECENT_DEST:
+            return {
+                ...state,
+                recentDestinations: action.recents
             }
         default:
             return {

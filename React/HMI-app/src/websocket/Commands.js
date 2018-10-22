@@ -10,6 +10,7 @@ export const GET_LIST_ITEMS = 'resTunerListItems';
 //navi
 export const RES_HOME_ADDRESS = 'resHomeAddress';
 export const RES_SET_ADDRESS = 'resSetAddress';
+export const RES_GET_RECENT_DEST = 'resGetRecentDestinations';
 
 //settings
 export const RES_SET_BRIGHTNESS = 'resSetBrightness';

@@ -38,6 +38,11 @@ export const setHomeAddress = address => ({
     homeAddress: address
 });
 
+export const setRecentDestinations = recents => ({
+    type: Actions.SET_RECENT_DEST,
+    recents: recents
+})
+
 export const setAddress = address => ({
     type: Actions.SET_ADDRESS,
     address: address
