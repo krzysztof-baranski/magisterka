@@ -1,3 +1,8 @@
+app-enter-address {
+    position: absolute;
+    z-index: 1;
+}
+
 .map {
     height: 550px;
     width: 1720px;
@@ -10,4 +15,51 @@
     top: 140px;
     position: relative;    
     left: 70px;
+}
+
+.navi-source-item {
+    margin-bottom: 5px;
+    width: 137px;
+    display: inline-flex;
+    height: 80px;
+    align-items: center;    
+    background-color: #ffffffc7;
+    border-radius: 10px;
+}
+
+.navi-source-item img {
+    width: 40px;
+}
+
+.navi-source-item div {
+    line-height: initial;
+    display: flex;
+    align-items: center;
+    margin: 5px;
+}
+
+.source-label {
+
+}
+
+.navi-source-selector {
+    position: absolute;
+    left: -160px;
+    line-height: 103px;
+    display: inline-grid;
+    top: 30px;
+}
+
+.active {
+    border: 1px solid;
+    border-color: #bb181873;
+    border-radius: 10px;
+}
+
+hr {
+    width: 0;
+    height: 500px;
+    position: absolute;
+    right: -10px;
+    top: -60px;
 }

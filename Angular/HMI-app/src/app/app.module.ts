@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule} from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { MediaComponent } from './media/media.component';
@@ -13,6 +14,8 @@ import { TunerListComponent } from './tuner/tuner-list/tuner-list.component';
 import { AudioSettingsComponent } from './settings/audio-settings/audio-settings.component';
 import { DisplaySettingsComponent } from './settings/display-settings/display-settings.component';
 import { OthersSettingsComponent } from './settings/others-settings/others-settings.component';
+import { EnterAddressComponent } from './navigation/_partials/enter-address/enter-address.component';
+import { RecentDestinationsComponent } from './navigation/_partials/recent-destinations/recent-destinations.component';
 
 @NgModule({
     declarations: [
@@ -26,10 +29,14 @@ import { OthersSettingsComponent } from './settings/others-settings/others-setti
         TunerListComponent,
         AudioSettingsComponent,
         DisplaySettingsComponent,
-        OthersSettingsComponent
+        OthersSettingsComponent,
+        EnterAddressComponent,
+        RecentDestinationsComponent
     ],
     imports: [
         BrowserModule,
+        FormsModule,
+        ReactiveFormsModule,
         RouterModule.forRoot([
             {
                 path: 'home',
@@ -46,6 +53,10 @@ import { OthersSettingsComponent } from './settings/others-settings/others-setti
             {
                 path: 'navigation',
                 component: NavigationComponent
+            },
+            {
+                path: 'navigation/recent-destinations',
+                component: RecentDestinationsComponent
             },
             {
                 path: 'tuner',

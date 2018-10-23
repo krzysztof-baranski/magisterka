@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter, Output } from '@angular/core';
 import { ConstantsService } from '../consts/constants.service';
 import { MediaService } from '../services/media.service';
 import { TunerService } from '../services/tuner.service';
+import { NavigationService } from './navigation.service';
 
 @Injectable({
     providedIn: 'root'
@@ -10,14 +11,11 @@ export class WebsocketWrapperService {
 
     constructor(private constantsService: ConstantsService,
         private mediaService: MediaService,
-        private tunerService: TunerService) { }
+        private tunerService: TunerService,
+        private naviService: NavigationService) { }
 
     webSocket;
     messages;
-
-    // this.send('hello')/*, callback*/);
-    // this.send('hello')/*, callback*/);
-    // this.send('hello')/*, callback*/);
 
     init = (ws) => {
         this.webSocket = ws;
@@ -29,21 +27,13 @@ export class WebsocketWrapperService {
 
     }
 
-    receive(event) {
-        console.warn('@@@@@ ', event);
+    receive = (event) => {
         this.handleMessage(this.checkJson(event.data));
         console.log('data', event.data);
-        // var messages = document.createElement('ul');
-        // messages = document.getElementsByTagName('ul')[0];
-        // var message = document.createElement('li'),
-        //     content = document.createTextNode(event.data);
-        // message.appendChild(content);
-        // messages.appendChild(message);
 
-        // document.body.appendChild(messages);
     }
 
-    checkJson(json) {
+    checkJson = (json) => {
         let msg = false;
         try {
             msg = JSON.parse(json);
@@ -54,7 +44,7 @@ export class WebsocketWrapperService {
         return msg;
     }
 
-    handleMessage(msg) {
+    handleMessage = (msg) => {
         switch (msg.cmd) {
             case this.constantsService.COMMANDS['selectSource']:
                 this.mediaService.selectSource(msg.source);
@@ -70,6 +60,14 @@ export class WebsocketWrapperService {
                 break;
             case this.constantsService.COMMANDS['resPlayStation']:
                 this.tunerService.resPlayStation(msg.station);
+                break;
+            case 'resHomeAddress':
+                // this.resSetHomeDestination.emit(msg);
+                console.log('resSetHomeDestination', msg);
+                this.naviService.homeAddress = msg.address;
+                break;
+            case 'resSetAddress':
+                this.naviService.address = msg.address;
                 break;
             default:
                 console.warn('handleMessage. Default', msg);

@@ -1,0 +1,42 @@
+.enter-address-button {
+    top: 215px;
+}
+
+.enter-address {
+    /* position: absolute; */
+    top: 5px;
+    width: 450px;
+    border: solid 1px black;
+    padding: 20px;
+    background-color: #ffffffc7;
+    height: 500px;
+}
+
+.enter-address form label {
+    display: block;
+    width: 450px;
+}
+
+.enter-address form label input {
+    width: -webkit-fill-available;
+}
+
+.button-enter-address {
+    width: 41%;;
+    height: 40px;
+    -webkit-appearance: button-bevel;
+    margin: 20px;
+}
+
+.span-enter-address {
+    display: inline;
+    margin: auto;
+}
+
+label {
+    font-size: 35px;
+}
+
+input {
+    height: 30px;
+}

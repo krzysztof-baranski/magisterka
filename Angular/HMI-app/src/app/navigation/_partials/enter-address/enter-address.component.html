@@ -1,0 +1,51 @@
+<div class="enter-address">
+    <form #f="ngForm">
+        <label>Country:
+            <input type="text" 
+                name="country" 
+                placeholder="Enter country name" 
+                ngModel #country="ngModel"
+                (ngModelChange)="onChange($event, 'country' )" />
+        </label>
+        <label>ZIP Code:
+            <input type="number" 
+                [disabled]="!address.country" 
+                name="zipCode" 
+                placeholder="Enter ZIP code" 
+                ngModel #zipCode="ngModel"
+                (ngModelChange)="onChange($event, 'zipCode' )" />
+        </label>
+        <label>City:
+            <input type="text" 
+                [disabled]="!address.zipCode" 
+                name="city" 
+                placeholder="Enter city name" 
+                ngModel #city="ngModel"
+                (ngModelChange)="onChange($event, 'city' )" />
+        </label>
+        <label>Street:
+            <input type="text" 
+                [disabled]="!address.city" 
+                name="street" 
+                placeholder="Enter street" 
+                ngModel #street="ngModel"
+                (ngModelChange)="onChange($event, 'street' )" />
+        </label>
+        <label>Number:
+            <input type="text" 
+                [disabled]="!address.street" 
+                name="number" 
+                placeholder="Enter house number" 
+                ngModel #number="ngModel"
+                (ngModelChange)="onChange($event, 'number')" />
+        </label>
+        <span class="span-enter-address">
+            <button class="button-enter-address" (click)="onCancel($event, 'cancel')">Cancel
+            </button>
+            <button class="button-enter-address" 
+                [disabled]="!(address.country || address.zipCode)" 
+                (click)="onSubmit($event, 'submit')">Confirm
+            </button>
+        </span>
+    </form>
+</div>

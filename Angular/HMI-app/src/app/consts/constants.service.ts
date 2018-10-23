@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Output, EventEmitter } from '@angular/core';
 
 @Injectable({
     providedIn: 'root'
@@ -28,7 +28,7 @@ export class ConstantsService {
         resPlayTrack: 'resPlayTrack',
         resListItems: 'resListItems',
         resTunerListItems: 'resTunerListItems',
-        resPlayStation: 'resPlayStation'
+        resPlayStation: 'resPlayStation',
     };
 
     private _VOLUMES = {

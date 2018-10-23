@@ -1,6 +1,26 @@
-<!-- <p>
-  navigation works!
-</p> -->
 <div class="navi-container">
-    <div id="map" class="map"></div>
+    <div>
+        <div class='navi-source-selector'>
+            <div (click)="selectOption('home-address')"
+            class="navi-source-item active">
+            <img src="assets/navigation/home.png" alt='' />
+            <div>Set HOME address </div>
+        </div>
+        <div (click)="selectOption('enter-address')"
+                class="navi-source-item active">
+                <img src='assets/navigation/destination.png' alt='' />
+                <div>Enter address</div>
+            </div>
+            <div (click)="selectOption('recent-dest')"
+                class="navi-source-item active">
+                <img src='assets/navigation/recents.png' alt='' />
+                <div>Recent destinations</div>
+            </div>
+            
+            <hr />
+        </div>
+    </div>
+    <div id="map" class="map">
+        <app-enter-address *ngIf="showDestInput || showHomeDestInput" (buttonClick)="onAddressAction($event)"></app-enter-address>
+    </div>
 </div>
