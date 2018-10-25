@@ -1,4 +1,5 @@
 <div>
+	<app-source-selector (selectOption)="selectSource($event)" [component]="'media'" [currentSource]="currentSource"></app-source-selector>
 	<div class="track-title">
 		<span class="fav-ico-container">
 			<img *ngIf="currentTrack?.isFavorite" class="fav-ico" src="assets/media/favorite_icon.png">
@@ -26,9 +27,4 @@
 	<div class="cover-art">
 		<div class="cover-art-image"></div>
 	</div>
-	<p>
-
-	  media works!
-	  {{ currentSource | json }}
-	</p>
 </div>

@@ -17,6 +17,7 @@ import { DisplaySettingsComponent } from './settings/display-settings/display-se
 import { OthersSettingsComponent } from './settings/others-settings/others-settings.component';
 import { EnterAddressComponent } from './navigation/_partials/enter-address/enter-address.component';
 import { RecentDestinationsComponent } from './navigation/_partials/recent-destinations/recent-destinations.component';
+import { SourceSelectorComponent } from './UI/source-selector/source-selector.component';
 
 @NgModule({
     declarations: [
@@ -33,7 +34,8 @@ import { RecentDestinationsComponent } from './navigation/_partials/recent-desti
         DisplaySettingsComponent,
         OthersSettingsComponent,
         EnterAddressComponent,
-        RecentDestinationsComponent
+        RecentDestinationsComponent,
+        SourceSelectorComponent
     ],
     imports: [
         BrowserModule,

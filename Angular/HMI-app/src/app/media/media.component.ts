@@ -34,6 +34,10 @@ export class MediaComponent implements OnInit {
         this.WS.send(JSON.stringify({ cmd: 'reqPlayTrack', trackID: track.trackID }));
     }
 
+    selectSource (source) {
+        this.WS.send(JSON.stringify({ cmd: 'reqGetSource' }));
+    }
+
     prevTrack() {
 
     }

@@ -23,7 +23,6 @@ export class AppComponent implements OnInit {
     ngOnInit() {
         this.webSocketService.init(this.ws);
         this.router.events.subscribe((event) => {
-            console.log(event);
             if (event instanceof NavigationEnd && event.url) {
                 event.url === '/' ? this.clicked = true : this.clicked = false;
             }
@@ -45,12 +44,10 @@ export class AppComponent implements OnInit {
     goBackPath = () => {
         const splittedPath = this.router.url.split('/');
         if (splittedPath.length <= 2) {
-            console.log('@@path', this.router.url.length);
             return '/';
         } else {
             splittedPath.length--;
             const path = splittedPath.join('/');
-            console.log('@@', path);
             return path;
         }
     }

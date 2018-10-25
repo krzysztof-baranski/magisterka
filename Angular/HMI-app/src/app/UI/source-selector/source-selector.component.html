@@ -1,0 +1,28 @@
+<div *ngIf="component === 'media'" class='source-selector'>
+    <div (click)="selectSource('hdd')" [ngClass]="{'source-item' : true, 'active': (currentSource && currentSource.mediaID === 'hdd') }">
+        <img class='source-icon' [src]="'assets/media/hdd.png'" alt='' />
+        <span class='source-label'>HDD</span>
+    </div>
+    <div (click)="selectSource('usb')" [ngClass]="{'source-item': true, 'active': (currentSource && currentSource.mediaID === 'usb')}">
+        <img class='source-icon' [src]="'assets/media/usb.png'" alt="" />
+        <span class='source-label'>USB</span>
+    </div>
+    <div (click)="selectSource(e, 'bt')" [ngClass]="{'source-item': true, 'active': (currentSource && currentSource.mediaID === 'bt')}">
+        <img class='source-icon' [src]="'assets/media/bt.png'" alt='' />
+        <span class='source-label'>BT</span>
+    </div>
+    <hr />
+</div>
+);
+
+<div *ngIf="component === 'tuner'" class='source-selector'>
+    <div [ngClass]="{'source-item': true, 'active': (currentSource && currentSource.band==='fm')}" (click)="selectSource('fm')">
+        <img class='source-icon' [src]="'assets/tuner/antena.png'" alt='' />
+        <span class='source-label'>FM</span>
+    </div>
+    <div class="{'source-item': true, 'active': (currentSource && currentSource.band==='am')}" (click)="selectSource('am')">
+        <img class='source-icon' [src]="'../assets/tuner/antena.png'" alt='' />
+        <span class='source-label'>AM</span>
+    </div>
+    <hr />
+</div>

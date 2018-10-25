@@ -1,4 +1,5 @@
 <div>
+	<app-source-selector (selectOption)="activateBand($event)" [component]="'tuner'" [currentSource]="currentStation"></app-source-selector>
 	<div class="station-title">
 		<span class="fav-ico-container">
 			<img *ngIf="currentStation?.isFavorite" class="fav-ico" src="assets/tuner/favorite_icon.png">
