@@ -54,7 +54,7 @@ export class NavigationComponent implements OnInit {
 
     openRecentDestinations = () => {
         console.log('openRecentDestinations');
-        // this.props.WS.send(JSON.stringify({ cmd: 'reqGetRecentDestinations' }));
+        this.WS.send(JSON.stringify({ cmd: 'reqGetRecentDestinations' }));
         this.router.navigate(['/navigation/recent-destinations']);
     }
 

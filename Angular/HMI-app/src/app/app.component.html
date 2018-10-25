@@ -1,34 +1,34 @@
 <div [ngClass]="{ 'menu-items-animated-down': clicked, 'menu-items-animated-up': !clicked }" >
     <nav class="nav-barr">
         <div class="menu-items" >
-            <div routerLink="/" class="menu-item" (click)="clicked = true">
+            <div routerLink={{goBackPath()}} class="menu-item">
                 <h2>
                     <img src="/assets/general/close.png">
                     <a>BACK</a>
                 </h2>
             </div>
-            <div routerLink="tuner" class="menu-item" (click)="clicked = false">
+            <div routerLink="tuner" class="menu-item">
                 <h2>
                     <img src="/assets/general/radio.png">
                     <a>TUNER</a>
                 </h2>
             </div>
 
-            <div routerLink="media" class="menu-item" (click)="clicked = false">
+            <div routerLink="media" class="menu-item">
                 <h2>
                     <img src="/assets/general/media.png">
                     <a>MEDIA</a>
                 </h2>
             </div>
 
-            <div routerLink="navigation" class="menu-item" (click)="clicked = false">
+            <div routerLink="navigation" class="menu-item">
                 <h2>
                     <img src="/assets/general/navigation.png">
                     <a>NAVI</a>
                 </h2>
             </div>
 
-            <div routerLink="settings" class="menu-item" (click)="clicked = false">
+            <div routerLink="settings" class="menu-item">
                 <h2>
                     <img src="/assets/general/settings.png">
                     <a>SETTINGS</a>

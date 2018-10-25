@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { TunerService } from '../services/tuner.service';
+import { WebsocketWrapperService } from '../services/websocket-wrapper.service';
 
 @Component({
     selector: 'app-tuner',
@@ -11,11 +12,12 @@ import { TunerService } from '../services/tuner.service';
 export class TunerComponent implements OnInit {
 
     constructor(private router: Router,
-        private tunerService: TunerService) { }
+        private WS: WebsocketWrapperService) { }
 
     currentStation;
     currentStationAM;
     currentStationFM;
+    band = 'fm';
 
     ngOnInit() {
         this.currentStationFM = {
@@ -43,7 +45,8 @@ export class TunerComponent implements OnInit {
     }
 
     openList() {
-        this.router.navigate(['tuner/list', this.currentStation.band]);
+        this.WS.send(JSON.stringify({ cmd: 'reqTunerListItems', band: this.band }));
+        this.router.navigate(['tuner', 'list']);
     }
 
 }

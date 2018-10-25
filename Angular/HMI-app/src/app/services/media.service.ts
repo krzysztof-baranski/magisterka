@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 
 
 @Injectable({
@@ -11,6 +12,7 @@ export class MediaService {
     currentSource;
     _listItems = [];
     currentTrack;
+    mediaListChange: Subject<Object[]> = new Subject<Object[]>();
 
     public get listItems(): Object[] {
         return this._listItems;
@@ -18,15 +20,12 @@ export class MediaService {
 
     public set listItems(v: Object[]) {
         this._listItems = v;
+        this.mediaListChange.next(this._listItems);
     }
 
     selectSource(source) {
 
         this.currentSource = source;
-    }
-
-    playTrack(track) {
-        // this.webSocketService.send(JSON.stringify({ cmd: 'reqPlayTrack', trackID: track.trackID }));
     }
 
     resPlayTrack(track) {

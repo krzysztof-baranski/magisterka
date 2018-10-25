@@ -1,0 +1,19 @@
+<div class="list-container">
+    <ul>
+        <li *ngFor="let item of items" class="list-item" (click)="onOpen(item)">
+            <span class="fav-ico-container">
+                <img *ngIf="item.isFavorite" class="fav-ico" src="assets/media/favorite_icon.png">
+            </span>
+            <span *ngIf="hasProp(item, 'country'); else name">{{ item.country }}, {{ item.city }}, {{ item.street }} {{ number }}</span>
+            <ng-template #name>
+                <span *ngIf="hasProp(item, 'name'); else title">{{ item.name }}</span>
+            </ng-template>
+            <ng-template #title>
+                <span *ngIf="hasProp(item, 'title'); else noname">{{ item.title }}</span>
+            </ng-template>
+            <ng-template #noname>
+                <span>Brak wyników</span>
+            </ng-template>
+        </li>
+    </ul>
+</div>

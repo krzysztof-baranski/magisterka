@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { MediaService } from '../services/media.service';
@@ -13,8 +12,7 @@ import { WebsocketWrapperService } from '../services/websocket-wrapper.service';
 export class MediaComponent implements OnInit {
 
     constructor(private mediaService: MediaService,
-        private cdRef: ChangeDetectorRef,
-        private webSocketService: WebsocketWrapperService,
+        private WS: WebsocketWrapperService,
         private router: Router) { }
 
     currentSource;
@@ -27,12 +25,13 @@ export class MediaComponent implements OnInit {
     }
 
     openList() {
-        this.router.navigate(['media/list']);
+        this.WS.send(JSON.stringify({ cmd: 'reqMediaListItems' }));
+        this.router.navigate(['media', 'list']);
     }
 
     playTrack(track) {
         console.warn('PLAY TRACK ', track);
-        this.webSocketService.send(JSON.stringify({ cmd: 'reqPlayTrack', trackID: track.trackID }));
+        this.WS.send(JSON.stringify({ cmd: 'reqPlayTrack', trackID: track.trackID }));
     }
 
     prevTrack() {

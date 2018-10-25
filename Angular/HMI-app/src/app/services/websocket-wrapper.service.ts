@@ -52,10 +52,10 @@ export class WebsocketWrapperService {
             case this.constantsService.COMMANDS['resPlayTrack']:
                 this.mediaService.resPlayTrack(msg.track);
                 break;
-            case this.constantsService.COMMANDS['resListItems']:
+            case 'resMediaListItems':
                 this.mediaService.resListItems(msg.items);
                 break;
-            case this.constantsService.COMMANDS['resTunerListItems']:
+            case 'resTunerListItems':
                 this.tunerService.resListItems(msg.items);
                 break;
             case this.constantsService.COMMANDS['resPlayStation']:
@@ -68,6 +68,9 @@ export class WebsocketWrapperService {
                 break;
             case 'resSetAddress':
                 this.naviService.address = msg.address;
+                break;
+            case 'resGetRecentDestinations':
+                this.naviService.recentDestinations = msg.recents;
                 break;
             default:
                 console.warn('handleMessage. Default', msg);

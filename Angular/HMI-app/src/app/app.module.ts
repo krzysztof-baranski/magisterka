@@ -7,10 +7,11 @@ import { AppComponent } from './app.component';
 import { MediaComponent } from './media/media.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { HomeComponent } from './home/home.component';
-import { ListComponent } from './media/list/list.component';
+import { ListComponent } from './list/list.component';
+import { ListComponent as TunerListComponent } from './tuner/list/list.component';
+import { ListComponent as MediaListComponent} from './media/list/list.component';
 import { TunerComponent } from './tuner/tuner.component';
 import { SettingsComponent } from './settings/settings.component';
-import { TunerListComponent } from './tuner/tuner-list/tuner-list.component';
 import { AudioSettingsComponent } from './settings/audio-settings/audio-settings.component';
 import { DisplaySettingsComponent } from './settings/display-settings/display-settings.component';
 import { OthersSettingsComponent } from './settings/others-settings/others-settings.component';
@@ -24,9 +25,10 @@ import { RecentDestinationsComponent } from './navigation/_partials/recent-desti
         NavigationComponent,
         HomeComponent,
         ListComponent,
+        TunerListComponent,
+        MediaListComponent,
         TunerComponent,
         SettingsComponent,
-        TunerListComponent,
         AudioSettingsComponent,
         DisplaySettingsComponent,
         OthersSettingsComponent,
@@ -48,7 +50,7 @@ import { RecentDestinationsComponent } from './navigation/_partials/recent-desti
             },
             {
                 path: 'media/list',
-                component: ListComponent
+                component: MediaListComponent
             },
             {
                 path: 'navigation',
@@ -63,7 +65,7 @@ import { RecentDestinationsComponent } from './navigation/_partials/recent-desti
                 component: TunerComponent
             },
             {
-                path: 'tuner/list/:band',
+                path: 'tuner/list',
                 component: TunerListComponent
             },
             {

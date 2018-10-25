@@ -1,41 +1,46 @@
-import { Component, OnInit, AfterViewChecked } from '@angular/core';
-import { ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { WebsocketWrapperService } from '../../services/websocket-wrapper.service';
 import { Router } from '@angular/router';
 import { MediaService } from '../../services/media.service';
+import { Subscription } from 'rxjs';
 
 @Component({
-    selector: 'app-list',
+    selector: 'app-media-list',
     templateUrl: './list.component.html',
     styleUrls: ['./list.component.css']
 })
-export class ListComponent implements OnInit, AfterViewChecked {
+export class ListComponent implements OnInit, OnDestroy {
+
+    listItems: Object[];
+    subscriptions: Subscription[] = [];
+
 
     constructor(private mediaService: MediaService,
         private webSocketService: WebsocketWrapperService,
-        private cdRef: ChangeDetectorRef,
         private router: Router) {
 
+        this.subscriptions.push(this.onTrackListChange());
     }
 
     ngOnInit() {
-        this.getListItems();
     }
 
-    ngAfterViewChecked() {
-        this.cdRef.detectChanges();
-    }
-
-
-    getListItems() {
-        console.warn('GET LIST ITEMS');
-        this.webSocketService.send(JSON.stringify({ cmd: 'reqListItems' }));
+    onTrackListChange (): Subscription {
+        return this.mediaService.mediaListChange.subscribe((value) => {
+            this.listItems = value;
+        });
     }
 
     playTrack(track) {
         console.warn('PLAY TRACK', track);
         this.webSocketService.send(JSON.stringify({ cmd: 'reqPlayTrack', trackID: track.trackID }));
         this.router.navigate(['media']);
+    }
+
+    ngOnDestroy () {
+        for (let i = 0; i < this.subscriptions.length; i++) {
+            this.subscriptions[i].unsubscribe();
+        }
     }
 }

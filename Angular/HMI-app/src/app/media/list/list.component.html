@@ -1,13 +1,1 @@
-<p>
-  list works!
-</p>
-<div class="list-container">
-	<ul>
-		<li *ngFor="let item of listItems" class="list-item" (click)="playTrack(item)">
-			<span class="fav-ico-container">
-				<img *ngIf="item.isFavorite" class="fav-ico" src="assets/media/favorite_icon.png">
-			</span>
-			<span>{{ item.title }}</span>
-		</li>
-	</ul>
-</div>
+<app-list [items]="listItems" (open)="playTrack($event)"></app-list>

@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
 })
 export class TunerService {
-    private _listItems = [];
+    private _listItems: Object[] = [];
+    tunerListChange: Subject<Object[]> = new Subject<Object[]>();
 
     constructor() { }
 
@@ -16,6 +18,7 @@ export class TunerService {
 
     public set listItems(v: Object[]) {
         this._listItems = v;
+        this.tunerListChange.next(this._listItems);
     }
 
     resListItems(items) {
