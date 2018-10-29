@@ -1,9 +1,10 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 
 import { NavigationService } from '../../../services/navigation.service';
 import { Subscription } from 'rxjs';
 import { Location } from '@angular/common';
 import { WebsocketWrapperService } from 'src/app/services/websocket-wrapper.service';
+import { ListComponent } from 'src/app/list/list.component';
 
 @Component({
     selector: 'app-recent-destinations',
@@ -11,6 +12,7 @@ import { WebsocketWrapperService } from 'src/app/services/websocket-wrapper.serv
     styleUrls: ['./recent-destinations.component.css']
 })
 export class RecentDestinationsComponent implements OnInit, OnDestroy {
+    @ViewChild(ListComponent) private list: ListComponent;
 
     recents: Object[];
     subscriptions: Subscription[] = [];
@@ -27,6 +29,7 @@ export class RecentDestinationsComponent implements OnInit, OnDestroy {
     onRecentsChange(): Subscription {
         return this.naviService.recentDestinationsChange.subscribe((value) => {
             this.recents = value;
+            this.list.loading = false;
         });
     }
 

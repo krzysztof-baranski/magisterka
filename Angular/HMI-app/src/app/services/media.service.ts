@@ -13,6 +13,8 @@ export class MediaService {
     _listItems = [];
     currentTrack;
     mediaListChange: Subject<Object[]> = new Subject<Object[]>();
+    currentTrackChange: Subject<Object> = new Subject<Object>();
+    currentSourceChange: Subject<Object> = new Subject<Object>();
 
     public get listItems(): Object[] {
         return this._listItems;
@@ -24,13 +26,14 @@ export class MediaService {
     }
 
     selectSource(source) {
-
         this.currentSource = source;
+        this.currentSourceChange.next(this.currentSource);
     }
 
     resPlayTrack(track) {
         console.warn('media.service resPlayTrack');
         this.currentTrack = track;
+        this.currentTrackChange.next(this.currentTrack);
     }
 
     resListItems(items) {

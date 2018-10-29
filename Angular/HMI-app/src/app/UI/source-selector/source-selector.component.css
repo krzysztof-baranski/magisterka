@@ -10,7 +10,7 @@
 
 .source-icon {
     width: 40px;
-
+    margin: 0 20px;
 }
 
 .source-label {
@@ -19,7 +19,7 @@
 
 .source-selector {
     position: absolute;
-    /* left: -160px; */
+    left: -160px;
     line-height: 103px;
     display: inline-grid;
 }

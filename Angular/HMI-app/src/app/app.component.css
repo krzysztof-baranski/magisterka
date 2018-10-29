@@ -1,9 +1,3 @@
-.router-outlet {
-	top: 0;
-	position: relative;
-    margin-left: 100px;
-}
-
 .nav-barr {
     display: flex;
 }

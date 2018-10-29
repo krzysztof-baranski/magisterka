@@ -62,19 +62,3 @@ progress {
 	-webkit-appearance: none;
 	border: none;
 }
-.cover-art {
-    position: absolute;
-    height: 350px;
-    width: 350px;
-    top: 45px;
-    right: 160px;
-    border: black 2px solid;
-    border-radius: 30px;
-}
-
-.cover-art-image {
-	background: url(/assets/media/prev.png) no-repeat center center;
-    background-size: 300px 300px;
-    width: inherit;
-    height: inherit;
-}

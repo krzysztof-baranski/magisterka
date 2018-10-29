@@ -8,10 +8,12 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class ListComponent implements OnInit {
     @Input() items: Object[];
     @Output() open: EventEmitter<any> = new EventEmitter<any>();
+    loading;
 
     constructor() { }
 
     ngOnInit() {
+        this.loading = true;
     }
 
     onOpen(data) {
@@ -19,7 +21,7 @@ export class ListComponent implements OnInit {
         this.open.emit(data);
     }
 
-    hasProp (o, prop) {
+    hasProp(o, prop) {
         return o.hasOwnProperty(prop);
     }
 }

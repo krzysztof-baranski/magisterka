@@ -83,15 +83,16 @@ class Media(object):
 		return self.currentSource
 
 	def playTrack (self, data):
-		trackID = data.get('id', None) 
+		trackID = data.get('trackID', None) 
 
 		for track in self.tracks:
-			if track['trackID'] == trackID:
+			if str(track['trackID']) == trackID:
+				# global currentTrack
 				self.currentTrack = track
-				return track
-		else:
-			self.currentTrack = track
-			return self.emptyTrack
+				break;
+		return self.currentTrack
+		
+		# return self.emptyTrack
 
 	def getListItems (self):
 		items = []

@@ -1,9 +1,10 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Location } from '@angular/common';
 
 import { TunerService } from 'src/app/services/tuner.service';
 import { WebsocketWrapperService } from 'src/app/services/websocket-wrapper.service';
+import { ListComponent as ListCmp } from '../../list/list.component';
 
 @Component({
     selector: 'app-tuner-list',
@@ -12,6 +13,7 @@ import { WebsocketWrapperService } from 'src/app/services/websocket-wrapper.serv
 })
 export class ListComponent implements OnInit, OnDestroy {
 
+    @ViewChild(ListCmp) private list: ListCmp;
     listItems: Object[];
     subscriptions: Subscription[] = [];
 
@@ -27,6 +29,7 @@ export class ListComponent implements OnInit, OnDestroy {
     onListStationChange (): Subscription {
         return this.tunerService.tunerListChange.subscribe((value) => {
             this.listItems = value;
+            this.list.loading = false;
         });
     }
 

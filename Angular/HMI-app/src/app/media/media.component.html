@@ -5,7 +5,7 @@
 			<img *ngIf="currentTrack?.isFavorite" class="fav-ico" src="assets/media/favorite_icon.png">
 		</span>
 		<span>
-			{{ currentTrack.title }}
+			{{ currentTrack.title || currentTrack.name }}
 		</span>
 	</div>
 	<div class="track-info">
@@ -14,17 +14,11 @@
 		</div>
 		<div class="time-info">
 			<span class="current-time">1:00</span>
-			<span [hidden]="(!currentTrack.trackID && currentTrack.trackID != 0) || !mediaService.listItems.length" class="track-number">Track {{ currentTrack.trackID + 1 }}/{{ mediaService.listItems.length }}</span>
-			<span [hidden]="currentTrack.trackID >= 0 && mediaService.listItems.length" class="track-number">Track --/--</span>
+			<span [hidden]="!(currentTrack.trackID || currentTrack.trackID === 0)" class="track-number">Track {{ currentTrack.trackID + 1 }}/{{ currentTrack.totalTracks }}</span>
+			<span [hidden]="currentTrack.trackID >= 0" class="track-number">Track --/--</span>
 			<span class="total-time">3:02</span>
 		</div>
 	</div>
-	<div class="controls">
-		<button name="prev" (click)="prevTrack()"></button>
-		<button class="list-button" (click)="openList()">LIST</button>
-		<button name="next"  (click)="nextTrack()" style="transform: rotateY(180deg);"></button>
-	</div>
-	<div class="cover-art">
-		<div class="cover-art-image"></div>
-	</div>
+	<app-controls (previous)="prevTrack($event)" (next)="nextTrack($event)" (openList)="openList($event)"></app-controls>
+	<app-coverart></app-coverart>
 </div>

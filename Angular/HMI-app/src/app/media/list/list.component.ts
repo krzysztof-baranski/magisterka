@@ -1,9 +1,10 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 
 import { WebsocketWrapperService } from '../../services/websocket-wrapper.service';
 import { Router } from '@angular/router';
 import { MediaService } from '../../services/media.service';
 import { Subscription } from 'rxjs';
+import { ListComponent as ListCmp } from '../../list/list.component';
 
 @Component({
     selector: 'app-media-list',
@@ -11,6 +12,7 @@ import { Subscription } from 'rxjs';
     styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit, OnDestroy {
+    @ViewChild(ListCmp) private list: ListCmp;
 
     listItems: Object[];
     subscriptions: Subscription[] = [];
@@ -29,6 +31,7 @@ export class ListComponent implements OnInit, OnDestroy {
     onTrackListChange (): Subscription {
         return this.mediaService.mediaListChange.subscribe((value) => {
             this.listItems = value;
+            this.list.loading = false;
         });
     }
 

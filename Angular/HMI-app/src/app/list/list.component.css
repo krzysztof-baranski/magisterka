@@ -20,10 +20,11 @@
 }
 
 ul {
+    width: 900px;
 	left: 300px;
     position: relative;
-    height: 500px;
-    width: max-content;
+    height: 550px;
     overflow: auto;
     overflow-y: scroll;
+    background: #ffffffc7;
 }

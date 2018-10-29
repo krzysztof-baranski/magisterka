@@ -15,5 +15,8 @@
                 <span>Brak wyników</span>
             </ng-template>
         </li>
+        <div *ngIf="loading">
+            <app-spinner></app-spinner>
+        </div>
     </ul>
 </div>

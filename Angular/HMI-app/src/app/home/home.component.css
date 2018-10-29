@@ -1,0 +1,6 @@
+.router-outlet {
+	/* margin-left: 100px; */
+	top: 140px;
+    position: relative;
+    left: 70px;
+}

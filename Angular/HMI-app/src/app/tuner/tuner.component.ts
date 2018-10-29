@@ -49,4 +49,11 @@ export class TunerComponent implements OnInit {
         this.router.navigate(['tuner', 'list']);
     }
 
+    nextStation(event) {
+        console.log('[tuner.component] nextStation', event);
+    }
+
+    prevStation() {
+        console.log('[tuner.component] prevStation');
+    }
 }

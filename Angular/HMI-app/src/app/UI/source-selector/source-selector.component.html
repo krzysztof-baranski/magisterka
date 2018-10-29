@@ -13,14 +13,13 @@
     </div>
     <hr />
 </div>
-);
 
 <div *ngIf="component === 'tuner'" class='source-selector'>
     <div [ngClass]="{'source-item': true, 'active': (currentSource && currentSource.band==='fm')}" (click)="selectSource('fm')">
         <img class='source-icon' [src]="'assets/tuner/antena.png'" alt='' />
         <span class='source-label'>FM</span>
     </div>
-    <div class="{'source-item': true, 'active': (currentSource && currentSource.band==='am')}" (click)="selectSource('am')">
+    <div [ngClass]="{'source-item': true, 'active': (currentSource && currentSource.band==='am')}" (click)="selectSource('am')">
         <img class='source-icon' [src]="'../assets/tuner/antena.png'" alt='' />
         <span class='source-label'>AM</span>
     </div>

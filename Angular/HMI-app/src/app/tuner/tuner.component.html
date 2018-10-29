@@ -18,13 +18,6 @@
 			<span *ngIf="currentStation.band === 'am'" class="station-fraquence">{{ currentStation.fraquence }}kHz</span>
 		</div>
 	</div>
-	<div class="controls">
-		<button name="prev" (click)="prevStation()"></button>
-		<button class="list-button" (click)="openList()">LIST</button>
-		<button name="next"  (click)="nextStation()" style="transform: rotateY(180deg);"></button>
-	</div>
-	<div class="band">
-		<div [ngClass]="{ 'active': currentStation.band === 'fm' }" (click)="activateBand('fm')">FM</div>
-		<div [ngClass]="{ 'active': currentStation.band === 'am' }" (click)="activateBand('am')">AM</div>
-	</div>
+	<app-controls (previous)="prevStation($event)" (next)="nextStation($event)" (openList)="openList($event)"></app-controls>
+	<app-coverart></app-coverart>
 </div>

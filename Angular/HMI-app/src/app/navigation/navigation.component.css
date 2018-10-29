@@ -12,9 +12,9 @@ app-enter-address {
 }
 
 .navi-container {
-    top: 140px;
+    /* top: 140px; */
     position: relative;    
-    left: 70px;
+    /* left: 70px; */
 }
 
 .navi-source-item {

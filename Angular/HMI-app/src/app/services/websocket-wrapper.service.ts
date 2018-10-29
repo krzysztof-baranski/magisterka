@@ -46,7 +46,7 @@ export class WebsocketWrapperService {
 
     handleMessage = (msg) => {
         switch (msg.cmd) {
-            case this.constantsService.COMMANDS['selectSource']:
+            case 'resGetSource':
                 this.mediaService.selectSource(msg.source);
                 break;
             case this.constantsService.COMMANDS['resPlayTrack']:

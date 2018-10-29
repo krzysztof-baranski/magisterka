@@ -12,26 +12,6 @@
     margin-right: 30px
 }
 
-.controls {
-	display: flex;
-	margin-top: 90px;
-}
-
-.controls button {
-	border-bottom: 2px solid;
-	width: 400px;
-	height: 100px;
-	border-color: #bb181873;
-    background-color: transparent;
-    border-radius: 10px;
-    font-size: 45px;
-}
-
-.controls button:not(.list-button) {
-    background: url('/assets/media/prev.png') no-repeat center center;
-    background-size: 100px 100px;
-}
-
 .fraquence-info {
     position: absolute;
     width: 1200px;
