@@ -44,7 +44,7 @@ export class TunerComponent implements OnInit {
         }
     }
 
-    openList() {
+    openList(e) {
         this.WS.send(JSON.stringify({ cmd: 'reqTunerListItems', band: this.band }));
         this.router.navigate(['tuner', 'list']);
     }
@@ -53,7 +53,7 @@ export class TunerComponent implements OnInit {
         console.log('[tuner.component] nextStation', event);
     }
 
-    prevStation() {
+    prevStation(e) {
         console.log('[tuner.component] prevStation');
     }
 }

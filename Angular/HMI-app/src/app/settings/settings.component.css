@@ -16,6 +16,7 @@ ul {
     width: max-content;
     overflow: auto;
     overflow-y: scroll;
+    background: #ffffffc7;
 }
 
 .icon {

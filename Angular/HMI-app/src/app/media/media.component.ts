@@ -29,6 +29,7 @@ export class MediaComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.currentTrack = this.mediaService.currentTrack || {};
+        this.selectSource();
     }
 
     onTrackChange() {
@@ -44,7 +45,7 @@ export class MediaComponent implements OnInit, OnDestroy {
         });
     }
 
-    openList() {
+    openList(e) {
         this.WS.send(JSON.stringify({ cmd: 'reqMediaListItems' }));
         this.router.navigate(['media', 'list']);
     }
@@ -54,15 +55,17 @@ export class MediaComponent implements OnInit, OnDestroy {
         this.WS.send(JSON.stringify({ cmd: 'reqPlayTrack', trackID: track.trackID }));
     }
 
-    selectSource(source) {
+    selectSource() {
         this.WS.send(JSON.stringify({ cmd: 'reqGetSource' }));
+        this.WS.send(JSON.stringify({ cmd: 'reqPlayTrack', trackID: '0' })/*, callback*/);
+
     }
 
-    prevTrack() {
+    prevTrack(e) {
         console.log('[media.component] prevTrack');
     }
 
-    nextTrack() {
+    nextTrack(e) {
         console.log('[media.component] nextTrack');
     }
 

@@ -19,10 +19,6 @@ export class WebsocketWrapperService {
 
     init = (ws) => {
         this.webSocket = ws;
-        this.send(JSON.stringify({ cmd: 'reqSelectSource', source: 'usb' })/*, callback*/);
-        this.send('hello'/*, callback*/);
-        this.send(JSON.stringify({ cmd: 'reqPlayTrack', trackID: '0' })/*, callback*/);
-
         this.webSocket.onmessage = this.receive;
 
     }

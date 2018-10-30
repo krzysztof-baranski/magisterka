@@ -1,6 +1,75 @@
-.router-outlet {
-	/* margin-left: 100px; */
-	top: 140px;
+.nav-barr {
+    display: flex;
+}
+
+.menu-items {
+    display: flex;
+}
+
+.menu-items-animated-down {
+	animation-name: menu-down;
+	animation-duration: 2s;
+    position: absolute;
+	top: 200px;
+}
+
+@keyframes menu-down {
+	from {
+		position: absolute;
+		top: -220px;
+	}
+	to {
+		position: absolute;
+		top: 200px;
+	}
+}
+
+.menu-items-animated-up {
+	animation-name: menu-up;
+	animation-duration: 2s;
+	position: absolute;
+	top: -220px;
+}
+
+@keyframes menu-up {
+	from {
+		position: absolute;
+		top: 200px;
+	}
+	to {
+		position: absolute;
+		top: -220px;
+	}
+}
+
+.date-container {
     position: relative;
-    left: 70px;
+    right: 45px;
+    top: 210px;
+    text-align: -webkit-right;
+}
+
+.menu-items {
+}
+
+.menu-item {
+    /*width: 200px;*/
+	width: 11%;
+    margin: 0 50px;
+}
+
+h2 {
+	/*display: flex;*/
+}
+/*
+h2 a {
+    position: relative;
+    top: 280px;
+    left: 200px;
+    font-size: 45px;
+}*/
+
+h2 img {
+	margin-bottom: 20px;
+	width: 100%;
 }
