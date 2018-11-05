@@ -38,7 +38,7 @@ const _settingsArray = [
 // 	return <OthersSettings />
 // }
 
-export class Settings extends React.Component {
+export default class Settings extends React.Component {
 	constructor (props) {
 		super(props);
 		this.selectedItem = {};
