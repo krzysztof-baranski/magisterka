@@ -8,18 +8,13 @@ h6 {
     margin-left: 70px;
 }
 
-progress {
+meter {
 	width: 590px;
-	position: absolute;
-	left: 200px;
+	height: 30px;
 }
 
 div {
     margin-bottom: 70px;
-}
-
-progress::-webkit-progress-value {
- 	background: lightblue;
 }
 
 span {
@@ -37,6 +32,7 @@ span {
     text-align: -webkit-center;
     font-size: 45px;
     width: 100px;
+    margin: 0 30px;
     -webkit-appearance: button-bevel;
 
 }
@@ -48,9 +44,14 @@ span {
 }
 
 .display-settings button:last-child {
-	position: absolute;
+	/* position: absolute; */
 	right: 0;
     text-align: -webkit-center;
     width: 100px;
     -webkit-appearance: button-bevel;
+}
+
+.display-settings .settings-controls {
+    display: flex;
+    align-items: center;
 }

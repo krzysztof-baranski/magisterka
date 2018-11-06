@@ -11,6 +11,10 @@
     position: relative;
 }
 
+.sub-settings {
+    width: 95%;
+}
+
 .list-item {
 	display: block;
     width: 900px;

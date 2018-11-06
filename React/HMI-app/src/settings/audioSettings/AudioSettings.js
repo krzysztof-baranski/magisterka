@@ -1,5 +1,4 @@
 import React from 'react';
-import './AudioSettings.css';
 
 import SettingsItem from '../SettingsItem'
 
@@ -62,7 +61,7 @@ export class AudioSettings extends React.Component {
 
 	render() {
 		return (
-			<div className="audio-settings">
+			<div className="settings-item">
 				<SettingsItem
 					label='General volume:'
 					value={this.state.VOLUMES['general']}

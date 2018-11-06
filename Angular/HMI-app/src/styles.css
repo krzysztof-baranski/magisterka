@@ -9,6 +9,7 @@ body {
 	margin-left: 100px;    
 	display: flow-root;
 	background-image: linear-gradient(#fff, #444);
+	box-sizing: border-box;
 }
 
 ul {

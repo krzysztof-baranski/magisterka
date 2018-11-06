@@ -1,5 +1,4 @@
 import React from 'react';
-import './OthersSettings.css';
 
 const OTHERS = {
 	units: {
@@ -42,7 +41,7 @@ export class OthersSettings extends React.Component {
 
 	render() {
 		return (
-			<div className="others-settings">
+			<div className="settings-item">
 				<div className="units">
 					<h3>Units:</h3>
 					<div onClick={this.changeValue.bind(this, 'units', 0)}>
@@ -50,7 +49,7 @@ export class OthersSettings extends React.Component {
 							type="radio"
 							name="units"
 							checked={this.state.OTHERS.units.selected === 0}
-							onChange={() => {}}/>
+							onChange={() => { }} />
 						<label>Kilometres</label>
 					</div>
 					<div onClick={this.changeValue.bind(this, 'units', 1)}>
@@ -58,15 +57,18 @@ export class OthersSettings extends React.Component {
 							type="radio"
 							name="units"
 							checked={this.state.OTHERS.units.selected === 1}
-							onChange={() => {}}/>
+							onChange={() => { }} />
 						<label>Miles</label>
 					</div>
+					<hr />
 				</div>
 				<div>
 					<h3>Memory usage (%):</h3>
-					<button disabled={true}>-</button>
-					<progress value={this.state.OTHERS['memory']} max="100"></progress>
-					<button disabled={true}>+</button>
+					<div className="settings-controls">
+						<button disabled={true}>-</button>
+						<progress value={this.state.OTHERS['memory']} max="100"></progress>
+						<button disabled={true}>+</button>
+					</div>
 				</div>
 			</div>
 		);

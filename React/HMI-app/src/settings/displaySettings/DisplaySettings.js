@@ -1,8 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import './DisplaySettings.css';
-
 import DisplayItem from '../SettingsItem';
 
 const DISP = {
@@ -79,7 +77,7 @@ class DisplaySettings extends React.Component {
 
 	render() {
 		return (
-			<div className="display-settings">
+			<div className="settings-item">
 				{/* <div>
 					<h3>Brighntness:</h3>
 					<button onClick={this.changeValue.bind(this, 'brighntness', -1)}>-</button>

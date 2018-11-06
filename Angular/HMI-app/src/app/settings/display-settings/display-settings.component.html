@@ -1,49 +1,54 @@
 <div class="display-settings">
-	<div>
-		<h3>Brighntness:</h3>
+	<h3>Brighntness:</h3>
+	<div class="settings-controls">
 		<button (click)="changeValue($event, 'brighntness', -1)">-</button>
-		<progress value="{{ DISP['brighntness'] }}" max="100" (click)="changeValue($event, 'brighntness', 0)"></progress>
+		<meter value="{{ DISP['brighntness'] }}" max="100" (click)="changeValue($event, 'brighntness', 0)"></meter>
 		<button (click)="changeValue($event, 'brighntness', 1)">+</button>
 	</div>
+	<hr />
+	<h3>Colors:</h3>
 	<div>
-		<h3>Colors:</h3>
 		<h6>Red:</h6>
-		<div>	
+		<div class="settings-controls">	
 			<button (click)="changeValue($event, 'red', -1)">-</button>
-			<progress value="{{ DISP['red'] }}" max="100"></progress>
+			<meter value="{{ DISP['red'] }}" max="100"></meter>
 			<button (click)="changeValue($event, 'red', 1)">+</button>
 		</div>
+		<hr />
 
 		<h6>Green:</h6>
-		<div>	
+		<div class="settings-controls">	
 			<button (click)="changeValue($event, 'green', -1)">-</button>
-			<progress value="{{ DISP['green'] }}" max="100"></progress>
+			<meter value="{{ DISP['green'] }}" max="100"></meter>
 			<button (click)="changeValue($event, 'green', 1)">+</button>
 		</div>
+		<hr />
 
 		<h6>Blue:</h6>
-		<div>	
+		<div class="settings-controls">	
 			<button (click)="changeValue($event, 'blue', -1)">-</button>
-			<progress value="{{ DISP['blue'] }}" max="100"></progress>
+			<meter value="{{ DISP['blue'] }}" max="100"></meter>
 			<button (click)="changeValue($event, 'blue', 1)">+</button>
 		</div>
+		<hr />
 	</div>
-	<div>
-		<h3>Contrast:</h3>
+	<h3>Contrast:</h3>
+	<div class="settings-controls">
 		<button (click)="changeValue($event, 'contrast', -1)">-</button>
-		<progress value="{{ DISP['contrast'] }}" max="100"></progress>
+		<meter value="{{ DISP['contrast'] }}" max="100"></meter>
 		<button (click)="changeValue($event, 'contrast', 1)">+</button>
 	</div>
+	<hr />
 	<!-- <div>
 		<h3>Balance:</h3>
 		<button (click)="changeValue($event, 'balance', -1)">Left</button>
-		<progress value="{{ DISP['balance'] }}" min="-50" max="50"></progress>
+		<meter value="{{ DISP['balance'] }}" min="-50" max="50"></meter>
 		<button (click)="changeValue($event, 'balance', 1)">Right</button>
 	</div>
 	<div>
 		<h3>Fader:</h3>
 		<button (click)="changeValue($event, 'fader', -1)">Front</button>
-		<progress value="{{ DISP['fader'] }}" min="-50" max="50"></progress>
+		<meter value="{{ DISP['fader'] }}" min="-50" max="50"></meter>
 		<button (click)="changeValue($event, 'fader', 1)">Rear</button>
 	</div>
 	 -->	

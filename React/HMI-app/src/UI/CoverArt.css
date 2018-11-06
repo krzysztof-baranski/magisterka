@@ -1,0 +1,22 @@
+.cover-art {
+    position: absolute;
+    height: 350px;
+    width: 350px;
+    top: 45px;
+    right: 160px;
+    border: black 2px solid;
+    border-radius: 30px;
+}
+
+.cover-art-image {
+	display: flex;
+    background-size: 300px 300px;
+    width: inherit;
+    height: inherit;
+}
+
+.cover-art-image img {
+    width: 100%;
+    height: auto;
+    margin: auto;
+}

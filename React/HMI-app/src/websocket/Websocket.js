@@ -31,7 +31,7 @@ class Websocket extends React.Component {
 	}
 
 	receive(event) {
-		console.warn("!!!!! ", event);
+		console.warn("!!!!! ", event + Date.now());
 		let data = this.checkJson(event.data);
 		this.handleMessage(data);
 		console.warn('4', data.cmd);

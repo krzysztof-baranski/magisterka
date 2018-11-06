@@ -55,7 +55,8 @@
     text-align: -webkit-right;
 }
 
-.menu-items {
+.menu-items a {
+    color: black;
 }
 
 .menu-item {

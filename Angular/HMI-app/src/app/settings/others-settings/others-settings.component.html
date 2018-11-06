@@ -10,22 +10,23 @@
 			<label>Miles</label>
 		</div>
 	</div>
-	<div>
-		<h3>Memory usage (%):</h3>
+	<hr />
+	<h3>Memory usage (%):</h3>
+	<div class="settings-controls">
 		<button [disabled]="true">-</button>
-		<progress value="{{ OTHERS['memory'] }}" max="100"></progress>
+		<meter value="{{ OTHERS['memory'] }}" max="100"></meter>
 		<button [disabled]="true">+</button>
 	</div>
 	<!-- <div>
 		<h3>Balance:</h3>
 		<button (click)="changeValue($event, 'balance', -1)">Left</button>
-		<progress value="{{ OTHERS['balance'] }}" min="-50" max="50"></progress>
+		<meter value="{{ OTHERS['balance'] }}" min="-50" max="50"></meter>
 		<button (click)="changeValue($event, 'balance', 1)">Right</button>
 	</div>
 	<div>
 		<h3>Fader:</h3>
 		<button (click)="changeValue($event, 'fader', -1)">Front</button>
-		<progress value="{{ OTHERS['fader'] }}" min="-50" max="50"></progress>
+		<meter value="{{ OTHERS['fader'] }}" min="-50" max="50"></meter>
 		<button (click)="changeValue($event, 'fader', 1)">Rear</button>
 	</div>
 	 -->	

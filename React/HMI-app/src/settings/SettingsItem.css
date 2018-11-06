@@ -8,9 +8,10 @@ h6 {
     margin-left: 70px;
 }
 
-.display-settings progress {
+.settings-item meter {
     width: 590px;
     left: 200px;
+    height: 30px;
 }
 
 /*div {
@@ -27,12 +28,12 @@ span {
     display: -webkit-inline-box;
 }
 
-.display-settings span {
+.settings-item span {
     text-align: -webkit-center;
     font-size: 45px;
 }
 
-.display-settings button {
+.settings-item button {
     text-align: -webkit-center;
     font-size: 45px;
     width: 100px;
@@ -41,16 +42,33 @@ span {
 
 }
 
-.display-settings span:last-child {
+.settings-item span:last-child {
     position: absolute;
     right: 0;
     text-align: -webkit-center;
 }
 
-.display-settings button:last-child {
-    position: absolute;
+.settings-item div:last-child {
+    margin-bottom: 25px;
+}
+
+.settings-item button:last-child {
+    /* position: absolute; */
     right: 0;
     text-align: -webkit-center;
     width: 100px;
     -webkit-appearance: button-bevel;
+}
+
+.settings-item input[type=radio] {
+    width: 30px;
+    height: 30px;
+    margin: 0 15px;
+    vertical-align: middle;
+}
+
+.settings-item hr {
+    width: 100%;
+    height: 0;
+    position: inherit;
 }

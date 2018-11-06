@@ -4,90 +4,10 @@
     left: 70px;
 }
 
-.track-title {
-    height: 115px;
-    margin-top: 30px;
-}
-
-.track-title span {
-    font-size: 80px;
-    width: auto;
-}
-
-.track-title img {
-    height: 80px;
-    margin-right: 30px
-}
-
-.controls {
-	display: flex;
-	margin-top: 90px;
-}
-
-.controls button {
-	border-bottom: 2px solid;
-	width: 400px;
-	height: 100px;
-	border-color: #bb181873;
-    background-color: transparent;
-    border-radius: 10px;
-    font-size: 45px;
-}
-
-.controls button:not(.list-button) {
-    background: url('/assets/media/prev.png') no-repeat center center;
-    background-size: 100px 100px;
-}
-
-.time-info {
-    position: absolute;
-    width: 1200px;
-    display: flex;
-}
-
-.total-time {
-	position: relative;
-    left: 20px;
-    font-size: 45px;
-}
-
-.track-number {
-    position: relative;
-    margin: 0px 390px;
-    font-size: 45px;
-    white-space: nowrap;
-}
-
-.current-time {
-	font-size: 45px;
-}
-
 .media-container meter {
 	width: 1200px;
 	height: 14px;
 	margin: 50px auto 0;
 	/* -webkit-appearance: none; */
 	border: none;
-}
-.cover-art {
-    position: absolute;
-    height: 350px;
-    width: 350px;
-    top: 45px;
-    right: 160px;
-    border: black 2px solid;
-    border-radius: 30px;
-}
-
-.cover-art-image {
-	display: flex;
-    background-size: 300px 300px;
-    width: inherit;
-    height: inherit;
-}
-
-.cover-art-image img {
-    width: 100%;
-    height: auto;
-    margin: auto;
 }

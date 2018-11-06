@@ -1,0 +1,26 @@
+.track-info {
+    position: absolute;
+    width: 1200px;
+    /* display: flex; */
+    text-align: center;
+}
+
+.total-time {
+	position: absolute;
+    right: 0;
+    font-size: 45px;
+}
+
+.track-number {
+    position: relative;
+    margin: 0px 390px;
+    font-size: 45px;
+    white-space: nowrap;
+}
+
+.current-time {
+    position: absolute;
+    left: 0;
+    margin: 0;
+	font-size: 45px;
+}

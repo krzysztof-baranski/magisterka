@@ -101,7 +101,7 @@ class Tuner extends React.Component {
 						min={this.props.currentStation.band === 'fm' ? 87.5 : 300}
 						progressLabel={this.getProgressLabel()} />
 					<Controls prev={this.prevStation} next={this.nextStation} openList={this.openList} />
-					<CoverArt />
+					<CoverArt image={require('../assets/media/coverart.png')}/>
 				</div>);
 		}
 
