@@ -5,13 +5,12 @@ import { WebsocketWrapperService } from 'src/app/services/websocket-wrapper.serv
 
 @Component({
     selector: 'app-display-settings',
-    templateUrl: './display-settings.component.html',
-    styleUrls: ['./display-settings.component.css']
+    templateUrl: './display-settings.component.html'
 })
 export class DisplaySettingsComponent implements OnInit {
     DISP;
     constructor(private constantsService: ConstantsService,
-            private WS: WebsocketWrapperService) {
+        private WS: WebsocketWrapperService) {
 
         this.DISP = this.constantsService.DISP;
     }
@@ -19,7 +18,11 @@ export class DisplaySettingsComponent implements OnInit {
     ngOnInit() {
     }
 
-    changeValue(event, key, value) {
+    onValueChanged(ev) {
+        // const event = ev.event;
+        const key = ev.key;
+        const value = ev.value;
+
         console.log('SETTINGS changeValue', key, value);
         let cmd;
         const color = {

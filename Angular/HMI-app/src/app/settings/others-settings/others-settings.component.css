@@ -2,18 +2,6 @@ h3, label {
 	font-size: 35px;
 }
 
-h6 {
-    margin: 10px 0;
-    font-size: 30px;
-    margin-left: 70px;
-}
-
-meter {
-	width: 590px;
-    left: 200px;
-    height: 30px;
-}
-
 div {
     margin-bottom: 70px;
 }
@@ -25,43 +13,4 @@ div {
 input {
     width: 50px;
     height: 30px;
-}
-
-span {
-    margin: 0 20px 0;
-    width: 100px;
-    display: -webkit-inline-box;
-}
-
-.others-settings span {
-    text-align: -webkit-center;
-    font-size: 45px;
-}
-
-.others-settings button {
-    text-align: -webkit-center;
-    font-size: 45px;
-    width: 100px;
-    margin: 0 30px;
-    -webkit-appearance: button-bevel;
-
-}
-
-.others-settings span:last-child {
-	position: absolute;
-	right: 0;
-    text-align: -webkit-center;
-}
-
-.others-settings button:last-child {
-	/* position: absolute; */
-	right: 0;
-    text-align: -webkit-center;
-    width: 100px;
-    -webkit-appearance: button-bevel;
-}
-
-.others-settings .settings-controls {
-    display: flex;
-    align-items: center;
 }

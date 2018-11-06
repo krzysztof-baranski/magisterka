@@ -4,8 +4,7 @@ import { ConstantsService } from '../../consts/constants.service';
 
 @Component({
     selector: 'app-audio-settings',
-    templateUrl: './audio-settings.component.html',
-    styleUrls: ['./audio-settings.component.css']
+    templateUrl: './audio-settings.component.html'
 })
 export class AudioSettingsComponent implements OnInit {
     // @Input() item; do przekazania wartości z setting.component
@@ -18,7 +17,11 @@ export class AudioSettingsComponent implements OnInit {
         this.VOLUMES = this.constantsService.VOLUMES;
     }
 
-    changeValue(event, key, value) {
+    onValueChanged(ev) {
+        const event = ev.event;
+        const key = ev.key;
+        const value = ev.value;
+
         if (event.target.closest('app-audio-settings') !== null) {
             event.preventDefault();
             event.stopPropagation();

@@ -1,38 +1,14 @@
 <div class="audio-settings">
-	<h3>General volume:</h3>
-	<div class="settings-controls">
-		<button (click)="changeValue($event, 'general', -1)">-</button>
-		<meter value="{{ VOLUMES['general'] }}" max="100" (click)="changeValue($event, 'general', 0)"></meter>
-		<button (click)="changeValue($event, 'general', 1)">+</button>
-	</div>
-	<hr />
-	<h3>Navi volume:</h3>
-	<div class="settings-controls">
-		<button (click)="changeValue($event, 'navi', -1)">-</button>
-		<meter value="{{ VOLUMES['navi'] }}" max="100"></meter>
-		<button (click)="changeValue($event, 'navi', 1)">+</button>
-	</div>
-	<hr />
-	<h3>Speech volume:</h3>
-	<div class="settings-controls">
-		<button (click)="changeValue($event, 'speech', -1)">-</button>
-		<meter value="{{ VOLUMES['speech'] }}" max="100"></meter>
-		<button (click)="changeValue($event, 'speech', 1)">+</button>
-	</div>
-	<hr />
-	<h3>Balance:</h3>
-	<div class="settings-controls">
-		<button (click)="changeValue($event, 'balance', -1)">Left</button>
-		<meter value="{{ VOLUMES['balance'] }}" min="-50" max="50"></meter>
-		<button (click)="changeValue($event, 'balance', 1)">Right</button>
-	</div>
-	<hr />
-	<h3>Fader:</h3>
-	<div class="settings-controls">
-		<button (click)="changeValue($event, 'fader', -1)">Front</button>
-		<meter value="{{ VOLUMES['fader'] }}" min="-50" max="50"></meter>
-		<button (click)="changeValue($event, 'fader', 1)">Rear</button>
-	</div>
-	<hr />
-		
+	<app-settings-item [value]="VOLUMES['general']" (valueChanged)="onValueChanged($event)" label="General volume:" key="general">
+	</app-settings-item>
+	<app-settings-item [value]="VOLUMES['navi']" (valueChanged)="onValueChanged($event)" label="Navi volume:" key="navi">
+	</app-settings-item>
+	<app-settings-item [value]="VOLUMES['speech']" (valueChanged)="onValueChanged($event)" label="Speech volume:" key="speech">
+	</app-settings-item>
+	<app-settings-item [value]="VOLUMES['balance']" (valueChanged)="onValueChanged($event)" label="Balance:" key="balance"
+	 min="-50" max="50">
+	</app-settings-item>
+	<app-settings-item [value]="VOLUMES['fader']" (valueChanged)="onValueChanged($event)" label="Fader:" key="fader" min="-50"
+	 max="50">
+	</app-settings-item>
 </div>

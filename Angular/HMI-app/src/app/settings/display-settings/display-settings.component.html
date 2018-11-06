@@ -1,55 +1,17 @@
-<div class="display-settings">
-	<h3>Brighntness:</h3>
-	<div class="settings-controls">
-		<button (click)="changeValue($event, 'brighntness', -1)">-</button>
-		<meter value="{{ DISP['brighntness'] }}" max="100" (click)="changeValue($event, 'brighntness', 0)"></meter>
-		<button (click)="changeValue($event, 'brighntness', 1)">+</button>
-	</div>
-	<hr />
-	<h3>Colors:</h3>
+<div class="settings-item">
+	<app-settings-item [value]="DISP['brighntness']" (valueChanged)="onValueChanged($event)" label="Brighntness:" key="brighntness"></app-settings-item>
+	
+	<h3 [style.font-size.px]="'35'">Colors:</h3>
 	<div>
 		<h6>Red:</h6>
-		<div class="settings-controls">	
-			<button (click)="changeValue($event, 'red', -1)">-</button>
-			<meter value="{{ DISP['red'] }}" max="100"></meter>
-			<button (click)="changeValue($event, 'red', 1)">+</button>
-		</div>
-		<hr />
+		<app-settings-item [value]="DISP['red']" (valueChanged)="onValueChanged($event)" label="" key="red"></app-settings-item>
 
 		<h6>Green:</h6>
-		<div class="settings-controls">	
-			<button (click)="changeValue($event, 'green', -1)">-</button>
-			<meter value="{{ DISP['green'] }}" max="100"></meter>
-			<button (click)="changeValue($event, 'green', 1)">+</button>
-		</div>
-		<hr />
+		<app-settings-item [value]="DISP['green']" (valueChanged)="onValueChanged($event)" label="" key="green"></app-settings-item>
 
 		<h6>Blue:</h6>
-		<div class="settings-controls">	
-			<button (click)="changeValue($event, 'blue', -1)">-</button>
-			<meter value="{{ DISP['blue'] }}" max="100"></meter>
-			<button (click)="changeValue($event, 'blue', 1)">+</button>
-		</div>
-		<hr />
+		<app-settings-item [value]="DISP['blue']" (valueChanged)="onValueChanged($event)" label="" key="blue"></app-settings-item>
 	</div>
-	<h3>Contrast:</h3>
-	<div class="settings-controls">
-		<button (click)="changeValue($event, 'contrast', -1)">-</button>
-		<meter value="{{ DISP['contrast'] }}" max="100"></meter>
-		<button (click)="changeValue($event, 'contrast', 1)">+</button>
-	</div>
-	<hr />
-	<!-- <div>
-		<h3>Balance:</h3>
-		<button (click)="changeValue($event, 'balance', -1)">Left</button>
-		<meter value="{{ DISP['balance'] }}" min="-50" max="50"></meter>
-		<button (click)="changeValue($event, 'balance', 1)">Right</button>
-	</div>
-	<div>
-		<h3>Fader:</h3>
-		<button (click)="changeValue($event, 'fader', -1)">Front</button>
-		<meter value="{{ DISP['fader'] }}" min="-50" max="50"></meter>
-		<button (click)="changeValue($event, 'fader', 1)">Rear</button>
-	</div>
-	 -->	
+	
+	<app-settings-item [value]="DISP['contrast']" (valueChanged)="onValueChanged($event)" label="Contrast:" key="contrast"></app-settings-item>
 </div>

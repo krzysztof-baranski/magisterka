@@ -1,0 +1,7 @@
+<h3>{{ label }}</h3>
+<div class="settings-controls">
+    <button [disabled]="disabled" (click)="changeValue($event, key, -1)">-</button>
+    <meter value={{value}} (click)="changeValue($event, key, 0)" [min]="min" [max]="max"></meter>
+    <button [disabled]="disabled" (click)="changeValue($event, key, 1)">+</button>
+</div>
+<hr />

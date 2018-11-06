@@ -6,6 +6,7 @@ import { DisplaySettingsComponent } from './display-settings/display-settings.co
 import { OthersSettingsComponent } from './others-settings/others-settings.component';
 import { SettingsComponent } from './settings.component';
 import { RouterModule } from '@angular/router';
+import { SettingsItemComponent } from './settings-item.component';
 
 @NgModule({
     imports: [
@@ -21,7 +22,8 @@ import { RouterModule } from '@angular/router';
         SettingsComponent,
         AudioSettingsComponent,
         DisplaySettingsComponent,
-        OthersSettingsComponent
+        OthersSettingsComponent,
+        SettingsItemComponent
     ]
 })
 export class SettingsModule { }

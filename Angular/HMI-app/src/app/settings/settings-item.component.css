@@ -2,11 +2,19 @@ h3 {
 	font-size: 35px;
 }
 
+h6 {
+    margin: 10px 0;
+    font-size: 30px;
+    margin-left: 70px;
+}
+
 meter {
 	width: 590px;
-	/* position: absolute; */
-    /* left: 200px; */
-    height: 30px;
+	height: 30px;
+}
+
+div {
+    margin-bottom: 70px;
 }
 
 span {
@@ -15,12 +23,12 @@ span {
     display: -webkit-inline-box;
 }
 
-.audio-settings span {
+.settings-controls span {
     text-align: -webkit-center;
     font-size: 45px;
 }
 
-.audio-settings button {
+.settings-controls button {
     text-align: -webkit-center;
     font-size: 45px;
     width: 100px;
@@ -29,13 +37,13 @@ span {
 
 }
 
-.audio-settings span:last-child {
+.settings-controls span:last-child {
 	position: absolute;
 	right: 0;
     text-align: -webkit-center;
 }
 
-.audio-settings button:last-child {
+.settings-controls button:last-child {
 	/* position: absolute; */
 	right: 0;
     text-align: -webkit-center;
@@ -43,7 +51,7 @@ span {
     -webkit-appearance: button-bevel;
 }
 
-.audio-settings .settings-controls {
+.settings-controls {
     display: flex;
     align-items: center;
 }

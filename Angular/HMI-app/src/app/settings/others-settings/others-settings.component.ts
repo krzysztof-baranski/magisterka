@@ -17,7 +17,11 @@ export class OthersSettingsComponent implements OnInit {
     ngOnInit() {
     }
 
-    changeValue(event, key, value) {
+    onValueChanged(ev) {
+        const event = ev.event;
+        const key = ev.key;
+        const value = ev.value;
+
         if (event.target.closest('app-others-settings') !== null) {
             event.preventDefault();
             event.stopPropagation();
